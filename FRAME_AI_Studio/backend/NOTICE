@@ -1,0 +1,16 @@
+Powered by Stability AI
+
+This Stability AI Model is licensed under the Stability AI Community License,
+Copyright © Stability AI Ltd. All Rights Reserved.
+
+This backend can download and run stabilityai/sd-turbo. A copy of its license
+is included in licenses/SD-Turbo-LICENSE.md. Model weights are not bundled.
+
+LTX-Video 2B 0.9.5 is developed by Lightricks Ltd. Its model license is included
+in licenses/LTX-Video-0.9.5-LICENSE.txt.
+
+Wan 2.2 is developed by the Wan Team. Its Apache 2.0 model license is included
+in licenses/Wan-Apache-2.0-LICENSE.txt.
+
+The included licenses apply to their respective models and materials. They do
+not imply an endorsement of this backend or apply collectively to its code.

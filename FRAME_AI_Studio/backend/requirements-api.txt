@@ -1,0 +1,6 @@
+# Lightweight HTTP service and contract tests; no inference libraries or weights.
+fastapi==0.116.1
+uvicorn==0.35.0
+python-multipart==0.0.20
+Pillow==11.3.0
+httpx==0.28.1

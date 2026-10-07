@@ -1,0 +1,19 @@
+# Python 3.11. Install the desired CUDA/CPU torch wheel before this file.
+torch==2.8.0
+diffusers==0.35.1
+transformers==4.56.2
+accelerate==1.10.1
+safetensors==0.6.2
+sentencepiece==0.2.1
+# T5 / SentencePiece tokenizer conversion.
+protobuf==3.20.3
+Pillow==11.3.0
+imageio==2.37.0
+imageio-ffmpeg==0.6.0
+ftfy==6.3.1
+numpy==2.2.6
+fastapi==0.116.1
+uvicorn==0.35.0
+python-multipart==0.0.20
+# TestClient, used by the GPU-free API tests.
+httpx==0.28.1
