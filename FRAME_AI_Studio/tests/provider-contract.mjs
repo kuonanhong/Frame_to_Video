@@ -1,0 +1,14 @@
+import {build} from 'esbuild';import fs from 'node:fs';import os from 'node:os';import path from 'node:path';import assert from 'node:assert/strict';
+const root=path.resolve(new URL('..',import.meta.url).pathname);const temp=fs.mkdtempSync(path.join(os.tmpdir(),'frame-contract-'));const bundle=path.join(temp,'providers.mjs');
+await build({entryPoints:[root+'/src/providers.js'],bundle:true,platform:'node',format:'esm',outfile:bundle});
+const {MODELS,cloudRequest,extractMedia,generateCloud}=await import(bundle);
+const file=new File(['media'],'source.mp4',{type:'video/mp4'});const options={workflow:'video-video',prompt:'Change the style to cinematic anime.',file,duration:2,aspect:'16:9',seed:42,random:false};
+const video=cloudRequest(MODELS[0],options);assert.equal(video.endpoint,'/video_to_video');assert.equal(video.payload.mode,'video-to-video');assert.equal(video.payload.input_image_filepath,null);assert.ok(video.payload.input_video_filepath.video);assert.equal((video.payload.ui_frames_to_use-1)%8,0);
+for(const [id,workflow,endpoint]of [['ltx-cloud','image-video','/image_to_video'],['wan-cloud','image-video','/generate_video'],['flux-cloud','text-image','/infer']])assert.equal(cloudRequest(MODELS.find(m=>m.id===id),{...options,workflow}).endpoint,endpoint);
+assert.equal(extractMedia([{video:{url:'https://example.com/result.mp4'}},42],'video').seed,42);assert.throws(()=>extractMedia([{path:'/tmp/private.mp4'}],'video'));
+let cancelled=false;const states=[];const fake=async()=>({submit(){return {cancel(){cancelled=true},async *[Symbol.asyncIterator](){yield{type:'status',stage:'pending',position:2};yield{type:'status',stage:'generating'};yield{type:'data',data:[{video:{url:'https://example.com/result.mp4'}},42]}}}}});
+const output=await generateCloud(MODELS[0],options,e=>states.push(e.state),new AbortController().signal,c=>c(),' ',fake);assert.equal(output.type,'video');assert.deepEqual(states,['queued','generating']);assert.equal(cancelled,true);
+const quota=async()=>({submit(){return{async *[Symbol.asyncIterator](){yield{type:'status',stage:'error',success:false,message:'ZeroGPU quota exceeded'}}}}});
+await assert.rejects(generateCloud(MODELS[0],options,()=>{},new AbortController().signal,()=>{},'',quota),/ZeroGPU quota exceeded/);
+const controller=new AbortController();controller.abort();await assert.rejects(generateCloud(MODELS[0],options,()=>{},controller.signal,()=>{},'',fake),e=>e.name==='AbortError');
+fs.rmSync(temp,{recursive:true});console.log('PASS: real provider payload contracts, media parsing, queue events, quota errors, abort and cancellation handling.');
