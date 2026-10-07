@@ -1,0 +1,65 @@
+{
+  "info": {
+    "backend": "cpu",
+    "model": "coco-ssd-lite-mobilenet-v2",
+    "classes": 80
+  },
+  "loadedMs": 2316.2999999998137,
+  "inferenceMs": 1767.5999999996275,
+  "detections": [
+    {
+      "label": "cat",
+      "classId": 17,
+      "score": 0.9279329180717468,
+      "bbox": [
+        1.2409963607788086,
+        20.871779441833496,
+        194.73902988433838,
+        201.53133487701416
+      ]
+    }
+  ],
+  "readyAfterDispose": false,
+  "image": {
+    "width": 224,
+    "height": 224
+  },
+  "requests": [
+    {
+      "url": "http://127.0.0.1:8788/edge/model/licenses/tfjs-Apache-2.0.txt",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8788/edge/detector-client.mjs",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8788/edge/detector-worker.js",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8788/edge/model/coco-ssd-lite/model.json",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8788/edge/model/coco-ssd-lite/group1-shard1of5",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8788/edge/model/coco-ssd-lite/group1-shard2of5",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8788/edge/model/coco-ssd-lite/group1-shard3of5",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8788/edge/model/coco-ssd-lite/group1-shard4of5",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8788/edge/model/coco-ssd-lite/group1-shard5of5",
+      "method": "GET"
+    }
+  ]
+}

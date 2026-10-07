@@ -1,0 +1,232 @@
+{
+  "executedAt": "2026-10-07T14:59:55.577Z",
+  "environment": "Linux x86_64, Chromium (GPU disabled)",
+  "tests": [
+    {
+      "name": "22 language interfaces switch and set lang",
+      "passed": true,
+      "evidence": [
+        "zh-Hant",
+        "zh-Hans",
+        "en",
+        "ja",
+        "ko",
+        "ar",
+        "ms",
+        "th",
+        "vi",
+        "id",
+        "fil",
+        "de",
+        "pl",
+        "cs",
+        "pt",
+        "fi",
+        "sv",
+        "ru",
+        "fr",
+        "es",
+        "it",
+        "hi"
+      ]
+    },
+    {
+      "name": "demo image loads and source canvas renders",
+      "passed": true
+    },
+    {
+      "name": "real bundled CPU detection completes on coast demo",
+      "passed": true,
+      "evidence": "None"
+    },
+    {
+      "name": "official development cat fixture produces real object detection",
+      "passed": true
+    },
+    {
+      "name": "manual water region and supported prompt planning",
+      "passed": true
+    },
+    {
+      "name": "actual motion frames change over time",
+      "passed": true,
+      "evidence": {
+        "first": 950352015,
+        "second": 3221885731
+      }
+    },
+    {
+      "name": "stopping preview terminates renderer and clears pending frame",
+      "passed": true
+    },
+    {
+      "name": "MediaRecorder video export loads and actually plays",
+      "passed": true,
+      "evidence": {
+        "width": 854,
+        "height": 480,
+        "duration": 2.096,
+        "currentTime": 0.500587,
+        "readyState": 4,
+        "bytes": 141453
+      }
+    },
+    {
+      "name": "capture stream tracks stop after export",
+      "passed": true
+    },
+    {
+      "name": "cancel export stops capture tracks and prevents stale-frame painting",
+      "passed": true
+    },
+    {
+      "name": "cancel detection terminates its CPU worker",
+      "passed": true
+    },
+    {
+      "name": "duplicate detect clicks do not create concurrent detector workers",
+      "passed": true
+    },
+    {
+      "name": "reset revokes generated object URLs",
+      "passed": true
+    },
+    {
+      "name": "390px mobile Arabic RTL layout has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "localized URL pages load scripts, source image and renderer from correct base paths",
+      "passed": true
+    },
+    {
+      "name": "portrait photo canvas display retains intrinsic aspect for manual region mapping",
+      "passed": true,
+      "evidence": {
+        "css": 0.5,
+        "pixels": 0.5
+      }
+    },
+    {
+      "name": "single HTML file:// performs real embedded CPU inference and video export without network",
+      "passed": true,
+      "evidence": {
+        "width": 854,
+        "height": 480,
+        "currentTime": 0.342545,
+        "duration": 2.091
+      }
+    },
+    {
+      "name": "no page errors; only same-origin GETs, no picture upload request",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "No iPhone/Safari or Android hardware tested",
+    "No generated video AI inference",
+    "No concurrent-user load test"
+  ],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:33867/edge/",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:33867/edge/style.css",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:33867/edge/app.bundle.js",
+      "method": "GET"
+    },
+    {
+      "url": "blob:http://127.0.0.1:33867/d7fcd3d1-dae7-43e1-b663-0a3b5dbda2a7",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:33867/edge/motion-worker.bundle.js",
+      "method": "GET"
+    },
+    {
+      "url": "blob:http://127.0.0.1:33867/3b82a04c-84a4-40e2-92c8-7dcc2d146395",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:33867/edge/motion-worker.bundle.js",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:33867/edge/detector-worker.js",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:33867/edge/model/coco-ssd-lite/model.json",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:33867/edge/model/coco-ssd-lite/group1-shard1of5",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:33867/edge/model/coco-ssd-lite/group1-shard2of5",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:33867/edge/model/coco-ssd-lite/group1-shard3of5",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:33867/edge/model/coco-ssd-lite/group1-shard4of5",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:33867/edge/model/coco-ssd-lite/group1-shard5of5",
+      "method": "GET"
+    },
+    {
+      "url": "blob:http://127.0.0.1:33867/ceab3909-2688-4553-b2ad-119489cc9e40",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:33867/edge/motion-worker.bundle.js",
+      "method": "GET"
+    },
+    {
+      "url": "blob:http://127.0.0.1:33867/37bf2d08-a004-41fc-acf8-e72bd03300c0",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:33867/edge/motion-worker.bundle.js",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:33867/edge/motion-worker.bundle.js",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:33867/edge/motion-worker.bundle.js",
+      "method": "GET"
+    },
+    {
+      "url": "blob:http://127.0.0.1:33867/e5516c6a-131d-44ff-bd67-593fd7778385",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:33867/edge/motion-worker.bundle.js",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:33867/edge/detector-worker.js",
+      "method": "GET"
+    },
+    {
+      "url": "blob:http://127.0.0.1:33867/4f48838c-9ffa-4c94-a35c-f19f28806cf9",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:33867/edge/motion-worker.bundle.js",
+      "method": "GET"
+    }
+  ]
+}

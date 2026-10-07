@@ -1,0 +1,48 @@
+{
+  "state": {
+    "diagnostics": {
+      "job": null,
+      "detectorReady": true,
+      "backend": "cpu",
+      "objectsCount": 1,
+      "manualCount": 0,
+      "motionWorker": true,
+      "pendingFrames": 0,
+      "renderCount": 0,
+      "lastRenderMs": 0,
+      "exportFrames": 0,
+      "modelEmbedded": true,
+      "rules": [],
+      "effectCount": 0
+    },
+    "status": "Ready",
+    "detail": "Detected box"
+  },
+  "errors": [],
+  "requests": [
+    {
+      "url": "file:///workspace/scratch/0b19e351a29d/FRAME_CPU_20261007/FRAME_AI_Studio/FRAME_CPU_Studio.html",
+      "method": "GET"
+    },
+    {
+      "url": "blob:null/1b783374-4812-48f2-ab1d-8cccaa3078b2",
+      "method": "GET"
+    },
+    {
+      "url": "blob:null/0907a1db-3c8a-404a-9334-de5f48c891f5",
+      "method": "GET"
+    },
+    {
+      "url": "blob:null/025ad79d-0939-4ae1-adf0-ce85f5159ec1",
+      "method": "GET"
+    },
+    {
+      "url": "blob:null/3fb719a7-20d3-4847-b631-2620b9d3d0bb",
+      "method": "GET"
+    },
+    {
+      "url": "blob:null/dbf35369-3585-4c6d-ac09-cfcec13383f0",
+      "method": "GET"
+    }
+  ]
+}
