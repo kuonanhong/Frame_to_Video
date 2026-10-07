@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="vi" data-locale="vi">
+<head>
+<base href="../../">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FRAME CPU — FRAME · Ảnh chuyển động bằng CPU</title>
+<meta name="description" content="免費本機圖片轉短影片：CPU COCO-SSD 物件辨識、提示詞規則、局部水波與搖擺、相機動畫。22種語言，照片不上传，無生成式影片模型與付費API。">
+<meta name="theme-color" content="#11121a"><link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"FRAME CPU Photo Motion","applicationCategory":"MultimediaApplication","operatingSystem":"Modern web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Local CPU object detection and rule-based photo animation. Not generative video AI."}</script>
+</head>
+<body>
+<header><a class="brand" href="./"><span>F</span><strong>FRAME<span class="dot">.</span></strong><small>CPU PHOTO MOTION</small></a><div class="top-tools"><span class="badge" data-i18n="localBadge">Suy luận CPU cục bộ · Không tải lên đám mây</span><label class="sr-only" for="language" data-i18n="language">Ngôn ngữ</label><select id="language" aria-label="Language"></select></div></header>
+<main>
+<div class="intro"><div><p class="eyebrow">A PHOTO / A LITTLE MOTION / YOUR DEVICE</p><h1 data-i18n="title">FRAME · Ảnh chuyển động bằng CPU</h1><p data-i18n="tagline">Nhận diện vật thể trên thiết bị, rồi tạo chuyển động cho vùng chọn bằng các quy tắc nhẹ.</p></div><a class="subtle" href="../dist/" data-i18n="classicStudio">Studio AI ban đầu</a></div>
+<div class="workspace">
+<section class="controls" aria-label="Controls">
+<div class="section-title"><span>01</span><h2 data-i18n="source">Ảnh gốc</h2><button id="demo" class="text-button" data-i18n="demo">Thử mẫu</button></div>
+<label class="dropzone" id="dropzone" for="imageFile"><span class="upload-icon">↥</span><strong data-i18n="chooseImage">Chọn ảnh</strong><small>JPEG / PNG / WebP · ≤ 20 MB</small><span id="fileName"></span></label><input type="file" id="imageFile" accept="image/jpeg,image/png,image/webp" class="sr-only">
+<div class="button-row"><button id="detect" class="secondary" data-i18n="detect">Nhận diện vật thể</button><button id="cancel" class="secondary" hidden data-i18n="cancel">Hủy</button></div>
+<p class="hint" data-i18n="detectNote">Kết quả là khung chữ nhật, không phải mặt nạ chính xác. Hãy tự đánh dấu nước, bầu trời hoặc nền.</p>
+<div class="section-title"><span>02</span><h2 data-i18n="objects">Vật thể</h2></div>
+<div class="manual-controls"><label for="regionType" data-i18n="regionType">Loại vùng</label><div class="button-row"><select id="regionType"><option value="water" data-i18n="water">Nước</option><option value="tree" data-i18n="tree">Cây / thực vật</option><option value="cloud" data-i18n="cloud">Mây / bầu trời</option><option value="subject" data-i18n="subject">Chủ thể</option></select><button id="manual" class="secondary" data-i18n="addRegion">Thêm vùng</button></div><small data-i18n="manualHelp">Kéo khung trên ảnh, chọn loại vùng rồi thêm.</small></div>
+<ul id="objectList" class="object-list"></ul>
+<div class="section-title"><span>03</span><h2 data-i18n="prompt">Mô tả chuyển động</h2></div>
+<textarea id="prompt" rows="3" maxlength="1000" data-placeholder="promptPlaceholder" placeholder="鏡頭慢慢推近，小船輕輕上下浮動，水面波紋。"></textarea>
+<div class="presets"><button data-preset="zoom" data-i18n="zoom">Thu phóng</button><button data-preset="pan" data-i18n="pan">Di chuyển máy quay</button><button data-preset="sway" data-i18n="sway">Đung đưa</button><button data-preset="ripple" data-i18n="ripple">Gợn sóng</button><button data-preset="snow" data-i18n="snow">Tuyết</button></div>
+<button id="applyPrompt" class="secondary wide" data-i18n="applyPrompt">Áp dụng mô tả</button><p class="hint" data-i18n="rulesNote">Mô tả được xử lý bằng các quy tắc chuyển động giới hạn. Dùng các nút phía trên để chọn hiệu ứng.</p><div id="planSummary" class="plan-summary" aria-live="polite"></div>
+<div class="section-title"><span>04</span><h2 data-i18n="quality">Chất lượng</h2></div>
+<div class="settings"><label><span data-i18n="duration">Thời lượng</span><select id="duration"><option>2</option><option selected>4</option><option>6</option><option>8</option><option>12</option></select></label><label><span data-i18n="resolution">Độ phân giải</span><select id="resolution"><option value="480" selected>480p</option><option value="720">720p</option></select></label><label><span data-i18n="aspect">Tỷ lệ khung hình</span><select id="aspect"><option value="16:9">16:9</option><option value="9:16">9:16</option><option value="1:1">1:1</option></select></label><label><span data-i18n="fps">Khung hình mỗi giây</span><select id="fps"><option>12</option><option selected>18</option><option>24</option></select></label></div>
+<p class="hint" data-i18n="preserveAspect">Giữ tỷ lệ ảnh</p>
+<div class="button-row"><button id="preview" class="secondary" data-i18n="preview">Xem trước</button><button id="export" class="primary" data-i18n="export">Xuất video</button><button id="stop" class="secondary" hidden data-i18n="stop">Dừng</button></div>
+<p class="privacy" data-i18n="privacy">Ảnh ở lại trong trình duyệt này. Tệp mô hình được tải từ trang này; ảnh không được gửi đến máy chủ.</p>
+</section>
+<section class="view" aria-label="Preview">
+<div class="view-heading"><h2 data-i18n="preview">Xem trước</h2><div class="button-row"><button id="sourceTab" class="text-button selected" data-i18n="source">Ảnh gốc</button><button id="motionTab" class="text-button" data-i18n="preview">Xem trước</button></div></div>
+<div class="stage" id="stage"><div class="canvas-wrap" id="sourceWrap"><canvas id="sourceCanvas" width="960" height="540" aria-label="Source image"></canvas><canvas id="overlayCanvas" width="960" height="540" aria-label="Manual region selection"></canvas></div><canvas id="outputCanvas" width="854" height="480" hidden aria-label="Animated photo"></canvas><video id="resultVideo" controls playsinline hidden></video><span class="stage-badge" id="stageBadge" data-i18n="source">Ảnh gốc</span></div>
+<div class="stage-meta"><span id="dimensions"></span><span id="metrics"></span></div>
+<div class="status" aria-live="polite"><div><span class="status-dot" id="statusDot"></span><strong id="statusText" data-i18n="ready">Sẵn sàng</strong></div><progress id="progress" max="100" hidden></progress><p id="statusDetail"></p><div class="button-row"><a id="download" class="primary" hidden data-i18n="download">Tải xuống</a><button id="saveFrame" class="secondary" data-i18n="saveFrame">Lưu khung hình</button><button id="reset" class="text-button" data-i18n="reset">Đặt lại</button></div></div>
+<div class="notes"><article><h3>CPU / COCO-SSD</h3><p data-i18n="cpuNote">Sử dụng nhận diện vật thể bằng CPU và các quy tắc chuyển động nhẹ. Việc vẽ hoặc mã hóa video của trình duyệt có thể dùng tăng tốc phần cứng.</p></article><article><h3 data-i18n="limitationsTitle">Giới hạn</h3><p id="limitationsText" data-i18n="limitations">Đây là hoạt ảnh theo quy tắc, không phải video AI tạo sinh. Nó không suy ra bề mặt bị che khuất hay chuyển động thực của vật thể.</p></article></div>
+<details class="technical"><summary>MODEL / ALGORITHM / LICENSE</summary><p>COCO-SSD · lite_mobilenet_v2 · 80 classes · CPU worker</p><p>Rule parser → geometry warp → RGBA frames → Canvas / MediaRecorder</p><a href="../docs/MODEL_NOTICES.md">Model notices</a> · <a href="../docs/CPU_使用與部署說明.md">Deployment</a></details>
+</section></div>
+<footer><span>FRAME / LOCAL PHOTO MOTION</span><a href="https://kuonanhong.github.io/SmartAction/" target="_blank" rel="noopener" data-i18n="home">Trang chủ</a></footer>
+</main>
+<script src="app.bundle.js" defer></script>
+</body></html>

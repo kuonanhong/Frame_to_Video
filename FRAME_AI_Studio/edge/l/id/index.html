@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="id" data-locale="id">
+<head>
+<base href="../../">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FRAME CPU — FRAME · Animasi Foto CPU</title>
+<meta name="description" content="免費本機圖片轉短影片：CPU COCO-SSD 物件辨識、提示詞規則、局部水波與搖擺、相機動畫。22種語言，照片不上传，無生成式影片模型與付費API。">
+<meta name="theme-color" content="#11121a"><link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"FRAME CPU Photo Motion","applicationCategory":"MultimediaApplication","operatingSystem":"Modern web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Local CPU object detection and rule-based photo animation. Not generative video AI."}</script>
+</head>
+<body>
+<header><a class="brand" href="./"><span>F</span><strong>FRAME<span class="dot">.</span></strong><small>CPU PHOTO MOTION</small></a><div class="top-tools"><span class="badge" data-i18n="localBadge">Inferensi CPU lokal · Tanpa unggahan ke awan</span><label class="sr-only" for="language" data-i18n="language">Bahasa</label><select id="language" aria-label="Language"></select></div></header>
+<main>
+<div class="intro"><div><p class="eyebrow">A PHOTO / A LITTLE MOTION / YOUR DEVICE</p><h1 data-i18n="title">FRAME · Animasi Foto CPU</h1><p data-i18n="tagline">Kenali objek di perangkat, lalu gerakkan area pilihan dengan aturan ringan.</p></div><a class="subtle" href="../dist/" data-i18n="classicStudio">Studio AI asli</a></div>
+<div class="workspace">
+<section class="controls" aria-label="Controls">
+<div class="section-title"><span>01</span><h2 data-i18n="source">Gambar asal</h2><button id="demo" class="text-button" data-i18n="demo">Coba contoh</button></div>
+<label class="dropzone" id="dropzone" for="imageFile"><span class="upload-icon">↥</span><strong data-i18n="chooseImage">Pilih gambar</strong><small>JPEG / PNG / WebP · ≤ 20 MB</small><span id="fileName"></span></label><input type="file" id="imageFile" accept="image/jpeg,image/png,image/webp" class="sr-only">
+<div class="button-row"><button id="detect" class="secondary" data-i18n="detect">Kenali objek</button><button id="cancel" class="secondary" hidden data-i18n="cancel">Batal</button></div>
+<p class="hint" data-i18n="detectNote">Hasil deteksi berupa kotak, bukan masker presisi. Tandai air, langit, atau latar secara manual.</p>
+<div class="section-title"><span>02</span><h2 data-i18n="objects">Objek</h2></div>
+<div class="manual-controls"><label for="regionType" data-i18n="regionType">Jenis area</label><div class="button-row"><select id="regionType"><option value="water" data-i18n="water">Air</option><option value="tree" data-i18n="tree">Pohon / tanaman</option><option value="cloud" data-i18n="cloud">Awan / langit</option><option value="subject" data-i18n="subject">Subjek</option></select><button id="manual" class="secondary" data-i18n="addRegion">Tambah area</button></div><small data-i18n="manualHelp">Tarik kotak pada gambar, pilih jenisnya, lalu tambahkan.</small></div>
+<ul id="objectList" class="object-list"></ul>
+<div class="section-title"><span>03</span><h2 data-i18n="prompt">Arahan gerakan</h2></div>
+<textarea id="prompt" rows="3" maxlength="1000" data-placeholder="promptPlaceholder" placeholder="鏡頭慢慢推近，小船輕輕上下浮動，水面波紋。"></textarea>
+<div class="presets"><button data-preset="zoom" data-i18n="zoom">Perbesar / perkecil</button><button data-preset="pan" data-i18n="pan">Geser kamera</button><button data-preset="sway" data-i18n="sway">Goyangan</button><button data-preset="ripple" data-i18n="ripple">Riak</button><button data-preset="snow" data-i18n="snow">Salju</button></div>
+<button id="applyPrompt" class="secondary wide" data-i18n="applyPrompt">Terapkan arahan</button><p class="hint" data-i18n="rulesNote">Arahan memakai aturan gerakan terbatas. Pilih efek melalui tombol di atas.</p><div id="planSummary" class="plan-summary" aria-live="polite"></div>
+<div class="section-title"><span>04</span><h2 data-i18n="quality">Kualitas</h2></div>
+<div class="settings"><label><span data-i18n="duration">Durasi</span><select id="duration"><option>2</option><option selected>4</option><option>6</option><option>8</option><option>12</option></select></label><label><span data-i18n="resolution">Resolusi</span><select id="resolution"><option value="480" selected>480p</option><option value="720">720p</option></select></label><label><span data-i18n="aspect">Rasio aspek</span><select id="aspect"><option value="16:9">16:9</option><option value="9:16">9:16</option><option value="1:1">1:1</option></select></label><label><span data-i18n="fps">Bingkai per detik</span><select id="fps"><option>12</option><option selected>18</option><option>24</option></select></label></div>
+<p class="hint" data-i18n="preserveAspect">Pertahankan proporsi gambar</p>
+<div class="button-row"><button id="preview" class="secondary" data-i18n="preview">Pratinjau</button><button id="export" class="primary" data-i18n="export">Ekspor video</button><button id="stop" class="secondary" hidden data-i18n="stop">Hentikan</button></div>
+<p class="privacy" data-i18n="privacy">Gambar tetap di peramban ini. Berkas model dimuat dari situs ini; gambar tidak dikirim ke server.</p>
+</section>
+<section class="view" aria-label="Preview">
+<div class="view-heading"><h2 data-i18n="preview">Pratinjau</h2><div class="button-row"><button id="sourceTab" class="text-button selected" data-i18n="source">Gambar asal</button><button id="motionTab" class="text-button" data-i18n="preview">Pratinjau</button></div></div>
+<div class="stage" id="stage"><div class="canvas-wrap" id="sourceWrap"><canvas id="sourceCanvas" width="960" height="540" aria-label="Source image"></canvas><canvas id="overlayCanvas" width="960" height="540" aria-label="Manual region selection"></canvas></div><canvas id="outputCanvas" width="854" height="480" hidden aria-label="Animated photo"></canvas><video id="resultVideo" controls playsinline hidden></video><span class="stage-badge" id="stageBadge" data-i18n="source">Gambar asal</span></div>
+<div class="stage-meta"><span id="dimensions"></span><span id="metrics"></span></div>
+<div class="status" aria-live="polite"><div><span class="status-dot" id="statusDot"></span><strong id="statusText" data-i18n="ready">Siap</strong></div><progress id="progress" max="100" hidden></progress><p id="statusDetail"></p><div class="button-row"><a id="download" class="primary" hidden data-i18n="download">Unduh</a><button id="saveFrame" class="secondary" data-i18n="saveFrame">Simpan bingkai</button><button id="reset" class="text-button" data-i18n="reset">Atur ulang</button></div></div>
+<div class="notes"><article><h3>CPU / COCO-SSD</h3><p data-i18n="cpuNote">Menggunakan deteksi objek CPU dan aturan gerakan ringan. Penggambaran atau pengodean video peramban dapat memakai akselerasi perangkat keras.</p></article><article><h3 data-i18n="limitationsTitle">Batasan</h3><p id="limitationsText" data-i18n="limitations">Ini animasi berbasis aturan, bukan video AI generatif. Tidak dapat memperkirakan permukaan tersembunyi atau gerakan asli objek.</p></article></div>
+<details class="technical"><summary>MODEL / ALGORITHM / LICENSE</summary><p>COCO-SSD · lite_mobilenet_v2 · 80 classes · CPU worker</p><p>Rule parser → geometry warp → RGBA frames → Canvas / MediaRecorder</p><a href="../docs/MODEL_NOTICES.md">Model notices</a> · <a href="../docs/CPU_使用與部署說明.md">Deployment</a></details>
+</section></div>
+<footer><span>FRAME / LOCAL PHOTO MOTION</span><a href="https://kuonanhong.github.io/SmartAction/" target="_blank" rel="noopener" data-i18n="home">Beranda</a></footer>
+</main>
+<script src="app.bundle.js" defer></script>
+</body></html>

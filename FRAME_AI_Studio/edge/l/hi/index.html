@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="hi" data-locale="hi">
+<head>
+<base href="../../">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FRAME CPU — FRAME · CPU फ़ोटो एनीमेशन</title>
+<meta name="description" content="免費本機圖片轉短影片：CPU COCO-SSD 物件辨識、提示詞規則、局部水波與搖擺、相機動畫。22種語言，照片不上传，無生成式影片模型與付費API。">
+<meta name="theme-color" content="#11121a"><link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"FRAME CPU Photo Motion","applicationCategory":"MultimediaApplication","operatingSystem":"Modern web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Local CPU object detection and rule-based photo animation. Not generative video AI."}</script>
+</head>
+<body>
+<header><a class="brand" href="./"><span>F</span><strong>FRAME<span class="dot">.</span></strong><small>CPU PHOTO MOTION</small></a><div class="top-tools"><span class="badge" data-i18n="localBadge">स्थानीय CPU अनुमान · क्लाउड पर अपलोड नहीं</span><label class="sr-only" for="language" data-i18n="language">भाषा</label><select id="language" aria-label="Language"></select></div></header>
+<main>
+<div class="intro"><div><p class="eyebrow">A PHOTO / A LITTLE MOTION / YOUR DEVICE</p><h1 data-i18n="title">FRAME · CPU फ़ोटो एनीमेशन</h1><p data-i18n="tagline">डिवाइस पर वस्तुएँ पहचानें, फिर हल्के नियमों से चुने हुए हिस्सों को गति दें।</p></div><a class="subtle" href="../dist/" data-i18n="classicStudio">मूल AI स्टूडियो</a></div>
+<div class="workspace">
+<section class="controls" aria-label="Controls">
+<div class="section-title"><span>01</span><h2 data-i18n="source">मूल चित्र</h2><button id="demo" class="text-button" data-i18n="demo">उदाहरण आज़माएँ</button></div>
+<label class="dropzone" id="dropzone" for="imageFile"><span class="upload-icon">↥</span><strong data-i18n="chooseImage">चित्र चुनें</strong><small>JPEG / PNG / WebP · ≤ 20 MB</small><span id="fileName"></span></label><input type="file" id="imageFile" accept="image/jpeg,image/png,image/webp" class="sr-only">
+<div class="button-row"><button id="detect" class="secondary" data-i18n="detect">वस्तुएँ पहचानें</button><button id="cancel" class="secondary" hidden data-i18n="cancel">रद्द करें</button></div>
+<p class="hint" data-i18n="detectNote">पहचान से आयताकार बॉक्स मिलते हैं, सटीक मास्क नहीं। पानी, आकाश या पृष्ठभूमि को स्वयं चिह्नित करें।</p>
+<div class="section-title"><span>02</span><h2 data-i18n="objects">वस्तुएँ</h2></div>
+<div class="manual-controls"><label for="regionType" data-i18n="regionType">हिस्से का प्रकार</label><div class="button-row"><select id="regionType"><option value="water" data-i18n="water">पानी</option><option value="tree" data-i18n="tree">पेड़ / पौधे</option><option value="cloud" data-i18n="cloud">बादल / आकाश</option><option value="subject" data-i18n="subject">मुख्य विषय</option></select><button id="manual" class="secondary" data-i18n="addRegion">हिस्सा जोड़ें</button></div><small data-i18n="manualHelp">चित्र पर आयत खींचें, उसका प्रकार चुनें और जोड़ें।</small></div>
+<ul id="objectList" class="object-list"></ul>
+<div class="section-title"><span>03</span><h2 data-i18n="prompt">गति का निर्देश</h2></div>
+<textarea id="prompt" rows="3" maxlength="1000" data-placeholder="promptPlaceholder" placeholder="鏡頭慢慢推近，小船輕輕上下浮動，水面波紋。"></textarea>
+<div class="presets"><button data-preset="zoom" data-i18n="zoom">ज़ूम</button><button data-preset="pan" data-i18n="pan">कैमरा खिसकना</button><button data-preset="sway" data-i18n="sway">झूमना</button><button data-preset="ripple" data-i18n="ripple">लहरें</button><button data-preset="snow" data-i18n="snow">बर्फ़</button></div>
+<button id="applyPrompt" class="secondary wide" data-i18n="applyPrompt">निर्देश लागू करें</button><p class="hint" data-i18n="rulesNote">निर्देश सीमित गति नियमों पर आधारित हैं। प्रभाव चुनने के लिए ऊपर के बटन इस्तेमाल करें।</p><div id="planSummary" class="plan-summary" aria-live="polite"></div>
+<div class="section-title"><span>04</span><h2 data-i18n="quality">गुणवत्ता</h2></div>
+<div class="settings"><label><span data-i18n="duration">अवधि</span><select id="duration"><option>2</option><option selected>4</option><option>6</option><option>8</option><option>12</option></select></label><label><span data-i18n="resolution">रिज़ॉल्यूशन</span><select id="resolution"><option value="480" selected>480p</option><option value="720">720p</option></select></label><label><span data-i18n="aspect">आकार अनुपात</span><select id="aspect"><option value="16:9">16:9</option><option value="9:16">9:16</option><option value="1:1">1:1</option></select></label><label><span data-i18n="fps">प्रति सेकंड फ़्रेम</span><select id="fps"><option>12</option><option selected>18</option><option>24</option></select></label></div>
+<p class="hint" data-i18n="preserveAspect">चित्र का अनुपात बनाए रखें</p>
+<div class="button-row"><button id="preview" class="secondary" data-i18n="preview">पूर्वावलोकन</button><button id="export" class="primary" data-i18n="export">वीडियो निर्यात करें</button><button id="stop" class="secondary" hidden data-i18n="stop">रोकें</button></div>
+<p class="privacy" data-i18n="privacy">चित्र इसी ब्राउज़र में रहते हैं। मॉडल फ़ाइलें इस वेबसाइट से आती हैं; चित्र सर्वर पर नहीं भेजे जाते।</p>
+</section>
+<section class="view" aria-label="Preview">
+<div class="view-heading"><h2 data-i18n="preview">पूर्वावलोकन</h2><div class="button-row"><button id="sourceTab" class="text-button selected" data-i18n="source">मूल चित्र</button><button id="motionTab" class="text-button" data-i18n="preview">पूर्वावलोकन</button></div></div>
+<div class="stage" id="stage"><div class="canvas-wrap" id="sourceWrap"><canvas id="sourceCanvas" width="960" height="540" aria-label="Source image"></canvas><canvas id="overlayCanvas" width="960" height="540" aria-label="Manual region selection"></canvas></div><canvas id="outputCanvas" width="854" height="480" hidden aria-label="Animated photo"></canvas><video id="resultVideo" controls playsinline hidden></video><span class="stage-badge" id="stageBadge" data-i18n="source">मूल चित्र</span></div>
+<div class="stage-meta"><span id="dimensions"></span><span id="metrics"></span></div>
+<div class="status" aria-live="polite"><div><span class="status-dot" id="statusDot"></span><strong id="statusText" data-i18n="ready">तैयार</strong></div><progress id="progress" max="100" hidden></progress><p id="statusDetail"></p><div class="button-row"><a id="download" class="primary" hidden data-i18n="download">डाउनलोड</a><button id="saveFrame" class="secondary" data-i18n="saveFrame">फ़्रेम सहेजें</button><button id="reset" class="text-button" data-i18n="reset">रीसेट</button></div></div>
+<div class="notes"><article><h3>CPU / COCO-SSD</h3><p data-i18n="cpuNote">CPU पर वस्तु पहचान और हल्के गति नियम इस्तेमाल होते हैं। ब्राउज़र का चित्रण या वीडियो एन्कोडिंग हार्डवेयर त्वरण इस्तेमाल कर सकता है।</p></article><article><h3 data-i18n="limitationsTitle">सीमाएँ</h3><p id="limitationsText" data-i18n="limitations">यह नियमों पर आधारित एनीमेशन है, जनरेटिव AI वीडियो नहीं। यह छिपी हुई सतहों या वस्तुओं की वास्तविक गति का अनुमान नहीं लगा सकता।</p></article></div>
+<details class="technical"><summary>MODEL / ALGORITHM / LICENSE</summary><p>COCO-SSD · lite_mobilenet_v2 · 80 classes · CPU worker</p><p>Rule parser → geometry warp → RGBA frames → Canvas / MediaRecorder</p><a href="../docs/MODEL_NOTICES.md">Model notices</a> · <a href="../docs/CPU_使用與部署說明.md">Deployment</a></details>
+</section></div>
+<footer><span>FRAME / LOCAL PHOTO MOTION</span><a href="https://kuonanhong.github.io/SmartAction/" target="_blank" rel="noopener" data-i18n="home">मुखपृष्ठ</a></footer>
+</main>
+<script src="app.bundle.js" defer></script>
+</body></html>
