@@ -1,0 +1,625 @@
+{
+  "started": "2026-10-09T15:55:31.661Z",
+  "scope": "Headless Chromium on Linux; desktop viewport and simulated mobile viewport, not an actual iPhone/Android device.",
+  "checks": [
+    {
+      "name": "page boot and local neural voice catalog",
+      "passed": true,
+      "count": 1,
+      "language": "zh-Hant"
+    },
+    {
+      "name": "three-scene demo draws actual photo pixels",
+      "passed": true,
+      "width": 960,
+      "height": 540,
+      "nonBlackFraction": 0.9382716049382716
+    },
+    {
+      "name": "all 22 UI languages switch; Arabic has RTL",
+      "passed": true,
+      "count": 22
+    },
+    {
+      "name": "本機圖片",
+      "passed": true,
+      "duration": 1,
+      "narration": "你好。",
+      "subtitle": "這是一張本機圖片。",
+      "motion": "pan-left",
+      "transition": "slide",
+      "brightness": 1.15,
+      "contrast": 1.1,
+      "saturation": 0.85,
+      "warmth": 0.1,
+      "audioDuration": 0,
+      "audioSource": ""
+    },
+    {
+      "name": "reorder, duplicate and delete",
+      "passed": true
+    },
+    {
+      "name": "actual Mandarin neural TTS via Generate speech button",
+      "passed": true,
+      "duration": 0.7198185941043084,
+      "wallSeconds": 2.498
+    },
+    {
+      "name": "uploaded WAV music decodes via real file input",
+      "passed": true
+    },
+    {
+      "name": "project JSON save/reload preserves scene edits, AI audio and uploaded music",
+      "passed": true,
+      "audioDuration": 0.7198185941043084
+    },
+    {
+      "name": "real export cancellation restores editable UI",
+      "passed": true
+    },
+    {
+      "name": "actual WEBM export has decoded video and non-silent mixed audio",
+      "passed": true,
+      "codec": "vp8",
+      "audioCodec": "opus",
+      "duration": "2.000000",
+      "bytes": 69437,
+      "rms": 0.0812097622449877
+    },
+    {
+      "name": "actual MP4 export has decoded video and non-silent mixed audio",
+      "passed": true,
+      "codec": "vp9",
+      "audioCodec": "opus",
+      "duration": "2.026233",
+      "bytes": 63119,
+      "rms": 0.08145449865825384
+    },
+    {
+      "name": "SRT subtitles contain edited scene text",
+      "passed": true
+    },
+    {
+      "name": "390 px simulated mobile: visible image, no page overflow and lower output defaults",
+      "passed": true,
+      "width": 390,
+      "overflow": 0,
+      "resolution": "360",
+      "fps": "12"
+    },
+    {
+      "name": "zero external requests and zero uncaught page errors",
+      "passed": true
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "externalRequests": [],
+  "missingRequests": [],
+  "exports": [
+    {
+      "requested": "webm",
+      "file": "story-ui-export.webm",
+      "bytes": 69437,
+      "probe": {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "vp8",
+            "codec_long_name": "On2 VP8",
+            "profile": "0",
+            "codec_type": "video",
+            "codec_tag_string": "[0][0][0][0]",
+            "codec_tag": "0x0000",
+            "width": 640,
+            "height": 360,
+            "coded_width": 640,
+            "coded_height": 360,
+            "closed_captions": 0,
+            "film_grain": 0,
+            "has_b_frames": 0,
+            "sample_aspect_ratio": "1:1",
+            "display_aspect_ratio": "16:9",
+            "pix_fmt": "yuv420p",
+            "level": -99,
+            "color_range": "pc",
+            "color_space": "bt709",
+            "color_transfer": "iec61966-2-1",
+            "color_primaries": "bt709",
+            "field_order": "progressive",
+            "refs": 1,
+            "r_frame_rate": "145/12",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/1000",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "disposition": {
+              "default": 1,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0
+            },
+            "tags": {
+              "language": "eng",
+              "alpha_mode": "1"
+            }
+          },
+          {
+            "index": 1,
+            "codec_name": "opus",
+            "codec_long_name": "Opus (Opus Interactive Audio Codec)",
+            "codec_type": "audio",
+            "codec_tag_string": "[0][0][0][0]",
+            "codec_tag": "0x0000",
+            "sample_fmt": "fltp",
+            "sample_rate": "48000",
+            "channels": 2,
+            "channel_layout": "stereo",
+            "bits_per_sample": 0,
+            "initial_padding": 0,
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/1000",
+            "start_pts": 33,
+            "start_time": "0.033000",
+            "extradata_size": 19,
+            "disposition": {
+              "default": 1,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0
+            },
+            "tags": {
+              "language": "eng"
+            }
+          }
+        ],
+        "format": {
+          "filename": "/workspace/scratch/0b19e351a29d/frame_story_20261009/FRAME_AI_Studio/qa/story-ui-export.webm",
+          "nb_streams": 2,
+          "nb_programs": 0,
+          "format_name": "matroska,webm",
+          "format_long_name": "Matroska / WebM",
+          "start_time": "0.000000",
+          "duration": "2.000000",
+          "size": "69437",
+          "bit_rate": "277748",
+          "probe_score": 100,
+          "tags": {
+            "encoder": "Chrome"
+          }
+        }
+      },
+      "rms": 0.0812097622449877
+    },
+    {
+      "requested": "mp4",
+      "file": "story-ui-export.mp4",
+      "bytes": 63119,
+      "probe": {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "vp9",
+            "codec_long_name": "Google VP9",
+            "profile": "Profile 0",
+            "codec_type": "video",
+            "codec_tag_string": "vp09",
+            "codec_tag": "0x39307076",
+            "width": 640,
+            "height": 360,
+            "coded_width": 640,
+            "coded_height": 360,
+            "closed_captions": 0,
+            "film_grain": 0,
+            "has_b_frames": 0,
+            "sample_aspect_ratio": "1:1",
+            "display_aspect_ratio": "16:9",
+            "pix_fmt": "yuv420p",
+            "level": -99,
+            "color_range": "pc",
+            "color_space": "bt709",
+            "color_transfer": "iec61966-2-1",
+            "color_primaries": "bt709",
+            "refs": 1,
+            "id": "0x1",
+            "r_frame_rate": "145/12",
+            "avg_frame_rate": "750000/60787",
+            "time_base": "1/30000",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "duration_ts": 60787,
+            "duration": "2.026233",
+            "bit_rate": "114127",
+            "disposition": {
+              "default": 1,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0
+            },
+            "tags": {
+              "creation_time": "2026-10-09T15:55:42.000000Z",
+              "language": "und",
+              "handler_name": "VideoHandler",
+              "vendor_id": "[0][0][0][0]",
+              "encoder": "VPC Coding"
+            }
+          },
+          {
+            "index": 1,
+            "codec_name": "opus",
+            "codec_long_name": "Opus (Opus Interactive Audio Codec)",
+            "codec_type": "audio",
+            "codec_tag_string": "Opus",
+            "codec_tag": "0x7375704f",
+            "sample_fmt": "fltp",
+            "sample_rate": "48000",
+            "channels": 2,
+            "channel_layout": "stereo",
+            "bits_per_sample": 0,
+            "initial_padding": 3840,
+            "id": "0x2",
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/48000",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "duration_ts": 96056,
+            "duration": "2.001167",
+            "bit_rate": "129097",
+            "extradata_size": 19,
+            "disposition": {
+              "default": 1,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0
+            },
+            "tags": {
+              "creation_time": "2026-10-09T15:55:42.000000Z",
+              "language": "und",
+              "handler_name": "SoundHandler",
+              "vendor_id": "[0][0][0][0]"
+            }
+          }
+        ],
+        "format": {
+          "filename": "/workspace/scratch/0b19e351a29d/frame_story_20261009/FRAME_AI_Studio/qa/story-ui-export.mp4",
+          "nb_streams": 2,
+          "nb_programs": 0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "format_long_name": "QuickTime / MOV",
+          "start_time": "0.000000",
+          "duration": "2.026233",
+          "size": "63119",
+          "bit_rate": "249207",
+          "probe_score": 100,
+          "tags": {
+            "major_brand": "isom",
+            "minor_version": "512",
+            "compatible_brands": "isomiso6iso2vp09mp41",
+            "creation_time": "2026-10-09T15:55:42.000000Z"
+          }
+        }
+      },
+      "rms": 0.08145449865825384
+    }
+  ],
+  "languages": [
+    {
+      "lang": "zh-Hant",
+      "dir": "ltr",
+      "exportText": "免費匯出影片"
+    },
+    {
+      "lang": "zh-Hans",
+      "dir": "ltr",
+      "exportText": "免费导出视频"
+    },
+    {
+      "lang": "en",
+      "dir": "ltr",
+      "exportText": "Export video for free"
+    },
+    {
+      "lang": "ja",
+      "dir": "ltr",
+      "exportText": "無料で動画を書き出す"
+    },
+    {
+      "lang": "ko",
+      "dir": "ltr",
+      "exportText": "무료로 영상 내보내기"
+    },
+    {
+      "lang": "fr",
+      "dir": "ltr",
+      "exportText": "Exporter la vidéo gratuitement"
+    },
+    {
+      "lang": "de",
+      "dir": "ltr",
+      "exportText": "Video kostenlos exportieren"
+    },
+    {
+      "lang": "es",
+      "dir": "ltr",
+      "exportText": "Exportar vídeo gratis"
+    },
+    {
+      "lang": "pt",
+      "dir": "ltr",
+      "exportText": "Exportar vídeo gratuitamente"
+    },
+    {
+      "lang": "it",
+      "dir": "ltr",
+      "exportText": "Esporta video gratis"
+    },
+    {
+      "lang": "ru",
+      "dir": "ltr",
+      "exportText": "Экспортировать видео бесплатно"
+    },
+    {
+      "lang": "pl",
+      "dir": "ltr",
+      "exportText": "Eksportuj film bezpłatnie"
+    },
+    {
+      "lang": "cs",
+      "dir": "ltr",
+      "exportText": "Exportovat video zdarma"
+    },
+    {
+      "lang": "fi",
+      "dir": "ltr",
+      "exportText": "Vie video ilmaiseksi"
+    },
+    {
+      "lang": "sv",
+      "dir": "ltr",
+      "exportText": "Exportera video gratis"
+    },
+    {
+      "lang": "ar",
+      "dir": "rtl",
+      "exportText": "تصدير الفيديو مجاناً"
+    },
+    {
+      "lang": "th",
+      "dir": "ltr",
+      "exportText": "ส่งออกวิดีโอฟรี"
+    },
+    {
+      "lang": "vi",
+      "dir": "ltr",
+      "exportText": "Xuất video miễn phí"
+    },
+    {
+      "lang": "ms",
+      "dir": "ltr",
+      "exportText": "Eksport video secara percuma"
+    },
+    {
+      "lang": "id",
+      "dir": "ltr",
+      "exportText": "Ekspor video gratis"
+    },
+    {
+      "lang": "fil",
+      "dir": "ltr",
+      "exportText": "I-export ang video nang libre"
+    },
+    {
+      "lang": "hi",
+      "dir": "ltr",
+      "exportText": "मुफ़्त में वीडियो निर्यात करें"
+    }
+  ],
+  "base": "http://127.0.0.1:37581",
+  "browserVersion": "153.0.8010.0",
+  "voice": {
+    "file": "story-ui-generated-voice.wav",
+    "probe": {
+      "streams": [
+        {
+          "index": 0,
+          "codec_name": "pcm_s16le",
+          "codec_long_name": "PCM signed 16-bit little-endian",
+          "codec_type": "audio",
+          "codec_tag_string": "[1][0][0][0]",
+          "codec_tag": "0x0001",
+          "sample_fmt": "s16",
+          "sample_rate": "22050",
+          "channels": 1,
+          "bits_per_sample": 16,
+          "initial_padding": 0,
+          "r_frame_rate": "0/0",
+          "avg_frame_rate": "0/0",
+          "time_base": "1/22050",
+          "duration_ts": 15872,
+          "duration": "0.719819",
+          "bit_rate": "352800",
+          "disposition": {
+            "default": 0,
+            "dub": 0,
+            "original": 0,
+            "comment": 0,
+            "lyrics": 0,
+            "karaoke": 0,
+            "forced": 0,
+            "hearing_impaired": 0,
+            "visual_impaired": 0,
+            "clean_effects": 0,
+            "attached_pic": 0,
+            "timed_thumbnails": 0,
+            "non_diegetic": 0,
+            "captions": 0,
+            "descriptions": 0,
+            "metadata": 0,
+            "dependent": 0,
+            "still_image": 0
+          }
+        }
+      ],
+      "format": {
+        "filename": "/workspace/scratch/0b19e351a29d/frame_story_20261009/FRAME_AI_Studio/qa/story-ui-generated-voice.wav",
+        "nb_streams": 1,
+        "nb_programs": 0,
+        "format_name": "wav",
+        "format_long_name": "WAV / WAVE (Waveform Audio)",
+        "duration": "0.719819",
+        "size": "31788",
+        "bit_rate": "353288",
+        "probe_score": 99
+      }
+    },
+    "rms": 0.09472358410406818
+  },
+  "project": {
+    "before": {
+      "scenes": [
+        {
+          "name": "本機圖片",
+          "duration": 2,
+          "narration": "你好。",
+          "subtitle": "這是一張本機圖片。",
+          "motion": "pan-left",
+          "transition": "slide",
+          "brightness": 1.15,
+          "contrast": 1.1,
+          "saturation": 0.85,
+          "warmth": 0.1,
+          "audioDuration": 0.7198185941043084,
+          "audioSource": "AI"
+        }
+      ],
+      "settings": {
+        "width": 640,
+        "height": 360,
+        "fps": 12,
+        "subtitle": true,
+        "subtitleSize": 18,
+        "subtitleColor": "#ffffff",
+        "background": "#101418",
+        "musicVolume": 0.15,
+        "narrationVolume": 1,
+        "fadeAudio": true,
+        "fitNarration": false,
+        "format": "webm",
+        "fontFamily": "system-ui, sans-serif"
+      },
+      "musicMode": "upload",
+      "musicName": "original-test-music.wav · 3.0s"
+    },
+    "after": {
+      "scenes": [
+        {
+          "name": "本機圖片",
+          "duration": 2,
+          "narration": "你好。",
+          "subtitle": "這是一張本機圖片。",
+          "motion": "pan-left",
+          "transition": "slide",
+          "brightness": 1.15,
+          "contrast": 1.1,
+          "saturation": 0.85,
+          "warmth": 0.1,
+          "audioDuration": 0.7198185941043084,
+          "audioSource": "AI"
+        }
+      ],
+      "settings": {
+        "width": 640,
+        "height": 360,
+        "fps": 12,
+        "subtitle": true,
+        "subtitleSize": 18,
+        "subtitleColor": "#ffffff",
+        "background": "#101418",
+        "musicVolume": 0.15,
+        "narrationVolume": 1,
+        "fadeAudio": true,
+        "fitNarration": false,
+        "format": "webm",
+        "fontFamily": "system-ui, sans-serif"
+      },
+      "musicMode": "upload",
+      "musicName": "original-test-music.wav"
+    },
+    "embeddedAudioBytes": 42406,
+    "embeddedMusicBytes": 352882
+  },
+  "desktop": {
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "overflow": 0
+  },
+  "mobile": {
+    "width": 390,
+    "overflow": 0,
+    "resolution": "360",
+    "fps": "12"
+  },
+  "completed": "2026-10-09T15:55:43.810Z",
+  "passed": true
+}

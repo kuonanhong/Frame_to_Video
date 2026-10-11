@@ -1,0 +1,17 @@
+.git
+.venv
+venv
+__pycache__
+*.py[cod]
+.pytest_cache
+.env
+.env.*
+data
+model-cache
+models
+*.zip
+*.safetensors
+*.bin
+*.pt
+*.pth
+.DS_Store

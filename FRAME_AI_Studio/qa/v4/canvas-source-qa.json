@@ -1,0 +1,16 @@
+{
+  "mode": "Node source/canvas test; not browser QA or neural inference",
+  "checks": [
+    "unsupported articulated action remains explicitly unsupported",
+    "water generates different actual pixel frames",
+    "sway generates different actual pixel frames",
+    "rain generates different actual pixel frames",
+    "snow generates different actual pixel frames",
+    "vector props change actual pixels and survive serialized scene state",
+    "panorama projection changes existing pixels without blank canvas",
+    "external or SVG overlay URLs rejected; layer values bounded",
+    "project fields cannot inject runtime audio/video/objects",
+    "project embedded image/video type must match and no URL fetch source"
+  ],
+  "passed": 10
+}

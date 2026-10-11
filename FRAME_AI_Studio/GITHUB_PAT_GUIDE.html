@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FRAME｜SSH 增量上傳指南</title><style>
+:root{color-scheme:light;--ink:#182626;--muted:#526363;--teal:#007f76;--line:#dbe8e5;--paper:#f5f8f6}*{box-sizing:border-box}body{margin:0;background:var(--paper);font:16px/1.8 system-ui,-apple-system,"Noto Sans TC",sans-serif;color:var(--ink)}main{max-width:1060px;margin:auto;padding:48px 26px 70px}.eyebrow{font-size:12px;letter-spacing:.18em;color:var(--teal);font-weight:800}h1{font-size:clamp(30px,5vw,48px);line-height:1.2;margin:12px 0 22px}h2{font-size:25px;line-height:1.4;margin:0 0 18px}h3{font-size:18px;margin:20px 0 8px}p{margin:10px 0}.lead{max-width:800px;color:var(--muted);font-size:18px}.pills{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}.pill{background:#e3f0ea;border:1px solid #c4e0d6;border-radius:30px;padding:4px 12px;font-size:13px}section{background:white;border:1px solid var(--line);border-radius:18px;padding:28px;margin:20px 0}pre{background:#172d2c;color:#ecf9f5;padding:17px 19px;border-radius:10px;overflow:auto;font:13px/1.7 ui-monospace,SFMono-Regular,Consolas,monospace}code{font:0.9em ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}li{margin:8px 0}table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:12px 9px}th{color:var(--teal);background:#f6faf7}.note{border-left:4px solid #e5ac48;background:#fff8e9;padding:14px 18px;margin:18px 0}.ok{border-left-color:#008a73;background:#ebf7f0}a{color:#006f6b;text-underline-offset:3px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.small{font-size:13px;color:var(--muted)}footer{padding:15px 0;color:var(--muted);font-size:13px}@media(max-width:680px){main{padding:30px 14px}.grid{display:block}section{padding:21px}th,td{padding:9px 6px;font-size:12px}}@media print{body{background:white}main{padding:0;max-width:none}section{break-inside:avoid}pre{white-space:pre-wrap}a{color:inherit}}
+</style></head><body><main>
+<div class="eyebrow">FRAME STORY STUDIO · DEPLOYMENT V5 · 2026-10-10</div>
+<h1>一次設定 SSH，<br>之後只上傳新增與變更。</h1>
+<p class="lead">使用 <strong>Upload_FRAME_SSH.sh</strong> 把你的 <code>FRAME_AI_Studio</code> 更新到 <code>kuonanhong/Frame_to_Video</code>。先預覽，再明確執行上傳；大型瀏覽器模型沿用現有分塊，完成後才更新主站入口。</p>
+<div class="pills"><span class="pill">Mac 預設 Bash 3.2</span><span class="pill">Linux / Windows Git Bash</span><span class="pill">Git + Python 3</span><span class="pill">SSH，不使用 PAT</span></div>
+<div class="note"><strong>先撤銷截圖中已公開的 Token。</strong>前往 GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens，刪除那個已曝光的 Token。這份脚本不會讀取、要求或儲存 Token，也沒有把它寫進任何交付檔案。SSH 使用你電腦上的金鑰。</div>
+
+<section><h2>01｜你的兩個入口為何不一樣？</h2>
+<p>六張截圖顯示：本機開的是新版分鏡編輯器；GitHub Pages 根網址仍開啟舊版 CPU 圖片動態頁。這是兩個不同的 <code>index.html</code>，不是模型尚未下載造成的。</p>
+<table><thead><tr><th>來源</th><th>看到的內容</th><th>本次處理</th></tr></thead><tbody>
+<tr><td>10.12.56 本機瀏覽器</td><td><code>file://…/FRAME_AI_Studio/index.html</code>：FRAME Story Studio，已有素材與分鏡。</td><td>保留這個資料夾作為實際應用程式根目錄。AI 仍需 localhost 或 HTTPS。</td></tr>
+<tr><td>10.13.27 Finder</td><td><code>FRAME_AI_Studio</code> 內有 <code>story/</code>、<code>dist/</code>、<code>edge/</code>、<code>native_cpu/</code>、<code>backend/</code>。ZIP 在旁邊。</td><td>來源指定這個資料夾本身；不把外層 ZIP、影片或其他資料夾一起上傳。</td></tr>
+<tr><td>10.13.51 GitHub</td><td>儲存庫根目錄有 <code>FRAME_AI_Studio/</code>、<code>README.md</code>、獨立的 <code>index.html</code>。</td><td>新版檔案放在既有子資料夾；根 <code>index.html</code> 改為轉址，其他遠端檔案保留。</td></tr>
+<tr><td>10.14.29 GitHub Pages</td><td>根網址顯示「CPU PHOTO MOTION」。</td><td>完成發布後，根網址導向 <code>./FRAME_AI_Studio/</code>，保留查詢參數與頁面錨點。</td></tr>
+<tr><td>10.22.34 / 10.22.55</td><td>Token 設定與已產生的秘密。</td><td>不重製截圖或秘密；改採 SSH，並撤銷已曝光的 Token。</td></tr>
+</tbody></table>
+<p class="small">另以唯讀公開 GitHub API 核對：2026-10-10 的 <code>main</code> 為 <code>e867b362fe45ae82f8b98c68b3c13aeb9eabfab3</code>，樹狀清單 183 筆、檔案合計約 80.0 MB。這是當時快照；脚本每次都重新讀取當下的 main。</p>
+</section>
+
+<section><h2>02｜第一次：設定 SSH</h2>
+<p>在 Mac「終端機」或 Windows「Git Bash」確認：</p>
+<pre>git --version
+python3 --version</pre>
+<p>若 Mac 沒有 Git，可執行 <code>xcode-select --install</code>。Python 3 需能以 <code>python3</code> 啟動；脚本只使用內建函式庫，不需要安裝 pip 套件。</p>
+<h3>已有可登入 kuonanhong 的 SSH 金鑰</h3><p>直接測試：</p><pre>ssh -T git@github.com</pre>
+<p>第一次連線時，請依 <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints">GitHub 官方 SSH 指紋</a>確認主機。看到 <code>Hi kuonanhong! You've successfully authenticated…</code> 代表成功；GitHub 不提供 shell，所以這個測試回傳結束碼 1 是正常的。</p>
+<h3>還沒有 SSH 金鑰</h3>
+<ol><li>依 <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">官方金鑰設定教學</a>建立 Ed25519 金鑰。若已存在同名金鑰，不要覆蓋。</li><li>將<strong>公鑰</strong>（檔名以 <code>.pub</code> 結尾）加入 GitHub → Settings → SSH and GPG keys → New SSH key → Authentication Key。私鑰留在自己的電腦。</li><li>把金鑰加入 SSH agent，再執行上面的連線測試。脚本沿用系統 <code>~/.ssh/config</code> 與 agent；為了隔離 Git filters，它不讀取全域 Git <code>core.sshCommand</code>，自訂金鑰請設定在 SSH config。</li></ol>
+<p>提交作者若尚未設定，使用你想顯示在 GitHub 的姓名與 email：</p><pre>git config --global user.name "你的 GitHub 顯示名稱"
+git config --global user.email "你的 GitHub 已驗證或 noreply email"</pre>
+</section>
+
+<section><h2>03｜把脚本放進資料夾，先預覽</h2>
+<p>將 <code>Upload_FRAME_SSH.sh</code> 放到 <code>FRAME_AI_Studio</code> 內，與 <code>index.html</code> 同一層。開啟終端機，輸入 <code>bash </code>（後面有一個空白），把脚本拖進終端機，再加上 <code> --dry-run</code> 後按 Enter。</p>
+<pre>bash "/你的路徑/FRAME_AI_Studio/Upload_FRAME_SSH.sh" --dry-run</pre>
+<p>脚本會自動辨識同一層的專案，也可用 <code>--source</code> 明確指定。這對脚本放在「下載項目」而專案放在其他位置特別方便：</p>
+<pre>bash "/脚本路徑/Upload_FRAME_SSH.sh" \
+  --source "/你的路徑/FRAME_AI_Studio" --dry-run</pre>
+<div class="note ok"><strong>預覽不推送。</strong>它會讀取遠端、在獨立快取建立不可變內容快照，逐檔比較 Git blob hash 與執行權限，列出新增/修改、相同略過數量、排除檔案與網站總大小。只修改時間而內容相同的檔案不會重傳。計畫 <code>last-plan.json</code> 路徑會印在終端機。</div>
+<p>省略 <code>--dry-run</code> 也仍是預覽。脚本不會在你的專案執行 <code>git init</code>、<code>git add .</code>、<code>reset</code> 或 <code>clean</code>。</p>
+</section>
+
+<section><h2>04｜確認清單後，執行上傳</h2>
+<pre>bash "/你的路徑/FRAME_AI_Studio/Upload_FRAME_SSH.sh" --push</pre>
+<p>有 <code>--source</code> 就沿用同一條完整指令，把 <code>--dry-run</code> 改成 <code>--push</code>。這個旗標表示你要把通過檢查的檔案寫入指定 GitHub 儲存庫。</p>
+<table><thead><tr><th>階段</th><th>脚本做什麼</th><th>主站狀態</th></tr></thead><tbody>
+<tr><td>比對與檢查</td><td>讀取當下 main；保留既有檔案；檢查秘密、大小、分塊 SHA-256 與檔案/資料夾衝突。</td><td>不變</td></tr>
+<tr><td>分批上傳</td><td>將新增/變更內容以約 128 MiB 一批推送到 <code>frame-upload/…</code> 暫存分支；分塊優先。</td><td>main 不變</td></tr>
+<tr><td>完整發布</td><td>全部批次完成且最終樹狀內容吻合，才用一般 fast-forward push 一次更新 main。</td><td>Pages 可開始建立完整新版</td></tr>
+</tbody></table>
+<p>第一次需上傳尚未存在的瀏覽器模型。以後若只改文案或程式，模型雜湊相同就跳過。檔案改過便以新 blob 儲存；Git 是否能進一步壓縮取決於內容。</p>
+<h3>想先傳完模型，稍後再發布</h3>
+<pre>bash "/你的路徑/FRAME_AI_Studio/Upload_FRAME_SSH.sh" --push --stage-only
+
+# 準備發布時，移除 --stage-only，再執行：
+bash "/你的路徑/FRAME_AI_Studio/Upload_FRAME_SSH.sh" --push</pre>
+<p>中斷時直接重跑相同指令。脚本會驗證遠端暫存樹的每個檔案是否屬於本次計畫，再續傳剩餘內容；已經發布且完全相同則不產生新提交。若 main 在過程中被更新，脚本停止，重跑後再依最新 main 合併本次檔案。若來源在兩次執行之間改變，會建立另一個對應版本的暫存分支。</p>
+<p class="small">沒有使用 force push；不刪除遠端既有檔案、不改寫歷史。遠端舊檔案即使本機已刪除仍會保留，這是有意的保留策略。暫存分支在完成後保留，不會自動刪除。</p>
+</section>
+
+<section><h2>05｜確認 GitHub Pages 發布位置</h2>
+<ol><li>開啟 <a href="https://github.com/kuonanhong/Frame_to_Video/settings/pages">Frame_to_Video → Settings → Pages</a>。</li><li>若用分支發布，Source 選 <strong>Deploy from a branch</strong>，Branch 選 <strong>main</strong>，Folder 選 <strong>/(root)</strong>。</li><li>不要把 <code>frame-upload/…</code> 設成 Pages 來源。若你本來使用自訂 Actions workflow，請確認它只在 main 完整更新後部署；脚本不會新增或修改 <code>.github/</code> workflow。</li><li>在 Actions 確認 Pages build/deployment 成功，再開 <a href="https://kuonanhong.github.io/Frame_to_Video/">https://kuonanhong.github.io/Frame_to_Video/</a>。</li></ol>
+<p>上傳成功代表 Git 已收到檔案，不代表 Pages 已完成部署。若仍看到舊畫面，先確認部署提交與脚本印出的 SHA 相同，再按住 Shift 點重新整理，或使用無痕視窗檢查。不要為了本網站刪除其他網站的 service worker。新入口也可直接開 <a href="https://kuonanhong.github.io/Frame_to_Video/FRAME_AI_Studio/">/Frame_to_Video/FRAME_AI_Studio/</a>。</p>
+</section>
+
+<section><h2>06｜模型分塊與容量：哪些上傳，哪些留在本機？</h2>
+<table><thead><tr><th>項目</th><th>策略</th></tr></thead><tbody>
+<tr><td><code>story/models/smollm2/onnx/model_quantized.onnx.part000…003</code></td><td>沿用 4 塊與原 <code>.parts.json</code>；每塊 ≤40 MiB。上傳前驗證每塊與合併後 SHA-256。</td></tr>
+<tr><td><code>story/models/piper/*.onnx.part000…001</code></td><td>每個聲音沿用 2 塊；與原載入器順序相同，不重新命名。</td></tr>
+<tr><td><code>edge/model/coco-ssd-lite/</code></td><td>既有 TFJS shards 可正常上傳；未變更的分片跳過。</td></tr>
+<tr><td>原生大型影像/影片模型</td><td><code>native_cpu/models/</code>、<code>backend/models/</code>、<code>weights/</code>、<code>checkpoints/</code> 與 <code>.safetensors/.ckpt/.pt/.pth/.gguf/.bin</code> 等排除。從 Hugging Face 下載到本機，保留模型 ID、revision、授權與取得方式。</td></tr>
+<tr><td>秘密、快取、封存與依賴</td><td>排除 <code>.env*</code>、SSH 私鑰、credentials、<code>node_modules/</code>、<code>.venv-native/</code>、<code>.runtime/</code>、快取、輸出、ZIP；<code>story/vendor/source/</code> 內對應授權原始碼封存保留。UTF-8 文字內容掃描常見 GitHub/HF Token 與私鑰標記；二進位權重以 manifest SHA-256 驗證。</td></tr>
+</tbody></table>
+<p>這延續「拆成小塊，再依 manifest 重組」的方法。<strong>拆檔解決單檔限制，不會減少模型總量，也不會把 GPU 模型變成瀏覽器 CPU 模型。</strong>大型原生權重不能靠 Git LFS 指標在 Pages 執行；這份部署不使用 Git LFS。</p>
+<div class="grid"><div><h3>脚本的保守門檻</h3><ul><li>每個新上傳檔案嚴格小於 100 MiB。</li><li>瀏覽器 <code>.partNNN</code> 分塊不得大於 40 MiB。</li><li>保留遠端檔案後的全部 Git tree 總量小於 1,000,000,000 bytes。</li><li>每批預設約 128 MiB；可用 <code>--batch-mib 64</code> 降低。</li></ul></div><div><h3>GitHub 官方限制</h3><ul><li>瀏覽器上傳單檔 25 MiB；一般 Git 單檔 100 MiB 限制。</li><li>單次 Git push 限制 2 GiB。</li><li>已發布 Pages 網站不可超過 1 GB。</li><li>Pages 軟性每月頻寬 100 GB；大型模型會消耗訪客下載頻寬。</li></ul></div></div>
+<p class="small">總量檢查是針對儲存庫根目錄發布的保守估算，包含所有保留檔案；不等同於 Git 歷史大小或伺服器實際壓縮大小。模型更新會累積 Git 歷史，經常更換大型權重時應改用模型託管服務。</p>
+</section>
+
+<section><h2>07｜遇到問題</h2><table><thead><tr><th>訊息／情況</th><th>下一步</th></tr></thead><tbody>
+<tr><td><code>Permission denied (publickey)</code></td><td>先讓 <code>ssh -T git@github.com</code> 成功且顯示 kuonanhong。確認 key 已加入 agent、公鑰已加入正確帳號。</td></tr>
+<tr><td>分支保護／repository rules 拒絕</td><td>脚本不繞過保護、不強推。暫存內容仍保留；依儲存庫既有規則由管理者合併或調整授權。</td></tr>
+<tr><td>中途斷線</td><td>重跑相同指令。若主機已收到但回覆遺失，脚本會重新檢查遠端 SHA；無法確認就停止。</td></tr>
+<tr><td>快取正在使用</td><td>先確認沒有上傳程序。若先前被強制關閉，依訊息檢查 <code>running.lock/pid.txt</code>，只刪除該鎖資料夾；不要刪除來源。</td></tr>
+<tr><td>分塊缺少／SHA-256 不符</td><td>從完整交付包重新解壓原始模型檔；不要修改 manifest 來略過檢查。</td></tr>
+<tr><td>舊頁面還存在</td><td>確認 Pages 是 main/root、Actions 已完成、根轉址存在；再用無痕視窗測試。</td></tr>
+<tr><td>在 <code>file://</code> 開啟時 AI 停用</td><td>本機使用 <code>Start_Mac.command</code> 或對應啟動器開 localhost；網路版使用 HTTPS Pages。</td></tr>
+</tbody></table></section>
+
+<section><h2>官方參考與驗證範圍</h2><ul>
+<li><a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection">GitHub：測試 SSH 連線</a></li>
+<li><a href="https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github">GitHub：大檔案與單檔限制</a></li>
+<li><a href="https://docs.github.com/en/get-started/using-git/troubleshooting-the-2-gb-push-limit">GitHub：2 GiB push 限制與分批推送</a></li>
+<li><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits">GitHub：Pages 容量與頻寬限制</a></li>
+<li><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site">GitHub：Pages 發布來源設定</a></li></ul>
+<p>交付前以本機 bare Git 儲存庫做整合測試；沒有使用你的 Token、沒有登入你的 SSH，也沒有對真實 GitHub 執行 push。真實帳號權限、分支規則與 Pages build 結果須由你執行後確認。</p></section>
+<footer>FRAME v5 · 一支脚本：預覽 → 分批暫存 → 完整發布。更新日：2026-10-10。</footer>
+</main></body></html>

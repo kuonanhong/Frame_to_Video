@@ -1,0 +1,89 @@
+<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FRAME 本機 CPU 圖片專家安裝指南</title>
+<style>body{margin:0;background:#f4f7f6;color:#183332;font:17px/1.8 system-ui,-apple-system,sans-serif}main{max-width:980px;margin:auto;padding:36px 22px 80px}h1{font-size:2rem;line-height:1.35}h2{margin-top:2.5rem;border-top:1px solid #cedcda;padding-top:1.5rem}h3{margin-top:1.8rem}a{color:#006d69;overflow-wrap:anywhere}p,li{overflow-wrap:anywhere}code{font-family:ui-monospace,monospace;font-size:.9em;background:#e2eeeb;padding:2px 4px;border-radius:4px}pre{overflow:auto;background:#102b2a;color:#e8f8f4;padding:18px;border-radius:12px}pre code{background:none;padding:0;color:inherit}.table{overflow:auto}table{border-collapse:collapse;font-size:.9rem;width:100%}td,th{border:1px solid #b9ceca;padding:10px;text-align:left;min-width:110px}th{background:#d9eae5}strong{color:#0b5753}.top{font-size:.9rem}@media(max-width:600px){body{font-size:16px}main{padding:22px 15px}h1{font-size:1.7rem}}</style>
+<main><p class="top"><a href="../index.html">← FRAME 主頁</a> · <a href="README_ZH.md">Markdown 原稿</a></p><h1>選用：本機 CPU 神經網路圖片編輯</h1>
+<p>這是三個真實 Diffusers 推論介面的完整 Python 原始碼。安裝 Python 套件並自行下載模型後，會在<strong>自己電腦的 CPU</strong> 上執行神經網路，輸出一張修改後的 PNG；再把它加入 FRAME 的影片分鏡。它不會產生人物「讀書後大笑」的連續動作，也不會把圖片重繪假稱為文字生成影片。</p>
+<p>GitHub Pages 只提供 HTML、JavaScript、圖片等靜態檔案，不能替網站訪客執行這個 Python 服務。手機與平板可以使用網站的剪輯／照片動畫功能；這個額外的 CPU 模型服務需在能安裝 Python／PyTorch 的桌機或筆電啟動。它只允許同一部電腦連線，沒有對外開放伺服器模式。</p>
+<p><strong>本交付沒有附帶這三個模型的 GB 級權重。</strong> v5 已在獨立 Linux x86_64／Python 3.11.17／Torch 2.6.0 CPU 環境，真正下載並執行三種模型，使用 float32、8 個 CPU 執行緒，沒有 GPU。時間包含模型載入；RAM 為程序核心峰值，不是所有電腦的需求保證。</p>
+<div class="table"><table><tr><th>真實測試</th><th>尺寸／設定</th><th>實測時間</th><th>程序峰值 RAM</th><th>目視及像素檢查</th></tr><tr><td>SD-Turbo</td><td>512×288；4 步、strength 0.75</td><td>14.46 秒</td><td>6.75 GiB</td><td>出現較暗雲層，但構圖改變、原帆船未保留</td></tr><tr><td>InstructPix2Pix</td><td>256×144；15 步</td><td>27.17 秒</td><td>6.01 GiB</td><td>山景出現積雪，大致保留海岸與帆船</td></tr><tr><td>SD Inpainting</td><td>384×216；20 步</td><td>41.28 秒</td><td>7.05 GiB</td><td>遮罩區改變；78,541 個黑遮罩像素全部原樣保留，但沒有畫出要求的橘色熱氣球</td></tr></table></div>
+<p>PNG、完整測量 JSON、模型 revision／檔案 SHA-256 與原始碼雜湊位於 <code>qa/</code>。這三次是實際模型煙霧測試，<strong>不是品質評比，也不是動作影片生成</strong>。Intel Mac、Apple Silicon、Windows 尚未實機驗證，不能將 Linux 秒數當作您電腦的速度。v4 的舊 SD-Turbo 報告保留供追溯；v5 新結果與相同輸入／seed 的 v4 PNG 雜湊相同。</p>
+<p>另外已通過 16 個輸入、HTTP、工作佇列、取消、模型缺失、三個 adapter 呼叫參數、遮罩保留及平台套件選擇測試；這些測試的神經推論邊界採 mock，與上述真實模型測試分開記錄。Linux 的一個指令安裝／啟動流程也已連到真實本機 HTTP 服務並確認三個模型狀態。<code>installed: true</code> 代表檔案清單與大小符合安裝記錄，不代表您這次安裝已通過模型品質測試。</p>
+<h2>可選模型</h2>
+<div class="table"><table><tr><th>API 識別</th><th>來源</th><th>作用</th><th>建議提示詞</th></tr><tr><td><code>sd-turbo</code></td><td><code>stabilityai/sd-turbo</code></td><td>圖生圖，1–4 個採樣步數，通常較快；可能改變人物或構圖</td><td><code>A cozy living room with warm sunset light, realistic photograph</code></td></tr><tr><td><code>instruct-pix2pix</code></td><td><code>timbrooks/instruct-pix2pix</code></td><td>文字指令修改圖片，15 步起；較容易理解「把…改成…」但不保證每次成功</td><td><code>Change the jacket to a blue denim jacket</code></td></tr><tr><td><code>sd-inpaint</code></td><td><code>stable-diffusion-v1-5/stable-diffusion-inpainting</code></td><td>塗白區域重繪，黑色區域保留；適合局部家具／服裝／髮型概念圖</td><td><code>A small oak bedside table beside the bed, realistic photograph</code></td></tr></table></div>
+<p>最後一個來源是已停用 Runway 舊 repository 的<strong>社群鏡像</strong>，與 RunwayML 沒有隸屬關係。下載程式只接受表內固定 ID，不會執行任意模型程式碼。所有模型使用 Safetensors；磁碟下載 fp16 版本，載入時轉為 CPU float32 計算，沒有 CUDA／MPS／GPU 分支。保留模型附帶的 safety checker。</p>
+<p>這些模型主要使用英文提示詞。介面翻譯不會自動讓模型具備所有語言的提示理解能力。可先手寫英文提示；例如「沉浸讀書後大笑」是時間動作描述，這三個<strong>靜態圖片</strong>專家無法輸出該動作影片。改成 <code>A portrait of the same person laughing while holding a book</code>，也只是嘗試產生一張笑容圖片，身分及手部仍可能失真。</p>
+<p>每個模型會下載數 GB，載入 float32 後另占數 GB 記憶體；步數、尺寸、CPU、RAM 會大幅影響速度。建議桌機至少 16 GB RAM、有 15–20 GB 可用磁碟，較完整測試建議 32 GB 以上；這不是保證可用的最低規格。您的 Intel i9／64 GB RAM 可從 SD-Turbo 單張測試開始，仍需測量实际時間。最多長邊 512，單次一張，一次只執行一個任務，不會用「有幾個 CPU 核心」推算或宣稱即時。</p>
+<h2>一個指令安裝並啟動（v5）</h2>
+<p>先安裝 Python 3.11，終端機切到 FRAME 專案根目錄。第一次指令會建立獨立 <code>.venv-native</code> 環境、安裝固定版本套件，並主動下載 SD-Turbo（約 2.58 GB 的模型檔案，另需安裝空間）。請先閱讀模型授權。</p>
+<p>macOS／Linux：</p>
+<pre><code>python3.11 native_cpu/setup_native.py --model sd-turbo --launch</code></pre>
+<p>Windows：</p>
+<pre><code>py -3.11 native_cpu/setup_native.py --model sd-turbo --launch</code></pre>
+<p>macOS 亦可執行 <code>native_cpu/start_native.command</code>（若解壓縮遺失執行權限，改用上方指令）；Windows 可雙擊 <code>native_cpu/start_native.bat</code>。兩者都會下載 SD-Turbo 並啟動服務。第二次啟動會重用完整的本機模型，不重新下載。Python 套件仍會做版本、CPU 計算及 NumPy 相容檢查；檢查通過並不代表圖片品質通過評比。</p>
+<p>要多安裝一個專家，可將 <code>--model instruct-pix2pix</code> 或 <code>--model sd-inpaint</code> 加到指令；<code>--model</code> 可以重複。只安裝套件時省略 <code>--model</code>。套件損壞時加 <code>--repair</code>；不會删除使用者模型。模型另放大磁碟可用 <code>--model-dir &quot;/你的模型目錄&quot;</code>，往後啟動要保留同一選項。</p>
+<p>安裝器依平台選擇 Intel Mac 的 Torch 2.2.2、Linux／Windows x86_64 的 Torch 2.6.0 CPU，以及 Apple Silicon 的 Torch 2.6.0（仍用 CPU）。只有 Linux x86_64 的實際安裝／執行完成測試；Mac 與 Windows 為原始碼及官方 wheel 選擇核對，沒有實機測試。其他架構會停止並顯示原因。</p>
+<p>下方保留手動安裝步驟，方便診斷或使用既有獨立環境。</p>
+<h2>1. 建立 Python 3.11 環境</h2>
+<p>請先安裝 <strong>Python 3.11</strong>。不要在現有重要專案環境直接升降套件版本。</p>
+<p>macOS／Linux，在終端機切到解壓縮後含有 <code>index.html</code> 的 FRAME 專案根目錄：</p>
+<pre><code>cd &quot;/你的路徑/FRAME_AI_Studio&quot;
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip</code></pre>
+<p>Windows PowerShell：</p>
+<pre><code>cd &quot;C:\你的路徑\FRAME_AI_Studio&quot;
+py -3.11 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install --upgrade pip</code></pre>
+<p>Windows 下文所有 <code>python</code>，請改用 <code>.\.venv\Scripts\python.exe</code>，不需要調整 PowerShell execution policy。</p>
+<h2>2. 安裝 CPU 套件</h2>
+<h3>Intel Mac（您目前的機器）</h3>
+<p>PyTorch 官方表示 2.2.x 是最後支援 macOS x86／x64 的版本；不能照抄 Apple Silicon 最新版安裝方式。此處固定 2.2.2 配 Python 3.11：</p>
+<pre><code>python -m pip install torch==2.2.2
+python -m pip install -r native_cpu/requirements.txt</code></pre>
+<p>NumPy 固定為 1.26.4 以配合舊 PyTorch；不要在此環境擅自升級到 NumPy 2。若安裝器說沒有對應 wheel，先確認 <code>python --version</code> 是 3.11，並執行 <code>python -c &quot;import platform; print(platform.machine())&quot;</code>，Intel Mac 預期 <code>x86_64</code>。</p>
+<h3>Windows／Linux x86_64</h3>
+<pre><code>python -m pip install torch==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+python -m pip install -r native_cpu/requirements.txt</code></pre>
+<h3>Apple Silicon Mac</h3>
+<pre><code>python -m pip install torch==2.6.0
+python -m pip install -r native_cpu/requirements.txt</code></pre>
+<p>程式仍明確使用 CPU，不會切換 MPS。其他 CPU 架構若沒有對應 PyTorch wheel，需先依 PyTorch 官方支援情況處理，不能保證同一安裝指令涵蓋全部硬體。</p>
+<p>檢查依賴：</p>
+<pre><code>python -c &quot;import torch,diffusers,transformers; print(torch.__version__,diffusers.__version__,transformers.__version__)&quot;</code></pre>
+<p>固定的 Diffusers 0.30.3／Transformers 4.44.2 是本程式 API 相容基線，並非宣稱最新版本。此本機服務不應放到公網。升級依賴後請重新執行測試與真實 smoke test。</p>
+<h2>3. 主動下載需要的模型（第一次需網路）</h2>
+<p>先閱讀各模型頁面的授權。免費取得權重不等於所有用途均無限制；尤其 SD-Turbo 請查看 Stability AI 當前授權，另兩者也需遵守模型卡與其底層模型條款。程式下載公開模型不需 GitHub PAT，也不會讀取或顯示私人雲端 Token。</p>
+<p>先下載一種即可：</p>
+<pre><code>python native_cpu/fetch_models.py --model sd-turbo</code></pre>
+<p>需要其他用途時再依序下載：</p>
+<pre><code>python native_cpu/fetch_models.py --model instruct-pix2pix
+python native_cpu/fetch_models.py --model sd-inpaint</code></pre>
+<p>預設儲存在 <code>native_cpu/models/模型識別/</code>，它已加入 <code>.gitignore</code>，<strong>不要上傳到 GitHub Pages</strong>。下載會先把當時的 <code>main</code> 解析為不可變 commit SHA，再只下載該 commit 的必要檔案。中斷可重新執行同一指令續傳；<code>FRAME_INSTALL.json</code> 記錄來源 SHA、所有檔案大小與 SHA-256。若要重現已下載版本，可取記錄中的 40 字元 SHA：</p>
+<pre><code>python native_cpu/fetch_models.py --model sd-turbo --revision 你的40字元commitSHA</code></pre>
+<p>最後一行為範例；請替換成真實 SHA，不能原樣輸入。亦可用環境變數 <code>FRAME_NATIVE_MODEL_DIR</code> 指定自己的大型磁碟目錄；下載與伺服器需使用同一設定。</p>
+<p>離線校驗：</p>
+<pre><code>python native_cpu/fetch_models.py --model sd-turbo --verify</code></pre>
+<p>推論時強制 <code>local_files_only=True</code>、<code>HF_HUB_OFFLINE=1</code>；缺權重會顯示缺少，不會暗中大量下載、不會改呼叫付費服務。</p>
+<h2>4. 開啟有本機 CPU API 的網站</h2>
+<pre><code>python native_cpu/server.py --port 8787</code></pre>
+<p>在同一台電腦開啟 <strong><a href="http://127.0.0.1:8787/" rel="noreferrer">http://127.0.0.1:8787/</a></strong>。這個指令已同時提供整個網站及本機 CPU API，不必再開另一個 <code>http.server</code>。網站的本機 AI 區塊會查詢 <code>/api/status</code>；只有此來源才可提交生成任務。</p>
+<p>普通的 <code>python -m http.server 8080</code> 與 GitHub Pages 能執行前端剪輯，<strong>不會執行這個 Python 模型 API</strong>。來自 GitHub Pages 的網頁也不能直接連到本機 CPU 服務，避免跨來源讀取本機資料。若要使用本機模型，請用上面的本機入口。</p>
+<p>模型第一次載入、VAE 解碼、單一步 CPU 計算可能很久。取消是合作式，會在模型載入完成或下一個去噪步驟邊界生效；不能承諾立即停止。每次任務結束釋放 pipeline，後續任務會重新載入，以降低多模型同時占 RAM 的風險。</p>
+<p>結果僅在伺服器記憶體保留最近 8 筆，關閉伺服器後清除；上傳照片、提示詞及遮罩不寫入磁碟。請在需要時自行儲存產出或加入分鏡。<code>models/</code> 內只儲存權重及安裝記錄。</p>
+<h2>5. 本機真實生成測試</h2>
+<p>這個步驟才會真的執行已下載模型：</p>
+<pre><code>python native_cpu/smoke_real.py --model sd-turbo --image &quot;/你的路徑/room.jpg&quot; --prompt &quot;A cozy living room with warm sunset light&quot; --output native_cpu/outputs/turbo-test.png</code></pre>
+<p>產出 <code>turbo-test.png</code> 與 <code>turbo-test.report.json</code>；後者記錄真實耗時、平台／套件版本、來源 revision、CPU dtype、程序 RAM 峰值、原始碼及圖檔 SHA-256、逐步進度與像素檢查。Linux／macOS 的記憶體使用核心 RUSAGE_SELF；Windows 使用每 25ms 採樣，可能漏掉短暫峰值。可用 <code>--max-side 256</code> 先做小圖測試。若目標檔案已存在，程式拒絕覆蓋，請改檔名。</p>
+<p>局部重繪例：先準備和照片<strong>完全相同尺寸</strong>的灰階 PNG 遮罩；要修改的區域塗白，其餘塗黑。</p>
+<pre><code>python native_cpu/smoke_real.py --model sd-inpaint --image &quot;/你的路徑/room.jpg&quot; --mask &quot;/你的路徑/room-mask.png&quot; --prompt &quot;A small wooden chair beside the window, realistic photo&quot; --output native_cpu/outputs/chair-test.png</code></pre>
+<p>照片與遮罩會一起等比例縮放／補邊。v5 明確傳入 inpaint 的寬／高，修正非正方形圖片被 Diffusers 預設尺寸改成正方形、造成遮罩合成失敗的問題。完成後黑色區域會以準備後的原图像素覆蓋回去，避免未選區被模型順便改變；白色區域的內容、透視與物理尺寸仍需人工檢查，並不構成 CAD 或可量測的 3D 設計。</p>
+<h2>HTTP API（前端開發者）</h2>
+<p>所有路徑相對於同一個 <code><a href="http://127.0.0.1:8787" rel="noreferrer">http://127.0.0.1:8787</a></code>。沒有 CORS 開放、外部圖片 URL、shell 執行參數、任意模型 ID 或任意檔案路徑 API。</p>
+<div class="table"><table><tr><th>方法／路徑</th><th>行為</th></tr><tr><td><code>GET /api/status</code></td><td>回報真實依賴版本、模型安裝狀態、<code>busy</code>、<code>max_side</code></td></tr><tr><td><code>POST /api/jobs</code></td><td>multipart 建立工作，回傳 202；忙碌／缺模型 409，缺依賴 503</td></tr><tr><td><code>GET /api/jobs/{id}</code></td><td><code>queued/running/completed/failed/cancelled</code>，<code>progress</code>，<code>phase</code>，錯誤或結果 URL</td></tr><tr><td><code>POST /api/jobs/{id}/cancel</code></td><td>請求取消；在計算步驟邊界檢查</td></tr><tr><td><code>GET /api/jobs/{id}/result.png</code></td><td>完成結果，<code>image/png</code>；未完成或已清除 404</td></tr></table></div>
+<p><code>POST /api/jobs</code> 欄位：</p>
+<ul><li><code>expert</code>: <code>sd-turbo</code>、<code>instruct-pix2pix</code>、<code>sd-inpaint</code>。</li><li><code>prompt</code>: 1–1000 字元。</li><li><code>image</code>: 必填 PNG/JPEG/WEBP/BMP，最多 12 MiB、24 MP；禁止 URL。</li><li><code>mask</code>: inpaint 必填，其餘忽略；與來源照片相同尺寸。</li><li><code>steps</code>: Turbo 1–4（預設 4），其餘 1–30（預設 15／20）。</li><li><code>strength</code>: Turbo 圖片變化強度 0.1–1（預設 0.75），且 <code>steps × strength ≥ 1</code>。</li><li><code>guidance</code>: Pix2Pix／Inpaint 1–15（預設 7.5）；Turbo 固定 0。</li><li><code>image_guidance</code>: Pix2Pix 1–3（預設 1.5）。</li><li><code>seed</code>: 0–4294967295（預設 42）。相同 seed 不保證不同 CPU／函式庫版本逐位元一致。</li><li><code>max_side</code>: 256–512（預設 512），輸出邊長會取 8 的倍數。</li></ul>
+<p>前端請用 <code>FormData</code>，不要自己設定 <code>Content-Type</code> 邊界；每 1–2 秒查詢狀態。Service Worker 不應快取 <code>/api/</code>。圖片結果是單張 PNG，需由使用者確認後加入分鏡，再用前端剪輯匯出影片。</p>
+<h2>已執行的程式測試</h2>
+<pre><code>python -m unittest discover -s native_cpu/tests -v</code></pre>
+<p>16 項測試包含真實 loopback HTTP server、來源／Host 防護、隱藏目錄／權重路徑拒絕、multipart 解析、單任務併發拒絕、取消、以 mock pipeline 驗證 3 個 adapter 參數／遮罩合成、拒絕錯誤输出尺寸，以及各平台 Torch 選擇。另有三個真實權重 CPU 推論 PNG／JSON 與 Linux 安裝啟動檢查於 <code>qa/</code>。<code>VALIDATION.json</code> 分開記錄測試範圍，<code>qa/repair-log-v5.json</code> 保留發現的錯誤、修正與限制。</p>
+<h2>核對來源</h2>
+<ul><li>SD-Turbo 模型卡與 img2img 條件：<a href="https://huggingface.co/stabilityai/sd-turbo" rel="noreferrer">https://huggingface.co/stabilityai/sd-turbo</a></li><li>InstructPix2Pix 作者模型：<a href="https://huggingface.co/timbrooks/instruct-pix2pix" rel="noreferrer">https://huggingface.co/timbrooks/instruct-pix2pix</a></li><li>SD Inpainting 鏡像與授權：<a href="https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-inpainting" rel="noreferrer">https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-inpainting</a></li><li>Diffusers inpainting：<a href="https://huggingface.co/docs/diffusers/using-diffusers/inpaint" rel="noreferrer">https://huggingface.co/docs/diffusers/using-diffusers/inpaint</a></li><li>Diffusers callbacks：<a href="https://huggingface.co/docs/diffusers/using-diffusers/callback" rel="noreferrer">https://huggingface.co/docs/diffusers/using-diffusers/callback</a></li><li>PyTorch 2.2 官方公告（Intel macOS 最後版本）：<a href="https://pytorch.org/blog/pytorch2-2/" rel="noreferrer">https://pytorch.org/blog/pytorch2-2/</a></li><li>PyTorch 官方舊版本安裝：<a href="https://pytorch.org/get-started/previous-versions/" rel="noreferrer">https://pytorch.org/get-started/previous-versions/</a></li></ul></main></html>

@@ -1,0 +1,49 @@
+{
+  "version": "5.0",
+  "date": "2026-10-10",
+  "verified_fixes": [
+    {
+      "issue": "Inpainting silently defaulted to the model square sample size because width/height were omitted; non-square input could fail PIL compositing or become misaligned.",
+      "evidence": "Installed Diffusers 0.30.3 pipeline_stable_diffusion_inpaint.py defaults height/width from unet sample_size at lines1053–1054. Real repaired run produced384×216 and preserved78,541 outside-mask pixels exactly.",
+      "change": "Pass image.width/image.height to inpaint, and reject mismatched output dimensions before composite.",
+      "tests": [
+        "test_adapters_arguments_and_mask_preservation",
+        "test_inpaint_refuses_misaligned_model_output",
+        "sd-inpaint-balloon-real.report.json"
+      ]
+    },
+    {
+      "issue": "No one-command cross-platform isolated installer was provided.",
+      "change": "Added setup_native.py, check_runtime.py, start_native.command and start_native.bat. Select Intel Mac Torch2.2.2; Linux/Windows Torch2.6.0 CPU. Enforce Python3.11 and package pins. Existing complete models are reusable offline.",
+      "actual_platform_tested": "Linux x86_64 Python3.11.17",
+      "not_actual_platform_tested": [
+        "macOS Intel",
+        "macOS Apple Silicon",
+        "Windows"
+      ]
+    },
+    {
+      "issue": "New memory harness initially used psutil.Process() in a PID namespace whose /proc view did not match; initial Pix2Pix RSS was incorrect and first Inpaint harness attempt raised NoSuchProcess before inference.",
+      "change": "Linux/macOS now use kernel RUSAGE_SELF ru_maxrss; Windows retains sampled psutil RSS. Repeated both real inference runs using repaired harness.",
+      "preliminary_outcome": "Pix2Pix15-step256×144 inference succeeded in30.04815378sec, but that measurement report was superseded because its memory metric was invalid.",
+      "tests": [
+        "instruct-pix2pix-winter-v5.report.json",
+        "sd-inpaint-balloon-real.report.json"
+      ]
+    }
+  ],
+  "upstream_sources": [
+    "https://huggingface.co/timbrooks/instruct-pix2pix/tree/31519b5cb02a7fd89b906d88731cd4d6a7bbf88d",
+    "https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-inpainting/tree/8a4288a76071f7280aedbdb3253bdb9e9d5d84bb",
+    "https://huggingface.co/stabilityai/sd-turbo/tree/b261bac6fd2cf515557d5d0707481eafa0485ec2",
+    "https://docs.pytorch.org/get-started/previous-versions/",
+    "https://pytorch.org/blog/pytorch2-2/",
+    "https://github.com/huggingface/diffusers/blob/v0.30.3/src/diffusers/pipelines/stable_diffusion/pipeline_stable_diffusion_inpaint.py",
+    "https://download.pytorch.org/whl/torch/"
+  ],
+  "installer_platform_evidence": {
+    "Intel_mac_python311_wheel": "torch-2.2.2-cp311-none-macosx_10_9_x86_64.whl",
+    "wheel_list_checked": true,
+    "actual_macos_execution": false
+  }
+}

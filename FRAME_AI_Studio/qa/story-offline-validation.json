@@ -1,0 +1,431 @@
+{
+  "started": "2026-10-09T15:59:53.793Z",
+  "scope": "Headless Chromium on Linux; desktop viewport and simulated mobile viewport, not an actual iPhone/Android device.",
+  "checks": [
+    {
+      "name": "page boot and local neural voice catalog",
+      "passed": true,
+      "count": 1,
+      "language": "zh-Hant"
+    },
+    {
+      "name": "Prepare offline UI caches full shell and bundled models",
+      "passed": true,
+      "cacheText": "88 files · 385 MB",
+      "cacheNames": [
+        "frame-story-v3-20261009-d"
+      ]
+    },
+    {
+      "name": "root workbench reloads with browser network offline",
+      "passed": true
+    },
+    {
+      "name": "Mandarin neural speech generates after offline reload",
+      "passed": true,
+      "duration": 0.6965986394557823
+    },
+    {
+      "name": "actual offline WebM export contains video and non-silent neural voice/music",
+      "passed": true,
+      "duration": "2.000000",
+      "bytes": 81872,
+      "rms": 0.08406114422793397
+    },
+    {
+      "name": "browser can play its exported WebM",
+      "passed": true,
+      "readyState": 4,
+      "time": 0.185458,
+      "error": null
+    },
+    {
+      "name": "alternate /story/ entry reloads offline",
+      "passed": true
+    },
+    {
+      "name": "imported video original-audio checkbox off produces no audio track",
+      "passed": true
+    },
+    {
+      "name": "imported video original-audio checkbox on retains actual audio",
+      "passed": true,
+      "rms": 0.08408847897689586
+    },
+    {
+      "name": "saved project restores format, fit-narration and original-audio output controls",
+      "passed": true
+    },
+    {
+      "name": "project with external audio URL is rejected before fetch",
+      "passed": true,
+      "status": "操作未完成: Project narration must be embedded audio data.\n請重試或使用較低解析度"
+    },
+    {
+      "name": "offline 390px mobile-simulated entry, no overflow, conservative defaults",
+      "passed": true,
+      "width": 390,
+      "overflow": 0,
+      "resolution": "360",
+      "fps": "12"
+    },
+    {
+      "name": "offline run: no external requests, missing assets or uncaught page errors",
+      "passed": true
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "externalRequests": [],
+  "missingRequests": [],
+  "exports": [
+    {
+      "file": "/workspace/scratch/0b19e351a29d/frame_story_20261009/FRAME_AI_Studio/qa/story-offline-export.webm",
+      "path": "story-offline-export.webm",
+      "bytes": 81872,
+      "probe": {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "vp8",
+            "codec_long_name": "On2 VP8",
+            "profile": "0",
+            "codec_type": "video",
+            "codec_tag_string": "[0][0][0][0]",
+            "codec_tag": "0x0000",
+            "width": 640,
+            "height": 360,
+            "coded_width": 640,
+            "coded_height": 360,
+            "closed_captions": 0,
+            "film_grain": 0,
+            "has_b_frames": 0,
+            "sample_aspect_ratio": "1:1",
+            "display_aspect_ratio": "16:9",
+            "pix_fmt": "yuv420p",
+            "level": -99,
+            "color_range": "pc",
+            "color_space": "bt709",
+            "color_transfer": "iec61966-2-1",
+            "color_primaries": "bt709",
+            "field_order": "progressive",
+            "refs": 1,
+            "r_frame_rate": "145/12",
+            "avg_frame_rate": "145/12",
+            "time_base": "1/1000",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "disposition": {
+              "default": 1,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0
+            },
+            "tags": {
+              "language": "eng",
+              "alpha_mode": "1"
+            }
+          },
+          {
+            "index": 1,
+            "codec_name": "opus",
+            "codec_long_name": "Opus (Opus Interactive Audio Codec)",
+            "codec_type": "audio",
+            "codec_tag_string": "[0][0][0][0]",
+            "codec_tag": "0x0000",
+            "sample_fmt": "fltp",
+            "sample_rate": "48000",
+            "channels": 2,
+            "channel_layout": "stereo",
+            "bits_per_sample": 0,
+            "initial_padding": 0,
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/1000",
+            "start_pts": 33,
+            "start_time": "0.033000",
+            "extradata_size": 19,
+            "disposition": {
+              "default": 1,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0
+            },
+            "tags": {
+              "language": "eng"
+            }
+          }
+        ],
+        "format": {
+          "filename": "/workspace/scratch/0b19e351a29d/frame_story_20261009/FRAME_AI_Studio/qa/story-offline-export.webm",
+          "nb_streams": 2,
+          "nb_programs": 0,
+          "format_name": "matroska,webm",
+          "format_long_name": "Matroska / WebM",
+          "start_time": "0.000000",
+          "duration": "2.000000",
+          "size": "81872",
+          "bit_rate": "327488",
+          "probe_score": 100,
+          "tags": {
+            "encoder": "Chrome"
+          }
+        }
+      },
+      "rms": 0.08406114422793397
+    },
+    {
+      "file": "/workspace/scratch/0b19e351a29d/frame_story_20261009/FRAME_AI_Studio/qa/story-original-audio-disabled.webm",
+      "path": "story-original-audio-disabled.webm",
+      "bytes": 49170,
+      "probe": {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "vp8",
+            "codec_long_name": "On2 VP8",
+            "profile": "0",
+            "codec_type": "video",
+            "codec_tag_string": "[0][0][0][0]",
+            "codec_tag": "0x0000",
+            "width": 640,
+            "height": 360,
+            "coded_width": 640,
+            "coded_height": 360,
+            "closed_captions": 0,
+            "film_grain": 0,
+            "has_b_frames": 0,
+            "sample_aspect_ratio": "1:1",
+            "display_aspect_ratio": "16:9",
+            "pix_fmt": "yuv420p",
+            "level": -99,
+            "color_range": "pc",
+            "color_space": "bt709",
+            "color_transfer": "iec61966-2-1",
+            "color_primaries": "bt709",
+            "field_order": "progressive",
+            "refs": 1,
+            "r_frame_rate": "12/1",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/1000",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "disposition": {
+              "default": 1,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0
+            },
+            "tags": {
+              "language": "eng",
+              "alpha_mode": "1"
+            }
+          }
+        ],
+        "format": {
+          "filename": "/workspace/scratch/0b19e351a29d/frame_story_20261009/FRAME_AI_Studio/qa/story-original-audio-disabled.webm",
+          "nb_streams": 1,
+          "nb_programs": 0,
+          "format_name": "matroska,webm",
+          "format_long_name": "Matroska / WebM",
+          "start_time": "0.000000",
+          "duration": "2.000000",
+          "size": "49170",
+          "bit_rate": "196680",
+          "probe_score": 100,
+          "tags": {
+            "encoder": "Chrome"
+          }
+        }
+      }
+    },
+    {
+      "file": "/workspace/scratch/0b19e351a29d/frame_story_20261009/FRAME_AI_Studio/qa/story-original-audio-enabled.webm",
+      "path": "story-original-audio-enabled.webm",
+      "bytes": 81798,
+      "probe": {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "vp8",
+            "codec_long_name": "On2 VP8",
+            "profile": "0",
+            "codec_type": "video",
+            "codec_tag_string": "[0][0][0][0]",
+            "codec_tag": "0x0000",
+            "width": 640,
+            "height": 360,
+            "coded_width": 640,
+            "coded_height": 360,
+            "closed_captions": 0,
+            "film_grain": 0,
+            "has_b_frames": 0,
+            "sample_aspect_ratio": "1:1",
+            "display_aspect_ratio": "16:9",
+            "pix_fmt": "yuv420p",
+            "level": -99,
+            "color_range": "pc",
+            "color_space": "bt709",
+            "color_transfer": "iec61966-2-1",
+            "color_primaries": "bt709",
+            "field_order": "progressive",
+            "refs": 1,
+            "r_frame_rate": "12/1",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/1000",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "disposition": {
+              "default": 1,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0
+            },
+            "tags": {
+              "language": "eng",
+              "alpha_mode": "1"
+            }
+          },
+          {
+            "index": 1,
+            "codec_name": "opus",
+            "codec_long_name": "Opus (Opus Interactive Audio Codec)",
+            "codec_type": "audio",
+            "codec_tag_string": "[0][0][0][0]",
+            "codec_tag": "0x0000",
+            "sample_fmt": "fltp",
+            "sample_rate": "48000",
+            "channels": 2,
+            "channel_layout": "stereo",
+            "bits_per_sample": 0,
+            "initial_padding": 0,
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/1000",
+            "start_pts": 32,
+            "start_time": "0.032000",
+            "extradata_size": 19,
+            "disposition": {
+              "default": 1,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0
+            },
+            "tags": {
+              "language": "eng"
+            }
+          }
+        ],
+        "format": {
+          "filename": "/workspace/scratch/0b19e351a29d/frame_story_20261009/FRAME_AI_Studio/qa/story-original-audio-enabled.webm",
+          "nb_streams": 2,
+          "nb_programs": 0,
+          "format_name": "matroska,webm",
+          "format_long_name": "Matroska / WebM",
+          "start_time": "0.000000",
+          "duration": "2.000000",
+          "size": "81798",
+          "bit_rate": "327192",
+          "probe_score": 100,
+          "tags": {
+            "encoder": "Chrome"
+          }
+        }
+      },
+      "rms": 0.08408847897689586
+    }
+  ],
+  "languages": [],
+  "base": "http://127.0.0.1:35087",
+  "browserVersion": "153.0.8010.0",
+  "offline": {
+    "cacheText": "88 files · 385 MB",
+    "cacheNames": [
+      "frame-story-v3-20261009-d"
+    ],
+    "playback": {
+      "readyState": 4,
+      "time": 0.185458,
+      "error": null
+    }
+  },
+  "screenshotFontNote": "CJK UI screenshot uses a browser-only QA font fixture because this minimal Linux test container has no Chinese system fonts. No font dependency was added to the application.",
+  "mobile": {
+    "width": 390,
+    "overflow": 0,
+    "resolution": "360",
+    "fps": "12"
+  },
+  "completed": "2026-10-09T16:00:10.861Z",
+  "passed": true
+}

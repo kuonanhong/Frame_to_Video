@@ -1,0 +1,236 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FRAME Story Studio — 使用與部署說明</title><style>body{margin:0;background:#f2f6f4;color:#20332f;font:17px/1.85 system-ui,-apple-system,"Microsoft JhengHei",sans-serif}main{max-width:1060px;margin:28px auto;background:white;padding:38px 44px;border:1px solid #d4e3dc;border-radius:18px}h1{font-size:29px;line-height:1.5;color:#176c57}h2{font-size:23px;margin-top:34px;border-bottom:1px solid #d8e4df;padding-bottom:6px}h3{font-size:19px}a{color:#126e9a;overflow-wrap:anywhere}code{font-size:14px;background:#f0f4f2;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}pre{background:#17251f;color:#effbf3;padding:18px;overflow:auto;border-radius:10px;line-height:1.6}pre code{background:none;color:inherit;padding:0;overflow-wrap:normal}table{border-collapse:collapse;min-width:550px;width:100%;font-size:14px}th,td{border:1px solid #cbded4;padding:10px;text-align:left;vertical-align:top}th{background:#e7f3ed}.table{overflow:auto}nav{display:flex;gap:20px;flex-wrap:wrap;padding:15px 0;border-bottom:2px solid #1c8a70}.notice{background:#eaf7f0;padding:16px;border-left:4px solid #278e73}.section{margin-top:50px}.footer{color:#60786e;font-size:13px}@media(max-width:650px){main{margin:10px;padding:20px 18px}h1{font-size:24px}body{font-size:16px}}</style></head><body><main><h1>FRAME Story Studio 3.0<br>使用與部署說明</h1><p class="notice">完整附件包含實際 CPU 模型權重與推論程式。圖片動畫採運鏡、轉場與影像後製；生成式模型負責英文敘事與中英文神經配音。沒有聲音克隆或擴散式人物動作生成。</p><nav><a href="#guide">操作與部署</a><a href="#capabilities">功能範圍</a><a href="#models">模型與實測</a><a href="index.html">開啟工作台</a></nav><section id="guide" class="section"><h1>FRAME Story Studio：操作與 GitHub Pages 部署</h1>
+<p>版本日期：2026-10-09。本文件適用於新增的 <code>story/</code> 分鏡工作台。上傳套件原有的 CPU 物件辨識／規則動畫工具仍保留於 <code>edge/</code>；原版雲端 AI 介面與 Python 後端保留作為原始參考，並不因部署到 Pages 而取得雲端推論能力。</p>
+<h2>1. 先在本機開啟</h2>
+<p>解壓縮後，進入同時包含 <code>index.html</code>、<code>story/</code>、<code>edge/</code>、<code>docs/</code> 的 <code>FRAME_AI_Studio</code> 資料夾。請用 HTTP 開啟，避免直接雙擊 HTML 所造成的模組、WASM、Worker 與離線快取限制。</p>
+<p>macOS／Linux：</p>
+<pre><code>cd &quot;/你的解壓縮路徑/FRAME_AI_Studio&quot;
+python3 -m http.server 8080 --bind 127.0.0.1</code></pre>
+<p>Windows PowerShell（已安裝 Python）：</p>
+<pre><code>cd &quot;C:\你的解壓縮路徑\FRAME_AI_Studio&quot;
+py -m http.server 8080 --bind 127.0.0.1</code></pre>
+<p>開啟 <code>http://127.0.0.1:8080/</code>（<code>/story/</code> 亦為入口）。停止本機網站：回到終端機按 <code>Ctrl+C</code>。手機使用正式 GitHub Pages 的 HTTPS 網址較合適；一般區域網路 HTTP 可能無法使用麥克風、定位或離線安裝功能。</p>
+<h2>2. 圖片／影片變成有聲故事</h2>
+<ol>
+<li>先按「載入示範」確認介面、分鏡與預覽正常，再加入自己的 JPG、PNG、WebP 圖片或瀏覽器可解碼的影片。可逐批加入，最多 20 個分鏡。</li>
+<li>選取分鏡，修改名稱、秒數、運鏡及轉場；影片分鏡可指定起始／結束秒數。重要人物與文字放在畫面中央，因為輸出比例不同時會裁切部分邊緣。</li>
+<li>在「敘事／旁白文字」輸入故事。可先辨識常見物件，再選 CPU AI 敘事；模型依物件標籤和你寫的描述產生文字，不具備通用視覺問答能力。檢查內容是否符合照片；細小模型可能重複或編造內容，文字仍可直接編輯。</li>
+<li>需要可合成到影片的聲音，選「生成可匯出配音」、上傳旁白錄音，或用麥克風自行錄音。系統語音試聽僅用來聽文字，不能可靠地擷取為影片音軌。語速、預設音色可以選擇；音色沒有可靠的年齡、人格或情緒保證。</li>
+<li>調整亮度、對比、飽和度與暖色光；這些是濾鏡及畫面後製，不是真實三維場景重新打光。</li>
+<li>可輸入字幕、加入自己的配樂或使用內建原創輕柔音樂。檢查配樂音量，避免遮住旁白。</li>
+<li>先預覽，確認順序、聲音與轉場，再匯出。手機從 360p、12 fps 開始；較快的電腦可試 720p、24 fps。錄製時保持分頁在前景，不要鎖定螢幕。</li>
+<li>下載影片、SRT 字幕及需要的 WAV 旁白。用「儲存專案」保留分鏡設定和素材，以後再開啟；這不是雲端帳號同步服務。</li>
+</ol>
+<p>影片格式會依 <code>MediaRecorder.isTypeSupported()</code> 選擇瀏覽器支援的 MP4 或 WebM。不能藉改副檔名完成轉檔。若裝置不能錄影，請保留專案，在支援錄製的現代瀏覽器中重新開啟。大型原始影片解碼、長敘事推論與高解析度錄製可能超過手機記憶體。</p>
+<p>本機有 FFmpeg、需要常見 H.264 MP4 時，可另行轉檔（FFmpeg 並非網頁必需依賴）：</p>
+<pre><code>ffmpeg -i input.webm -c:v libx264 -pix_fmt yuv420p -c:a aac -movflags +faststart output.mp4</code></pre>
+<h2>3. 多語、地圖與聲音的實際範圍</h2>
+<p>工作台核心介面有 22 種語言：繁體中文、簡體中文、英語、日語、韓語、法語、德語、西班牙語、葡萄牙語、義大利語、俄語、波蘭語、捷克語、芬蘭語、瑞典語、阿拉伯語、泰語、越南語、馬來語、印尼語、菲律賓語、印地語。阿拉伯語採由右至左版面。這不是全部亞洲、歐洲或全世界語言；翻譯尚未經各語母語編輯全面審校。</p>
+<p>預設依瀏覽器的語言偏好選擇介面，手動選擇會保存在此瀏覽器。語言偏好不是實際國籍或目前所在地；例如人在日本也可能使用繁體中文瀏覽器。模型可生成的語言和介面可顯示的語言是不同能力，請看 <code>STORY_CAPABILITIES.md</code> 和模型說明。</p>
+<p>不需要 Google Maps 判斷語系。只有你按定位按鈕後，瀏覽器才會要求定位授權；地圖用一般 Google Maps 連結開啟，不需要在網頁埋 API key。定位失敗或不同意時，仍可照常製作影片。開啟 Google Maps 需要連線，且會依你的選擇將該地點送往 Google 地圖；它不是離線製片必需功能。</p>
+<p>上傳某人的聲音檔會直接作為旁白素材使用，並不訓練或克隆該人的音色。若要使用別人的錄音，請取得其使用同意。瀏覽器系統語音清單取決於作業系統；部分聲音可能依賴遠端服務，不能一概稱為離線聲庫。</p>
+<h2>4. 準備離線使用</h2>
+<p>第一次須從本機網站或 HTTPS 網站載入介面、推論程式與模型。先按「準備離線使用」，等待介面報告完成，再測試重新整理和實際推論。不曾載入／未快取的模型，無法在斷線後憑空取得。</p>
+<p>快取屬於瀏覽器儲存空間，並非永久保證；無痕視窗、清除網站資料、系統儲存不足或瀏覽器回收空間，可能刪除模型。不同瀏覽器及不同網站位址各有自己的快取。不要把工作台安裝到一個網址後，期待另一個網址自動共用模型。</p>
+<p>離線製片可以使用已載入的素材與模型；Google Maps、需要網路的系統語音或原版雲端模型服務仍需要網路。專案與匯出影片請另外下載保存。</p>
+<h2>5. 上傳既有 GitHub 儲存庫</h2>
+<p>上傳是 <strong><code>git push</code></strong>；<code>git pull</code> 是取得遠端更新。以下範例使用你的 <code>Frame_to_Video</code> 儲存庫。先確認解壓縮路徑，並把第一行換成你真正的本機路徑。這些指令不會刪除遠端歷史。</p>
+<pre><code>FRAME_PACKAGE_DIR=&quot;/你的解壓縮路徑/FRAME_AI_Studio&quot;
+git clone https://github.com/kuonanhong/Frame_to_Video.git
+cd Frame_to_Video
+git switch main
+git pull --ff-only origin main
+rsync -av --exclude=&#x27;.git&#x27; --exclude=&#x27;node_modules&#x27; --exclude=&#x27;*.zip&#x27; &quot;$FRAME_PACKAGE_DIR/&quot; ./
+touch .nojekyll
+git status --short
+git diff --stat
+git add .
+git commit -m &quot;Add local CPU storyboard, narration, audio and video editor&quot;
+git push origin main</code></pre>
+<p>若儲存庫已經在本機，不要再 <code>git clone</code> 到原資料夾裡；改成 <code>cd</code> 進入既有儲存庫，從 <code>git switch main</code> 開始。若目前分支不是 <code>main</code>，請先以 <code>git branch --show-current</code> 確認，再對應調整。遇到 <code>git pull --ff-only</code> 拒絕更新時，先保存本機修改並處理差異，不要直接使用 <code>--force</code>。</p>
+<p>macOS 通常已有 <code>rsync</code>；Windows 可用 Git Bash 搭配檔案總管，把解壓縮的專案內容複製進儲存庫，再執行 <code>git status</code>、<code>git add</code>、<code>git commit</code>、<code>git push</code>。不要把下載的 ZIP 當作網站唯一檔案上傳；網站需要 ZIP 裡的實際資料夾。</p>
+<p>GitHub 不能使用帳號密碼做 Git HTTPS 推送認證。可使用 GitHub Desktop 的登入或你自己保管的 Personal Access Token；不要把 token 寫入 HTML、JavaScript、公開儲存庫或模型 URL。</p>
+<h2>6. 設定 Pages</h2>
+<ol>
+<li>打開 GitHub 儲存庫 → <strong>Settings → Pages</strong>。</li>
+<li>使用 <strong>Deploy from a branch</strong>，選 <strong>main</strong>、<strong>/(root)</strong>；已有 Actions 工作流程時，請以該工作流程實際發布的資料夾為準。</li>
+<li>等待部署完成，開啟 <code>https://kuonanhong.github.io/Frame_to_Video/story/</code>。主頁若使用套件提供的根入口，也能連入新工作台。</li>
+<li>用無痕視窗確認新檔案已發布，再測試示例、生成敘事、可匯出配音、預覽與影片下載。</li>
+<li>手機再測一次；更新後若仍看到舊介面，先清除工作台離線快取，再重新整理並準備模型。</li>
+</ol>
+<p>不要只上傳 <code>story/index.html</code>。必須保留 <code>story/</code> 的程式、Worker、WASM、模型、語系及其相對路徑，也須保留程式實際引用的 <code>edge/</code> 物件辨識檔案。以完整附件包為準，不要重新命名已由程式引用的權重分片。<code>node_modules/</code>、Python 虛擬環境、個人的圖片／錄音與匯出影片不必發布。</p>
+<p>GitHub Pages 提供靜態 HTML、CSS、JavaScript、WASM 與模型檔案；<strong>不能在伺服器上執行 Python、CUDA、FFmpeg 指令或原版 <code>backend/</code></strong>。本工作台把相應工作放在訪客瀏覽器執行，部署網站不等於免費取得雲端 GPU。</p>
+<h2>7. 大檔與多人使用</h2>
+<p>截至 2026-10-09 查核的 GitHub 官方文件：</p>
+<div class="table"><table><thead><tr><th>項目</th><th>官方限制／建議</th><th>本套件的操作</th></tr></thead><tbody>
+<tr><td>一般 Git 單一檔案</td><td>超過 50 MiB 有警告；超過 100 MiB 拒收</td><td>使用實際模型分片；所有一般 Git 單檔須低於上限。</td></tr>
+<tr><td>GitHub 網頁上傳</td><td>每檔不超過 25 MiB</td><td>模型用 Git CLI／GitHub Desktop 推送，不必靠網頁拖放。</td></tr>
+<tr><td>已發布 Pages 網站</td><td>不超過 1 GB</td><td>不上傳不必要的原始素材、生成影片、虛擬環境與大型後端模型。</td></tr>
+<tr><td>Pages 來源儲存庫</td><td>建議不超過 1 GB</td><td>控制模型與歷史版本；不要反覆累積大型權重。</td></tr>
+<tr><td>Pages 流量</td><td>每月 100 GB 軟性頻寬限額</td><td>初次模型下載仍消耗網站流量；離線快取降低重複下載。</td></tr>
+<tr><td>Git LFS</td><td>官方明列不能用於 Pages 網站</td><td>不將 Pages 必需權重改成 LFS 指標檔。</td></tr>
+</tbody></table></div>
+<p>在提交前找出超過 100 MiB 的檔案：</p>
+<pre><code>python3 - &lt;&lt;&#x27;PY&#x27;
+from pathlib import Path
+for p in Path(&#x27;.&#x27;).rglob(&#x27;*&#x27;):
+    if p.is_file() and &#x27;.git&#x27; not in p.parts and &#x27;node_modules&#x27; not in p.parts:
+        if p.stat().st_size &gt; 100 * 1024 * 1024:
+            print(f&#x27;{p.stat().st_size / 1024 / 1024:.1f} MiB  {p}&#x27;)
+PY</code></pre>
+<p>超過上限時不要用 <code>git lfs track &#x27;*.onnx&#x27;</code> 將問題隱藏：Pages 可能只發布 LFS 指標，模型解析就會失敗。大型模型必須使用推論引擎真正支援的分片、縮小／量化版本，或另外提供合法的模型下載來源及離線導入流程；不能任意把一個 ONNX 二進位切成數份就期待 ONNX Runtime 自動理解。</p>
+<p>訪客各自在自己的裝置推論，彼此不共用一個 CPU 佇列；但仍共同下載網站與模型。若每位新訪客下載 300 MB，1,000 位首次訪客就約 300 GB，已高於上述軟性月額度。不能保證十萬人同時使用、永不當機、永遠零延遲或無限免費流量。</p>
+<h2>8. 問題排查</h2>
+<div class="table"><table><thead><tr><th>現象</th><th>先做什麼</th></tr></thead><tbody>
+<tr><td>載入模型失敗</td><td>確認使用 HTTP／HTTPS，所有 WASM、Worker、模型檔及大小寫完整；檢查是否上傳到正確相對路徑。</td></tr>
+<tr><td>雲端失敗、本機正常</td><td>開瀏覽器開發工具的 Network，找 404、LFS 指標或被當 HTML 回傳的模型；確認 Pages 發布根目錄。</td></tr>
+<tr><td>手機卡住／記憶體不足</td><td>先不載入敘事模型，以手動文字、上傳錄音、較少素材、360p、12 fps 製片。</td></tr>
+<tr><td>敘事答非所問</td><td>小模型並非看圖推理模型；改清楚的英文短描述、刪除不實內容或直接編輯旁白。</td></tr>
+<tr><td>系統聲音能聽見但匯出無聲</td><td>系統語音只是試聽；改用可匯出配音、錄音檔或麥克風錄音。</td></tr>
+<tr><td>配音長於分鏡</td><td>檢查自動延長後的總時長，或縮短文字／調整語速。</td></tr>
+<tr><td>定位被拒絕</td><td>不影響影片功能；使用一般地圖連結，或在 HTTPS 網站重新授權。</td></tr>
+<tr><td>WebM 不能在特定播放器播放</td><td>改支援該格式的播放器、裝置支援的 MP4，或本機 FFmpeg 轉檔。</td></tr>
+<tr><td>更新後仍是舊程式</td><td>清除工作台快取、重新整理；再在無痕視窗確認部署版本。</td></tr>
+</tbody></table></div>
+<h2>官方參考</h2>
+<ul>
+<li><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits" target="_blank" rel="noopener">GitHub Pages 的用途與限制</a></li>
+<li><a href="https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github" target="_blank" rel="noopener">GitHub 單檔上限</a></li>
+<li><a href="https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage" target="_blank" rel="noopener">Git LFS 與 Pages 限制</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/languages" target="_blank" rel="noopener">瀏覽器語言偏好</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition" target="_blank" rel="noopener">定位授權及 HTTPS</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis/getVoices" target="_blank" rel="noopener">瀏覽器提供的語音清單</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisVoice/localService" target="_blank" rel="noopener">系統語音是否為本機服務</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/isTypeSupported_static" target="_blank" rel="noopener">MediaRecorder 格式支援</a></li>
+</ul>
+<h2>字型與裝置工作副本</h2>
+<p>另附 jf open 粉圓 OFL 1.1 字型（約4 MB），讓沒有中文系統字型的裝置也能顯示常用繁體中文字及字幕；其他語言仍依裝置字型fallback。照片工作副本最大邊手機1280、桌面2048像素，手機總照片像素約12MP、桌面40MP；這是保守資源限制，不是精確硬體測量。</p></section><section id="capabilities" class="section"><h1>FRAME Story Studio：能力、模型及邊界</h1>
+<p>版本日期：2026-10-09。這版將「圖片／影片分鏡、故事文字、可匯出旁白與基本後製」放進可發布到 GitHub Pages 的靜態工作台。它提供本機生成式文字與語音；影片畫面則以既有素材、幾何運鏡、轉場及濾鏡構成。</p>
+<h2>實際提供什麼</h2>
+<div class="table"><table><thead><tr><th>功能</th><th>本版做法</th><th>實際範圍</th></tr></thead><tbody>
+<tr><td>分鏡圖片／影片</td><td>使用者加入素材，調整順序、複製／刪除分鏡與秒數</td><td>影片必須為瀏覽器可解碼的格式；記憶體與素材大小仍有限。</td></tr>
+<tr><td>常見物件辨識</td><td>原套件 COCO-SSD SSDLite MobileNet V2、TensorFlow.js CPU</td><td>80 類常見物件的矩形方框；不是所有物件、精細分割或照片語意理解。</td></tr>
+<tr><td>生成式敘事</td><td>SmolLM2-135M-Instruct，量化 ONNX，Transformers.js／ONNX Runtime WASM CPU</td><td>以你輸入的描述及物件標籤為文字條件；小模型主要適合英語，非視覺問答模型。</td></tr>
+<tr><td>可匯出神經語音</td><td>Piper 中文／英語小聲庫，本機 WASM CPU 推論</td><td>本包附 3 個聲庫，並非所有語言、任意年齡或人格聲音。</td></tr>
+<tr><td>自己／別人的聲音檔</td><td>上傳錄音或授權麥克風錄音，直接作旁白音軌</td><td>不做聲音克隆、音色訓練、語音換臉或自動模仿人物。</td></tr>
+<tr><td>系統語音試聽</td><td>Web Speech API 列出裝置提供的聲音</td><td>僅試聽；不保證離線，也不當作已可合成進影片的 PCM 音軌。</td></tr>
+<tr><td>照片運鏡</td><td>靜止、推近、拉遠、平移，保持比例再裁切</td><td>不是人物真的走路、張嘴或物件真實三維運動。</td></tr>
+<tr><td>影片裁切</td><td>分鏡的起始／結束時間</td><td>基本剪輯；不是完整的多軌專業剪輯系統。</td></tr>
+<tr><td>轉場</td><td>直接切換、淡入淡出、滑動</td><td>本版的有限預設效果。</td></tr>
+<tr><td>打光／影像後製</td><td>亮度、對比、飽和度、暖色光濾鏡</td><td>對現有像素調整，不能恢復被遮住的表面或重新計算真實三維光照。</td></tr>
+<tr><td>音訊</td><td>逐分鏡旁白、配樂、音量調整及原創背景音樂</td><td>素材可解碼時可混入匯出影片；錄音可能因瀏覽器而不同。</td></tr>
+<tr><td>字幕</td><td>人工／敘事文字字幕、燒入畫面及 SRT 下載</td><td>不包含通用離線自動語音辨識／翻譯模型。</td></tr>
+<tr><td>多語</td><td>22 語核心介面，瀏覽器偏好與手動切換</td><td>介面語系、敘事模型語系與配音模型語系分開，不能互相等同。</td></tr>
+<tr><td>地圖</td><td>明確按鈕授權定位後開 Google Maps 連結</td><td>不需要 Maps API key，不用位置判斷語言；地圖不是離線功能。</td></tr>
+<tr><td>跨平台</td><td>現代瀏覽器、響應式版面、觸控及能力檢查</td><td>macOS、Windows、Linux、Android、iPhone／iPad 的能力取決於瀏覽器；不能保證所有舊裝置或全部編碼格式。</td></tr>
+<tr><td>多人使用</td><td>每位訪客各自在自己的瀏覽器處理素材</td><td>沒有共用推論伺服器，但模型下載仍受託管容量與頻寬限制。</td></tr>
+<tr><td>免費</td><td>已附程式與模型在裝置上執行，不必買推論 API</td><td>裝置、電力、儲存、網路與網站流量不是無限供應。</td></tr>
+</tbody></table></div>
+<h2>附帶的生成式小模型</h2>
+<p>敘事模型使用 <code>onnx-community/SmolLM2-135M-Instruct-ONNX-MHA</code> 的固定版本 <code>5b6682c7c9df18f004bfb7e635cba3f3d98537d8</code>，q8 主權重約 131.11 MiB（137,479,710 bytes）。它是小型文字模型，模型規模限制了長故事、推理、事實正確性及中文能力；本版沒有宣稱其為所有模型中「最準」或最先進。</p>
+<p>三個 Piper 聲庫取自固定來源版本 <code>c10ece1aade47bb51c153c893d14e5bf8e5b7117</code>：</p>
+<div class="table"><table><thead><tr><th>聲庫</th><th>語言</th><th>單一 ONNX 權重</th></tr></thead><tbody>
+<tr><td><code>zh_CN-huayan-medium</code></td><td>中文普通話</td><td>63,201,294 bytes</td></tr>
+<tr><td><code>en_US-amy-low</code></td><td>美式英語</td><td>63,104,526 bytes</td></tr>
+<tr><td><code>en_GB-alan-low</code></td><td>英式英語</td><td>63,104,526 bytes</td></tr>
+</tbody></table></div>
+<p>中文配音會作文字前處理，字幕仍可保留原本的繁體中文。這不代表模型能正確讀出所有臺灣人名、臺語、方言、專有名詞或中英夾雜詞；需要先聽過並修正文字。</p>
+<p>敘事與神經語音權重合計約 326.89 MB，另有 tokenizer、音素處理器、推論執行程式與 WASM。下載檔案大小不是執行時記憶體：模型初始化、ONNX 中間 tensor、KV cache、錄音與素材解碼可能再消耗數倍記憶體。手機應把敘事推論視為可選功能，不要只因權重檔很小就推定所有手機都流暢。</p>
+<p>程式以 WASM CPU 執行模型，不需要 CUDA 或 WebGPU 推論。本包使用模型來源清單、固定版本、SHA-256 校驗及專用分片載入器；大型權重以可上傳的一般 Git 檔案分片保存，由載入器還原完整二進位後交給推論引擎。不能任意切開另一個 ONNX 檔、漏傳一片，或改成 Git LFS 指標就期待其正常推論。</p>
+<p>實際隨附版本、檔名及校驗值見 <code>story/models/manifest.json</code>；聲庫的原始 model card 位於 <code>story/models/piper/</code>，依賴程式的授權與對應來源保留於 <code>story/vendor/</code>。Piper 聲庫儲存庫雖標示 MIT，<code>zh_CN-huayan-medium</code> 的 model card 對訓練資料集授權標示為 <code>Unknown</code>；不能因此推導所有模型與資料都已獲完整商用授權。音素處理程式另包含 GPL 授權元件。本包保留相應 model card、來源、授權文字及通知，不把全部第三方元件統一宣稱為本專案 MIT。</p>
+<h2>為何不是完整的生成式圖片轉影片</h2>
+<p>生成新影格的通用 I2V diffusion／video transformer，通常需要更大的模型、更高記憶體和大量推論計算。把它放進靜態網站，不能使使用者的 CPU 自動具有 GPU 的速度。即使某些模型理論上可使用 CPU，也不能據此保證手機即時、低耗電、畫面最準、免費且流暢。</p>
+<p>本版的生成式 AI 工作是：<strong>生成故事文字，以及將文字生成語音音訊</strong>。影片是以你供應的照片與影片為素材，在時間軸上作運鏡、裁切、轉場及調色，再疊合旁白、配樂與字幕。單張照片不會憑空獲得可信的下一秒人物姿態；沒有人物口型同步、任意物件新增／移除、背景補畫或人體動作生成。</p>
+<p>若日後接入真正 I2V 模型，必須另行驗證其模型授權、CPU／瀏覽器支援、記憶體、效能與輸出品質，並清楚區分本機推論和外部服務。原套件的 <code>backend/</code> Python 模型適配器不會由 GitHub Pages 執行。</p>
+<h2>不等同於 CapCut／威力導演</h2>
+<p>這是免費的短故事工作台，包含上述基本後製。沒有宣稱完整複製商用軟體：不包括完整多軌嵌套時間軸、曲線關鍵影格、動作追蹤、精細遮罩、色度去背、專業色彩管理、所有特效、完整字幕辨識、多機位同步、所有影音編碼器或雲端協作。</p>
+<p>用已提供的基本工具即可做出「分鏡照片／短影片 → 故事 → 配音 → 配樂 → 字幕 → 匯出」。需要完整專業剪輯時，可把生成的 WAV、SRT 與影片匯入你選擇的編輯器繼續處理。</p>
+<h2>語言、離線與私隱</h2>
+<p>核心介面翻譯 22 語，不代表敘事模型精通 22 語、也不代表附帶 22 種神經 TTS 模型。英語敘事生成後可自行改為其他語言；沒有對應配音聲庫時，使用錄音或上傳該語言旁白。</p>
+<p>介面依 <code>navigator.languages</code> 的使用者語言偏好選擇；這不是所在國家的可靠偵測。手動語系保存在此瀏覽器，不能把每一位瀏覽者的國籍、地址或語言當作同一件事。位置只在明確地圖操作後要求授權，製片流程無須定位。</p>
+<p>使用者素材、文字與錄音由本機處理，不因敘事、配音或匯出而上傳到模型伺服器。初次仍需下載網站與模型；線上供應靜態檔案不代表遠端進行推論。第一次準備快取完成之後，相關功能可離線使用；瀏覽器仍可能回收或清除快取。</p>
+<p>瀏覽器 Canvas 合成、MediaRecorder 編碼與作業系統媒體處理可能使用硬體加速。<strong>「不要求 GPU 模型推論」不能等同「所有繪圖／編碼一定由 CPU 軟體執行」</strong>。嚴格要求軟體 CPU 編碼時，請另外在本機使用 FFmpeg <code>libx264</code> 等已驗證的軟體編碼器。</p>
+<h2>驗收重點</h2>
+<p>交付包的測試紀錄描述本次真正驗證的範圍。上線前仍應在你的 Mac、目標 Android 手機和 iPhone／iPad 上各測一次：初次載入、斷線重開、分鏡編輯、語音生成、錄音授權、配樂混音、字幕、匯出格式及長片記憶體。不要把單一桌面瀏覽器測試寫成所有平台都已實測，更不能把本機推論架構視為十萬人並發負載驗證。</p>
+<p>官方來源：</p>
+<ul>
+<li><a href="https://huggingface.co/HuggingFaceTB/SmolLM2-135M-Instruct" target="_blank" rel="noopener">SmolLM2-135M-Instruct 原模型</a></li>
+<li><a href="https://huggingface.co/onnx-community/SmolLM2-135M-Instruct-ONNX-MHA/tree/5b6682c7c9df18f004bfb7e635cba3f3d98537d8" target="_blank" rel="noopener">此包採用的 ONNX 模型版本</a></li>
+<li><a href="https://huggingface.co/rhasspy/piper-voices/tree/c10ece1aade47bb51c153c893d14e5bf8e5b7117" target="_blank" rel="noopener">Piper 聲庫固定版本</a></li>
+<li><a href="https://huggingface.co/docs/transformers.js/index" target="_blank" rel="noopener">Transformers.js</a></li>
+<li><a href="https://onnxruntime.ai/docs/get-started/with-javascript/web.html" target="_blank" rel="noopener">ONNX Runtime Web</a></li>
+<li><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits" target="_blank" rel="noopener">GitHub Pages 限制</a></li>
+<li>[本套件原物件辨識模型通知](./MODEL_NOTICES.md)</li>
+</ul>
+<p>字幕目前依每幕文字顯示與輸出SRT，並非語音ASR的逐字對齊。過長字幕可能在畫布換行或省略，請縮短文字／分幕；SRT保留完整幕文字。</p>
+<p>匯出影片前會釋放推論Worker與CPU物件模型，以減少製片時的記憶體重疊；已生成的WAV音軌仍保留。</p></section><section id="models" class="section"><h1>FRAME：本次實際附帶的 CPU 神經模型</h1>
+<p>核對及下載日期：2026-10-09。這一版的神經模型負責「英語敘事草稿」與「中文／英文語音波形」；照片影片由工作台的分鏡、影像變換、轉場、字幕與音軌合成。沒有把縮放運鏡稱為擴散式生成影片。</p>
+<h2>已附的模型及真實範圍</h2>
+<div class="table"><table><thead><tr><th>功能</th><th>固定來源及版本</th><th>核心權重大小</th><th>語言與限制</th></tr></thead><tbody>
+<tr><td>敘事</td><td><code>onnx-community/SmolLM2-135M-Instruct-ONNX-MHA</code>；revision <code>5b6682c7c9df18f004bfb7e635cba3f3d98537d8</code>；q8</td><td>137,479,710 bytes</td><td>英語。這是 135M 小模型；輸出是可修改的創作草稿，可能增添虛構場景，不能保證每次忠於照片。不是世界上「最準」的模型。</td></tr>
+<tr><td>華燕中文</td><td><code>rhasspy/piper-voices</code>；revision <code>c10ece1aade47bb51c153c893d14e5bf8e5b7117</code>；<code>zh_CN-huayan-medium</code></td><td>63,201,294 bytes</td><td>中文普通話；22,050 Hz。繁體中文以 OpenCC 做模型前處理；原字幕文字不因語音前處理而修改。</td></tr>
+<tr><td>Amy 美式英語</td><td>同上；<code>en_US-amy-low</code></td><td>63,104,526 bytes</td><td>英語女性聲線；16,000 Hz。</td></tr>
+<tr><td>Alan 英式英語</td><td>同上；<code>en_GB-alan-low</code></td><td>63,104,526 bytes</td><td>英語男性聲線；16,000 Hz。</td></tr>
+</tbody></table></div>
+<p>模型、詞表、設定及音素前處理資源合計 <strong>347,687,495 bytes</strong>；不含瀏覽器執行時、GPL 元件源碼與網站其他檔案。確切每個檔案和分片的 bytes、SHA-256 與下載 URL 都在 <code>story/models/manifest.json</code>。19 個邏輯下載項目都已實際取得，不是空資料夾或只附下載連結。</p>
+<p>22 個介面語系與這裡的模型語言是不同層次。介面可以顯示使用者語言，這份包的神經語音只提供中文、英文三個聲庫，英語小敘事模型只產生英語草稿。其他語言仍可自行輸入字幕與上傳旁白錄音。沒有假稱具備所有語系的離線生成模型。</p>
+<h2>執行方式</h2>
+<p><code>story/ai/client.mjs</code> 對主畫面提供：</p>
+<pre><code>import {
+  generateNarration, synthesizeSpeech, voiceCatalog,
+  supportedLanguages, releaseModels,
+} from &#x27;./story/ai/client.mjs&#x27;;
+
+const draft = await generateNarration({
+  prompt: &#x27;A cat sits beside a sunlit window.&#x27;,
+  objects: [&#x27;cat&#x27;], language: &#x27;en&#x27;, maxTokens: 96,
+  onProgress: p =&gt; console.log(p.stage, p.loaded, p.total),
+});
+
+const { audio, sampleRate } = await synthesizeSpeech({
+  text: &#x27;聰動成長協會，歡迎一起動手動腦。&#x27;,
+  voice: &#x27;zh_CN-huayan-medium&#x27;, language: &#x27;zh-Hant&#x27;, rate: 1,
+});
+// audio 是可混音、存成 WAV 或寫入影片音軌的 Float32Array。</code></pre>
+<p>兩個接口都接受 <code>AbortSignal</code>。取消會終止 worker，確實中斷 WASM 推論。為避免在手机同時堆疊兩個模型，切換敘事／語音會釋放上一個 ONNX session。同一 worker 一次只接受一項模型任務；多位網站使用者各在自己的裝置執行，不共享伺服器上的模型工作佇列。</p>
+<p>Transformers.js <strong>3.8.1</strong> 與 ONNX Runtime Web <strong>1.22.0</strong> 都已附本地瀏覽器程式及 WASM。敘事 <code>device: &#x27;wasm&#x27;</code>、語音 <code>executionProviders: [&#x27;wasm&#x27;]</code>，<code>numThreads: 1</code>。沒有 WebGPU，也不要求 GitHub Pages 設定 COOP／COEP。单线程讓沒有 cross-origin isolation 的 Pages 也能工作，但相較可用多线程的本機程式可能較慢。</p>
+<p>大於 40 MiB 的權重由下載程式分成 <code>*.part000</code> 等檔案。自訂 loader 依 manifest 重組 ArrayBuffer 並校驗各片 SHA-256，再交給 ONNX Runtime。<strong>這是本專案的 loader 功能；不是任意 ONNX 檔案拆片後都可直接使用。</strong> 不要刪掉 <code>*.parts.json</code>／<code>manifest.json</code> 或更改分片名稱。最大模型單片不超過 40 MiB，適合普通 Git 上傳；不需要依賴 Git LFS 來讓 Pages 讀取模型。</p>
+<p>下載包中的 <code>story/ai/smoke.html</code> 是獨立實測頁。以 HTTP 本機伺服器開啟即可依次測試中文、英文及敘事。不支援直接雙擊 <code>file://</code> 載入 module worker 和模型。</p>
+<p>GitHub Pages 首次開啟仍要下載靜態程式及所選模型；若只用中文旁白，無須先載入英文聲庫或敘事模型。完整離線操作的前提是所需 UI、runtime、模型各片先下載／快取完成；本機 HTTP 伺服器則直接讀已解壓檔案，不需要對外網路。瀏覽器快取可被使用者或系統清除，不能承諾永久離線保存。</p>
+<h2>實測結果及界線</h2>
+<p><code>story/ai/model-smoke-report.json</code> 記錄在此工作環境的 headless Chromium 測試，並不是對您 Mac、iPhone 或所有手機的速度承諾：</p>
+<ul>
+<li>中文測試生成 67,072 samples，22,050 Hz，約 3.04 秒音軌；含載入約 2.43 秒。</li>
+<li>英語 Amy 測試生成 33,536 samples，16,000 Hz，約 2.10 秒音軌；含切換載入約 1.51 秒。</li>
+<li>Alan 英語測試生成 32,000 samples，16,000 Hz，約 2.00 秒音軌；含切換載入約 1.47 秒。</li>
+<li>36 個 token 的英語敘事測試含載入约 4.66 秒。</li>
+<li>所有模型請求均為本機檔案，沒有遠端請求；沒有 uncaught page error 或 console error。</li>
+</ul>
+<p>不同 CPU、記憶體、瀏覽器會有不同結果。下載大小不是實際執行的 RAM 用量：WASM 堆、活化張量、模型、影片與圖片另需記憶體。低記憶體手機可能無法載入模型，應使用手寫敘事、上傳錄音及基本影片編輯模式；不能單憑 <code>navigator.deviceMemory</code> 推論裝置一定能執行。</p>
+<p>本模型聲庫代表三個固定說話聲線。聲音速度可調 <strong>0.6～1.6</strong>，不代表模型能準確改變說話者年齡、身分或人格。上傳自己的錄音是使用原錄音作旁白，不會讓 Piper 自動學會該聲線。</p>
+<h2>授權與對應源碼</h2>
+<p>不要把整个附件包稱為「所有東西都 MIT」。</p>
+<ul>
+<li>SmolLM2 原作者 <a href="https://huggingface.co/HuggingFaceTB/SmolLM2-135M-Instruct" target="_blank" rel="noopener">HuggingFaceTB</a> 宣告 Apache-2.0；ONNX 轉換來源、固定 revision 已保留。<code>story/models/smollm2/LICENSE</code> 附 Apache-2.0 文本。</li>
+<li><a href="https://huggingface.co/rhasspy/piper-voices" target="_blank" rel="noopener">Piper 官方聲库</a> 標示 MIT。但每個聲庫的 dataset 資訊仍須個別核對。<strong>huayan 的原始 <code>MODEL_CARD</code> 明列訓練資料授權 <code>Unknown</code>；Amy、Alan 指向 Mimic3 來源。</strong> 本包保留原始模型卡，不據此保證 huayan 的商用或再授權，也不把 Unknown 自動解讀成禁止使用。公開發布此模型前，應核對相應權利。</li>
+<li>Transformers.js 是 Apache-2.0；ONNX Runtime Web、OpenCC 與 Piper Web 外層套件宣告 MIT。保留 <code>story/vendor/</code> 中的原始 license 與 package metadata。</li>
+<li>Piper 音素處理包含 <strong>eSpeak NG GPL-3.0</strong> 元件，不能以外層 npm 套件 MIT 標示覆蓋它。<code>story/vendor/piper-wasm/piper-wasm-GPL.txt</code> 是完整 GPL 文本；对应源碼、建置說明與來源 manifest 均附于該資料夾。</li>
+</ul>
+<p><code>story/vendor/piper-wasm/</code> 內附：</p>
+<ol>
+<li><code>piper-phonemize-source.tar.gz</code>：wide-video 的完整源碼 archive（commit 固定於 <code>sources-manifest.json</code>）。</li>
+<li><code>espeak-ng-source.tar.gz</code>：上游 Piper CMake 所固定的 eSpeak NG commit <code>0f65aa301e0d6bae5e172cc74197d32a6182200f</code> 完整源碼。</li>
+<li><code>piper-wasm-build-source.tar.gz</code>：diffusion-studio 音素 WASM 的建置專案源碼，原始 README 保留 Emscripten 3.1.47 等建置步驟。</li>
+<li><code>sources-manifest.json</code>：下載源碼 URL、實際 bytes／SHA-256。</li>
+<li><code>README.md</code>：npm 1.0.0 原始建置说明。</li>
+</ol>
+<p>本包保留公開上游源碼與建置指令；<strong>本次未重新編譯音素 WASM，也沒有宣稱已证明與上游 npm 二進位逐 byte 可重現</strong>。若另行修改或分發此 GPL 元件，要保留其授权和源碼。</p>
+<h2>為何沒有把候選模型全部塞進網站</h2>
+<ul>
+<li><a href="https://github.com/hexgrad/kokoro/tree/main/kokoro.js" target="_blank" rel="noopener">Kokoro 原作者的 JavaScript 版本</a> 当前 <code>_validate_voice</code> 限定英美英語 <code>a/b</code>，中文 Python 載入方式則需要 Misaki 中文 G2P。不能只因 ONNX 仓庫有 <code>zf_xiaobei</code> 檔名，就聲稱这份浏览器 runtime 已具备正确中文音素前處理。</li>
+<li><a href="https://github.com/supertone-oss-archive/supertonic/blob/main/web/README.md" target="_blank" rel="noopener">Supertonic 3 官方存檔</a> 提供 31 語與十種聲線，能走 CPU WASM，但这 31 語沒有中文；其四份 ONNX 約 398 MB，本包沒有附此模型，也没有称其已安装。</li>
+<li><a href="https://huggingface.co/onnx-community/Qwen2.5-0.5B-Instruct/tree/main/onnx" target="_blank" rel="noopener">Qwen2.5 0.5B ONNX</a> 的 q8 權重仍约 512 MB。它可作为日后桌機多語敘事升級候選，但本次未附、未在此工作台實測，不當作現成能力。</li>
+<li><a href="https://github.com/neuphonic/neutts" target="_blank" rel="noopener">NeuTTS 官方</a> 有可在 CPU 执行的 GGUF 声音克隆流程，需要参考錄音、其逐字稿、声码器及 Python／llama.cpp 執行環境。其 Air 与 Nano 等不同模型授权不同。這不是本包內的手機浏览器功能；也不將上传錄音操作稱為克隆。若要此功能，應另建本机 helper 并实测，而不能靠 GitHub Pages 后台執行 Python。</li>
+</ul>
+<h2>重下載或恢復模型</h2>
+<pre><code>python3 tools/fetch-story-models.py</code></pre>
+<p>此指令只用 Python 标准库，不需付费 API key；使用固定版本公開下載 URL。已经完成的分片會复用，結果写回 <code>story/models/manifest.json</code>。供開發者扩展的其他小聲庫目标也列在该脚本中；下载其他聲库后，还须相应扩充 <code>voiceCatalog()</code>、语言匹配及 UI，不能把「仅下載」称为已接入。</p></section><p class="footer">2026-10-09 · 裝置模擬不等於實體 iPhone／Android 測試；效能與編碼格式依裝置而異。</p></main></body></html>

@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "repo": "stable-diffusion-v1-5/stable-diffusion-inpainting",
+  "revision": "8a4288a76071f7280aedbdb3253bdb9e9d5d84bb",
+  "variant": "fp16",
+  "runtime_dtype": "float32",
+  "downloaded_at": "2026-10-10T15:34:44.529581+00:00",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 15107,
+      "sha256": "6f5758cfeabddb509b09399d6f0879056c5fd0002d7d9849bc183a6de9a98ab0"
+    },
+    {
+      "path": "feature_extractor/preprocessor_config.json",
+      "bytes": 342,
+      "sha256": "2a1da83b5e1032aaeef397552ddb408dca0d8cd1dc58f61bf6abf38d6f33a0a2"
+    },
+    {
+      "path": "model_index.json",
+      "bytes": 548,
+      "sha256": "636d700de8970a70f02b91d433ad949dc2ceb750f39ba0cf2cf39ef0b0b9d1e4"
+    },
+    {
+      "path": "safety_checker/config.json",
+      "bytes": 4777,
+      "sha256": "d69bd41b02b5e8f4d3b148871ce03b1eaf108467ee3c505fe67b5b814ca3109e"
+    },
+    {
+      "path": "safety_checker/model.fp16.safetensors",
+      "bytes": 608018440,
+      "sha256": "08902f19b1cfebd7c989f152fc0507bef6898c706a91d666509383122324b511"
+    },
+    {
+      "path": "scheduler/scheduler_config.json",
+      "bytes": 313,
+      "sha256": "8b457848b74deeeab2a967b75048dd2cb6f393cfc17751eca1b5ec655cff0183"
+    },
+    {
+      "path": "text_encoder/config.json",
+      "bytes": 617,
+      "sha256": "845df614cb9327ae7bbea027316246fae917827407da6df13572e41b5f93b4cc"
+    },
+    {
+      "path": "text_encoder/model.fp16.safetensors",
+      "bytes": 246144864,
+      "sha256": "77795e2023adcf39bc29a884661950380bd093cf0750a966d473d1718dc9ef4e"
+    },
+    {
+      "path": "tokenizer/merges.txt",
+      "bytes": 524619,
+      "sha256": "9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a"
+    },
+    {
+      "path": "tokenizer/special_tokens_map.json",
+      "bytes": 472,
+      "sha256": "c4864a9376a8401918425bed71fc14fc0e81f9b59ec45c1cf96cccb2df508eac"
+    },
+    {
+      "path": "tokenizer/tokenizer_config.json",
+      "bytes": 806,
+      "sha256": "00439066fcba73de57644cf41e4e3b9f2dbb09d7f3fc2005898ba52399045882"
+    },
+    {
+      "path": "tokenizer/vocab.json",
+      "bytes": 1059962,
+      "sha256": "e089ad92ba36837a0d31433e555c8f45fe601ab5c221d4f607ded32d9f7a4349"
+    },
+    {
+      "path": "unet/config.json",
+      "bytes": 748,
+      "sha256": "669f6581087fac5b16c44e42c58b359a35eadf2af5691d7945480bd7ceac8e6d"
+    },
+    {
+      "path": "unet/diffusion_pytorch_model.fp16.safetensors",
+      "bytes": 1719154104,
+      "sha256": "24b788b4a777748377cc20364eea4ae113c8c42f4468c16bc8c02fdae5492af9"
+    },
+    {
+      "path": "vae/config.json",
+      "bytes": 552,
+      "sha256": "4cd0ce4803567837175fbb8412689fe77d069c1ef8171beb83979db309a8bad5"
+    },
+    {
+      "path": "vae/diffusion_pytorch_model.fp16.safetensors",
+      "bytes": 167335342,
+      "sha256": "4fbcf0ebe55a0984f5a5e00d8c4521d52359af7229bb4d81890039d2aa16dd7c"
+    }
+  ]
+}

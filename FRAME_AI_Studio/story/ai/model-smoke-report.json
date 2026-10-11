@@ -1,0 +1,30 @@
+{
+  "scope": "Bundled model browser CPU WASM, no remote requests; real short outputs",
+  "date": "2026-10-09T15:54:12.842Z",
+  "results": {
+    "zh": {
+      "sampleRate": 22050,
+      "samples": 67072,
+      "peak": 0.5653945803642273,
+      "elapsedMs": 2433
+    },
+    "en": {
+      "sampleRate": 16000,
+      "samples": 33536,
+      "peak": 0.7313457131385803,
+      "elapsedMs": 1507
+    },
+    "uk": {
+      "sampleRate": 16000,
+      "samples": 32000,
+      "peak": 0.8168309926986694,
+      "elapsedMs": 1474
+    },
+    "llm": {
+      "text": "The warm sunlight danced across the windowsill of the old house, casting long shadows that seemed to stretch on forever.",
+      "elapsedMs": 4660
+    }
+  },
+  "requests": [],
+  "errors": []
+}

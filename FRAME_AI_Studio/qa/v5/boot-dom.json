@@ -1,0 +1,35 @@
+{
+  "scope": "Happy DOM classic-script boot with canvas stub; no browser rendering, media export, operating-system, or model-inference certification",
+  "passed": true,
+  "buildMode": "existing classic bundle",
+  "checks": [
+    {
+      "url": "file:///tmp/FRAME_AI_Studio/index.html",
+      "passed": true,
+      "base": "file:///tmp/FRAME_AI_Studio/index.html",
+      "expertOptions": 7,
+      "noBootNetwork": true
+    },
+    {
+      "url": "http://127.0.0.1:8787/",
+      "passed": true,
+      "base": "http://127.0.0.1:8787/",
+      "expertOptions": 7,
+      "noBootNetwork": true
+    },
+    {
+      "url": "http://127.0.0.1:8787/story/index.html",
+      "passed": true,
+      "base": "http://127.0.0.1:8787/",
+      "expertOptions": 7,
+      "noBootNetwork": true
+    },
+    {
+      "url": "https://kuonanhong.github.io/Frame_to_Video/FRAME_AI_Studio/",
+      "passed": true,
+      "base": "https://kuonanhong.github.io/Frame_to_Video/FRAME_AI_Studio/",
+      "expertOptions": 7,
+      "noBootNetwork": true
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "scope": "Happy DOM contracts; no browser engine or real model inference",
+  "passed": true,
+  "checks": [
+    {
+      "check": "No model probing on file:",
+      "passed": true
+    },
+    {
+      "check": "No model probing on https:",
+      "passed": true
+    },
+    {
+      "check": "Qwen text result, review and apply",
+      "passed": true
+    },
+    {
+      "check": "Portrait requires source image and actual driving video",
+      "passed": true
+    },
+    {
+      "check": "Uninstalled model remains blocked",
+      "passed": true
+    }
+  ]
+}

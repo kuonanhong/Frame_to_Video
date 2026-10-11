@@ -1,0 +1,69 @@
+{
+  "test": "real Qwen GGUF CPU HTTP inference; no mocks",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "machine": "x86_64",
+  "python": "3.12.14",
+  "prompt": "Write two brief sentences describing a quiet cinematic scene beside a lake at sunrise. Use plain English.",
+  "output": "As the first rays of sun peeked through the clouds, a quiet cinematic scene unfolded before me at the edge of the lake. The soft golden light danced on the tranquil water, creating a mesmerizing scene that captured my attention.",
+  "elapsed_seconds": 2.222,
+  "job": {
+    "id": "f693111ceadb47169d21cd066d5e21a5",
+    "expert": "qwen-text",
+    "status": "completed",
+    "phase": "Complete",
+    "created": 1791647029.822207,
+    "outputs": [
+      {
+        "kind": "text",
+        "name": "result.txt",
+        "mime": "text/plain; charset=utf-8",
+        "url": "/api/experts/jobs/f693111ceadb47169d21cd066d5e21a5/result.txt"
+      }
+    ],
+    "started": 1791647029.822813,
+    "metadata": {
+      "result_text": "As the first rays of sun peeked through the clouds, a quiet cinematic scene unfolded before me at the edge of the lake. The soft golden light danced on the tranquil water, creating a mesmerizing scene that captured my attention.",
+      "usage": {
+        "prompt_tokens": 48,
+        "completion_tokens": 46,
+        "total_tokens": 94
+      },
+      "backend": "llama-cpp-python",
+      "device": "cpu",
+      "elapsed_seconds": 1.762,
+      "model": "qwen-text",
+      "process_peak_rss_bytes": 672718848
+    },
+    "result_text": "As the first rays of sun peeked through the clouds, a quiet cinematic scene unfolded before me at the edge of the lake. The soft golden light danced on the tranquil water, creating a mesmerizing scene that captured my attention.",
+    "finished": 1791647031.656998
+  },
+  "model_revisions": [
+    {
+      "name": "model",
+      "repo": "Qwen/Qwen2.5-0.5B-Instruct-GGUF",
+      "revision": "9217f5db79a29953eb74d5343926648285ec7e67",
+      "files": [
+        "LICENSE",
+        "README.md",
+        "qwen2.5-0.5b-instruct-q4_k_m.gguf"
+      ]
+    }
+  ],
+  "model_files": [
+    {
+      "path": "models/model/LICENSE",
+      "bytes": 11343,
+      "sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+    },
+    {
+      "path": "models/model/README.md",
+      "bytes": 4856,
+      "sha256": "fa1fede7f775a20f111cc098c00900092020572ce78976970a5b0ad9ca211999"
+    },
+    {
+      "path": "models/model/qwen2.5-0.5b-instruct-q4_k_m.gguf",
+      "bytes": 491400032,
+      "sha256": "74a4da8c9fdbcd15bd1f6d01d621410d31c6fc00986f5eb687824e7b93d7a9db"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "schema": 2,
+  "real_neural_inference_executed": true,
+  "run_at_utc": "2026-10-10T15:37:50.633931+00:00",
+  "elapsed_including_pipeline_load_seconds": 41.280214975000035,
+  "process_peak_rss_bytes": 7573061632,
+  "memory_metric": "Kernel RUSAGE_SELF ru_maxrss, including imports and pipeline weights",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "python": "3.11.17",
+  "torch": "2.6.0+cpu",
+  "torch_threads": 8,
+  "cuda_available": false,
+  "packages": {
+    "diffusers": "0.30.3",
+    "transformers": "4.44.2",
+    "accelerate": "0.34.2",
+    "huggingface-hub": "0.25.2",
+    "safetensors": "0.4.5",
+    "numpy": "1.26.4",
+    "Pillow": "10.4.0"
+  },
+  "source_repo": "stable-diffusion-v1-5/stable-diffusion-inpainting",
+  "source_revision": "8a4288a76071f7280aedbdb3253bdb9e9d5d84bb",
+  "weights_bytes": 2742261613,
+  "input_sha256": "21fe0f79df07c77d154e7f142db6a2abdfc58bfed514006a367a51eff059685b",
+  "mask_sha256": "ee8b7ca34a1671d69f5cb40457f7268dc2b740e5bbf851408b7ddc5cd7f82270",
+  "source_code_sha256": {
+    "inference.py": "16ef66344014111cf46de75cd1833cbdd22400663c180d1643a907d936e812de",
+    "catalog.py": "afb63d8ecc118f4c34789f1be7083bbe177ef71e49eccc74d39073be79f05ff2",
+    "smoke_real.py": "d956c3516a1d0e8bd06840903528572cd2029d38a87cbaaea3d3bea4ceac8732"
+  },
+  "request": {
+    "expert": "sd-inpaint",
+    "prompt": "A bright orange hot air balloon floating in the blue sky, realistic landscape photograph",
+    "steps": 20,
+    "strength": 0.75,
+    "guidance": 7.5,
+    "image_guidance": 1.5,
+    "seed": 42,
+    "max_side": 384
+  },
+  "events": [
+    {
+      "phase": "loading",
+      "progress": 0,
+      "elapsed_seconds": 0.061
+    },
+    {
+      "phase": "denoising",
+      "progress": 5,
+      "elapsed_seconds": 3.274
+    },
+    {
+      "phase": "denoising",
+      "progress": 10,
+      "elapsed_seconds": 6.984
+    },
+    {
+      "phase": "denoising",
+      "progress": 14,
+      "elapsed_seconds": 8.667
+    },
+    {
+      "phase": "denoising",
+      "progress": 19,
+      "elapsed_seconds": 10.319
+    },
+    {
+      "phase": "denoising",
+      "progress": 24,
+      "elapsed_seconds": 11.63
+    },
+    {
+      "phase": "denoising",
+      "progress": 29,
+      "elapsed_seconds": 13.39
+    },
+    {
+      "phase": "denoising",
+      "progress": 33,
+      "elapsed_seconds": 15.302
+    },
+    {
+      "phase": "denoising",
+      "progress": 38,
+      "elapsed_seconds": 16.992
+    },
+    {
+      "phase": "denoising",
+      "progress": 43,
+      "elapsed_seconds": 18.757
+    },
+    {
+      "phase": "denoising",
+      "progress": 48,
+      "elapsed_seconds": 20.601
+    },
+    {
+      "phase": "denoising",
+      "progress": 52,
+      "elapsed_seconds": 22.321
+    },
+    {
+      "phase": "denoising",
+      "progress": 57,
+      "elapsed_seconds": 24.303
+    },
+    {
+      "phase": "denoising",
+      "progress": 62,
+      "elapsed_seconds": 26.229
+    },
+    {
+      "phase": "denoising",
+      "progress": 67,
+      "elapsed_seconds": 28.12
+    },
+    {
+      "phase": "denoising",
+      "progress": 71,
+      "elapsed_seconds": 30.135
+    },
+    {
+      "phase": "denoising",
+      "progress": 76,
+      "elapsed_seconds": 31.807
+    },
+    {
+      "phase": "denoising",
+      "progress": 81,
+      "elapsed_seconds": 33.497
+    },
+    {
+      "phase": "denoising",
+      "progress": 86,
+      "elapsed_seconds": 35.282
+    },
+    {
+      "phase": "denoising",
+      "progress": 90,
+      "elapsed_seconds": 37.119
+    },
+    {
+      "phase": "denoising",
+      "progress": 95,
+      "elapsed_seconds": 38.913
+    },
+    {
+      "phase": "done",
+      "progress": 100,
+      "elapsed_seconds": 41.099
+    }
+  ],
+  "checks": {
+    "output_matches_prepared_dimensions": true,
+    "mean_absolute_pixel_change": 1.6157407407407407,
+    "changed_pixel_count": 4403,
+    "outside_mask_pixel_count": 78541,
+    "outside_mask_max_channel_difference": 0,
+    "outside_mask_preserved_exactly": true,
+    "inside_mask_mean_absolute_pixel_change": 30.43742902566432
+  },
+  "output_file": "sd-inpaint-balloon-real.png",
+  "output_sha256": "5957b3d43b30f163fc5647327c4e23ccfbc309d66ed9f8a39da05d58840bbc77",
+  "scope": "One real static image edit on the recorded Linux CPU. No video generation, model-quality benchmark, or Mac/Windows performance claim.",
+  "expert": "sd-inpaint",
+  "width": 384,
+  "height": 216,
+  "seed": 42,
+  "device": "cpu",
+  "dtype": "float32",
+  "output_kind": "still-image",
+  "visual_review": "The masked mountain/cloud region changed while all black-mask pixels were preserved exactly. The requested orange hot-air balloon did not appear. The test establishes real neural inpainting and correct geometry/compositing, not successful fulfillment of this prompt.",
+  "observed_denoising_callbacks": 19
+}

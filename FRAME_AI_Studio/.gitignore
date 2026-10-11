@@ -1,0 +1,31 @@
+node_modules/
+__pycache__/
+.venv/
+.env
+backend/data/
+backend/models/
+test-results/
+*.pyc
+FRAME_Standalone.html
+qa-output/
+
+*.download
+*.zip
+qa/
+
+# Local CPU model caches and private media
+native_cpu/models/
+native_cpu/.venv/
+.venv/
+.env
+.env.*
+*.gguf
+*.ckpt
+__pycache__/
+.DS_Store
+
+# v5 local expert environments, downloaded weights and private job data
+.venv-native/
+advanced_service/.runtime/
+advanced_service/outputs/
+advanced_service/jobs/

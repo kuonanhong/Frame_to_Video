@@ -1,0 +1,12 @@
+{
+  "platform": "Linux x86_64",
+  "python": "3.11.17",
+  "one_command_launcher_executed": true,
+  "existing_isolated_environment_reused": true,
+  "complete_models_reused_without_download": true,
+  "real_loopback_http_status_checked": true,
+  "frontend_home_page_http_200": true,
+  "all_three_models_detected": true,
+  "inference_in_this_check": false,
+  "macos_windows_executed": false
+}

@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "component": "FRAME native CPU v5",
+  "algorithm": "SHA-256",
+  "files": {
+    ".gitignore": "c42421f3014dc2f8c7a4a4c360e75f5aed96c282c4a62debeab34037da12d358",
+    "README.html": "c0f27b8ddbe7ea8f4bbd773c9d0377786cefabf96cbe9f1edd15abce740bf3bb",
+    "README_ZH.md": "69f9169c1cbbf55e25271fde021eb74ea19b6e67e27140df147d326bdc2bf932",
+    "catalog.py": "afb63d8ecc118f4c34789f1be7083bbe177ef71e49eccc74d39073be79f05ff2",
+    "check_runtime.py": "a938437ea79991a191e4a7522a84ca8821f7d6086401dbf32f84c63e38f4b36b",
+    "fetch_models.py": "e428fe826a91ba0ba3aea7a620c4d959740ab8b9ab1eaf5a452b59495beb2afc",
+    "inference.py": "16ef66344014111cf46de75cd1833cbdd22400663c180d1643a907d936e812de",
+    "render_readme.py": "3533ff946b782a7a65f15f474149ff2dfcd3e347011a0b91c70fae54ba90d6ee",
+    "requirements.txt": "428413f10dfaa2b71b82ff032a68c087f9db151dc7c05131c9b8e39526b4a98b",
+    "server.py": "9e768b13c4eec4cda075ae5bf905f8d1f7a918f071886ae9dd7e6258c9d26ee9",
+    "setup_native.py": "579027b03a5a91b2a55cb7faeabdcac791ca9788119c3622b7085be8b1ccfb6c",
+    "smoke_real.py": "d956c3516a1d0e8bd06840903528572cd2029d38a87cbaaea3d3bea4ceac8732",
+    "start_native.bat": "311a8751adbaaa155b4840d893e9859476355ca38505df2b9afdb71d4de494e3",
+    "start_native.command": "7c31111f2b400df74d192add785cd4eafdb6f55b40825f3836a20dae48608b46",
+    "tests/test_bridge.py": "9d74a71a1210aedf7cbd3d819399b8bfd241190bb7d2402e2ddb9d4bba7f1a7d"
+  }
+}

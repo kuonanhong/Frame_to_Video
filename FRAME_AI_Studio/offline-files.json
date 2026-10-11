@@ -1,0 +1,413 @@
+{
+  "version": 5,
+  "files": [
+    {
+      "path": "story/advanced-i18n.mjs",
+      "bytes": 26459
+    },
+    {
+      "path": "story/advanced-ui.mjs",
+      "bytes": 8780
+    },
+    {
+      "path": "story/ai/client.mjs",
+      "bytes": 2770
+    },
+    {
+      "path": "story/ai/model-smoke-report.json",
+      "bytes": 744
+    },
+    {
+      "path": "story/ai/run-smoke.cjs",
+      "bytes": 1644
+    },
+    {
+      "path": "story/ai/smoke.html",
+      "bytes": 2031
+    },
+    {
+      "path": "story/ai/worker.mjs",
+      "bytes": 9343
+    },
+    {
+      "path": "story/app-v4.bundle.js",
+      "bytes": 1181928
+    },
+    {
+      "path": "story/app-v5.bundle.js",
+      "bytes": 1258874
+    },
+    {
+      "path": "story/app.mjs",
+      "bytes": 41724
+    },
+    {
+      "path": "story/assets/fonts/jf-openhuninn.woff",
+      "bytes": 4062464
+    },
+    {
+      "path": "story/assets/icon.svg",
+      "bytes": 391
+    },
+    {
+      "path": "story/expert-ui.mjs",
+      "bytes": 8222
+    },
+    {
+      "path": "story/i18n.mjs",
+      "bytes": 471519
+    },
+    {
+      "path": "story/index.html",
+      "bytes": 13044
+    },
+    {
+      "path": "story/media.mjs",
+      "bytes": 33060
+    },
+    {
+      "path": "story/models/manifest.json",
+      "bytes": 8348
+    },
+    {
+      "path": "story/models/phonemizer/piper_phonemize.data",
+      "bytes": 18077249
+    },
+    {
+      "path": "story/models/phonemizer/piper_phonemize.wasm",
+      "bytes": 635212
+    },
+    {
+      "path": "story/models/piper/en_GB-alan-low.MODEL_CARD",
+      "bytes": 309
+    },
+    {
+      "path": "story/models/piper/en_GB-alan-low.onnx.json",
+      "bytes": 4170
+    },
+    {
+      "path": "story/models/piper/en_GB-alan-low.onnx.part000",
+      "bytes": 41943040
+    },
+    {
+      "path": "story/models/piper/en_GB-alan-low.onnx.part001",
+      "bytes": 21161486
+    },
+    {
+      "path": "story/models/piper/en_GB-alan-low.onnx.parts.json",
+      "bytes": 635
+    },
+    {
+      "path": "story/models/piper/en_US-amy-low.MODEL_CARD",
+      "bytes": 273
+    },
+    {
+      "path": "story/models/piper/en_US-amy-low.onnx.json",
+      "bytes": 4164
+    },
+    {
+      "path": "story/models/piper/en_US-amy-low.onnx.part000",
+      "bytes": 41943040
+    },
+    {
+      "path": "story/models/piper/en_US-amy-low.onnx.part001",
+      "bytes": 21161486
+    },
+    {
+      "path": "story/models/piper/en_US-amy-low.onnx.parts.json",
+      "bytes": 630
+    },
+    {
+      "path": "story/models/piper/zh_CN-huayan-medium.MODEL_CARD",
+      "bytes": 276
+    },
+    {
+      "path": "story/models/piper/zh_CN-huayan-medium.onnx.json",
+      "bytes": 4822
+    },
+    {
+      "path": "story/models/piper/zh_CN-huayan-medium.onnx.part000",
+      "bytes": 41943040
+    },
+    {
+      "path": "story/models/piper/zh_CN-huayan-medium.onnx.part001",
+      "bytes": 21258254
+    },
+    {
+      "path": "story/models/piper/zh_CN-huayan-medium.onnx.parts.json",
+      "bytes": 660
+    },
+    {
+      "path": "story/models/smollm2/LICENSE",
+      "bytes": 11358
+    },
+    {
+      "path": "story/models/smollm2/config.json",
+      "bytes": 936
+    },
+    {
+      "path": "story/models/smollm2/generation_config.json",
+      "bytes": 132
+    },
+    {
+      "path": "story/models/smollm2/onnx/model_quantized.onnx.part000",
+      "bytes": 41943040
+    },
+    {
+      "path": "story/models/smollm2/onnx/model_quantized.onnx.part001",
+      "bytes": 41943040
+    },
+    {
+      "path": "story/models/smollm2/onnx/model_quantized.onnx.part002",
+      "bytes": 41943040
+    },
+    {
+      "path": "story/models/smollm2/onnx/model_quantized.onnx.part003",
+      "bytes": 11650590
+    },
+    {
+      "path": "story/models/smollm2/onnx/model_quantized.onnx.parts.json",
+      "bytes": 993
+    },
+    {
+      "path": "story/models/smollm2/special_tokens_map.json",
+      "bytes": 655
+    },
+    {
+      "path": "story/models/smollm2/tokenizer.json",
+      "bytes": 2053526
+    },
+    {
+      "path": "story/models/smollm2/tokenizer_config.json",
+      "bytes": 3794
+    },
+    {
+      "path": "story/style.css",
+      "bytes": 8557
+    },
+    {
+      "path": "story/vendor/onnxruntime-web/LICENSE",
+      "bytes": 1073
+    },
+    {
+      "path": "story/vendor/onnxruntime-web/dist/ort-wasm-simd-threaded.mjs",
+      "bytes": 20856
+    },
+    {
+      "path": "story/vendor/onnxruntime-web/dist/ort-wasm-simd-threaded.wasm",
+      "bytes": 11210254
+    },
+    {
+      "path": "story/vendor/onnxruntime-web/dist/ort.wasm.min.mjs",
+      "bytes": 48259
+    },
+    {
+      "path": "story/vendor/onnxruntime-web/download-origin.json",
+      "bytes": 255
+    },
+    {
+      "path": "story/vendor/onnxruntime-web/package.json",
+      "bytes": 3638
+    },
+    {
+      "path": "story/vendor/opencc/LICENSE",
+      "bytes": 1080
+    },
+    {
+      "path": "story/vendor/opencc/dist/esm/full.js",
+      "bytes": 1119279
+    },
+    {
+      "path": "story/vendor/opencc/package.json",
+      "bytes": 1235
+    },
+    {
+      "path": "story/vendor/piper-tts-web/dist/audio.d.ts",
+      "bytes": 173
+    },
+    {
+      "path": "story/vendor/piper-tts-web/dist/fixtures.d.ts",
+      "bytes": 576
+    },
+    {
+      "path": "story/vendor/piper-tts-web/dist/http.d.ts",
+      "bytes": 137
+    },
+    {
+      "path": "story/vendor/piper-tts-web/dist/index.d.ts",
+      "bytes": 135
+    },
+    {
+      "path": "story/vendor/piper-tts-web/dist/inference.d.ts",
+      "bytes": 1422
+    },
+    {
+      "path": "story/vendor/piper-tts-web/dist/opfs.d.ts",
+      "bytes": 213
+    },
+    {
+      "path": "story/vendor/piper-tts-web/dist/piper-o91UDS6e.js",
+      "bytes": 158217
+    },
+    {
+      "path": "story/vendor/piper-tts-web/dist/piper-tts-web.js",
+      "bytes": 23646
+    },
+    {
+      "path": "story/vendor/piper-tts-web/dist/piper.d.ts",
+      "bytes": 59
+    },
+    {
+      "path": "story/vendor/piper-tts-web/dist/storage.d.ts",
+      "bytes": 467
+    },
+    {
+      "path": "story/vendor/piper-tts-web/dist/types.d.ts",
+      "bytes": 4139
+    },
+    {
+      "path": "story/vendor/piper-tts-web/dist/voices.d.ts",
+      "bytes": 188
+    },
+    {
+      "path": "story/vendor/piper-tts-web/dist/voices_static-D_OtJDHM.js",
+      "bytes": 147377
+    },
+    {
+      "path": "story/vendor/piper-tts-web/dist/voices_static.json.d.ts",
+      "bytes": 154620
+    },
+    {
+      "path": "story/vendor/piper-tts-web/package.json",
+      "bytes": 1430
+    },
+    {
+      "path": "story/vendor/piper-wasm/espeak-meta.json",
+      "bytes": 41775
+    },
+    {
+      "path": "story/vendor/piper-wasm/package.json",
+      "bytes": 607
+    },
+    {
+      "path": "story/vendor/piper-wasm/piper-phonemize-meta.json",
+      "bytes": 4527
+    },
+    {
+      "path": "story/vendor/piper-wasm/sources-manifest.json",
+      "bytes": 787
+    },
+    {
+      "path": "story/vendor/transformers/LICENSE",
+      "bytes": 11358
+    },
+    {
+      "path": "story/vendor/transformers/dist/ort-wasm-simd-threaded.jsep.mjs",
+      "bytes": 44484
+    },
+    {
+      "path": "story/vendor/transformers/dist/ort-wasm-simd-threaded.jsep.wasm",
+      "bytes": 21596019
+    },
+    {
+      "path": "story/vendor/transformers/dist/transformers.min.js",
+      "bytes": 888173
+    },
+    {
+      "path": "story/vendor/transformers/download-origin.json",
+      "bytes": 270
+    },
+    {
+      "path": "story/vendor/transformers/package.json",
+      "bytes": 2694
+    },
+    {
+      "path": "story/vendor/vendor-manifest.json",
+      "bytes": 7080
+    },
+    {
+      "path": "story/visual-render.mjs",
+      "bytes": 12757
+    },
+    {
+      "path": "story/visual-tools.css",
+      "bytes": 2156
+    },
+    {
+      "path": "story/visual-tools.mjs",
+      "bytes": 19311
+    },
+    {
+      "path": "edge/model/coco-ssd-lite/group1-shard1of5",
+      "bytes": 4194304
+    },
+    {
+      "path": "edge/model/coco-ssd-lite/group1-shard2of5",
+      "bytes": 4194304
+    },
+    {
+      "path": "edge/model/coco-ssd-lite/group1-shard3of5",
+      "bytes": 4194304
+    },
+    {
+      "path": "edge/model/coco-ssd-lite/group1-shard4of5",
+      "bytes": 4194304
+    },
+    {
+      "path": "edge/model/coco-ssd-lite/group1-shard5of5",
+      "bytes": 1257312
+    },
+    {
+      "path": "edge/model/coco-ssd-lite/manifest.json",
+      "bytes": 1700
+    },
+    {
+      "path": "edge/model/coco-ssd-lite/model.json",
+      "bytes": 527315
+    },
+    {
+      "path": "V5_START.html",
+      "bytes": 8721
+    },
+    {
+      "path": "VALIDATION_V5.html",
+      "bytes": 6466
+    },
+    {
+      "path": "MODEL_REALITY_GUIDE.html",
+      "bytes": 38444
+    },
+    {
+      "path": "GITHUB_PAT_GUIDE.html",
+      "bytes": 16407
+    },
+    {
+      "path": "edge/motion-core.mjs",
+      "bytes": 20084
+    },
+    {
+      "path": "edge/detector-client.mjs",
+      "bytes": 5002
+    },
+    {
+      "path": "edge/detector-worker.js",
+      "bytes": 768612
+    },
+    {
+      "path": "index.html",
+      "bytes": 13027
+    },
+    {
+      "path": "service-worker.js",
+      "bytes": 3619
+    },
+    {
+      "path": "story.webmanifest",
+      "bytes": 258
+    },
+    {
+      "path": "dist/assets/demo-coast.webp",
+      "bytes": 378800
+    }
+  ]
+}

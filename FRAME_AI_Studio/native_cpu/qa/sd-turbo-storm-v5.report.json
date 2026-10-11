@@ -1,0 +1,91 @@
+{
+  "schema": 2,
+  "real_neural_inference_executed": true,
+  "run_at_utc": "2026-10-10T15:39:28.396352+00:00",
+  "elapsed_including_pipeline_load_seconds": 14.46271391900018,
+  "process_peak_rss_bytes": 7246057472,
+  "memory_metric": "Kernel RUSAGE_SELF ru_maxrss, including imports and pipeline weights",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "python": "3.11.17",
+  "torch": "2.6.0+cpu",
+  "torch_threads": 8,
+  "cuda_available": false,
+  "packages": {
+    "diffusers": "0.30.3",
+    "transformers": "4.44.2",
+    "accelerate": "0.34.2",
+    "huggingface-hub": "0.25.2",
+    "safetensors": "0.4.5",
+    "numpy": "1.26.4",
+    "Pillow": "10.4.0"
+  },
+  "source_repo": "stabilityai/sd-turbo",
+  "source_revision": "b261bac6fd2cf515557d5d0707481eafa0485ec2",
+  "weights_bytes": 2581668541,
+  "input_sha256": "21fe0f79df07c77d154e7f142db6a2abdfc58bfed514006a367a51eff059685b",
+  "mask_sha256": null,
+  "source_code_sha256": {
+    "inference.py": "16ef66344014111cf46de75cd1833cbdd22400663c180d1643a907d936e812de",
+    "catalog.py": "afb63d8ecc118f4c34789f1be7083bbe177ef71e49eccc74d39073be79f05ff2",
+    "smoke_real.py": "d956c3516a1d0e8bd06840903528572cd2029d38a87cbaaea3d3bea4ceac8732"
+  },
+  "request": {
+    "expert": "sd-turbo",
+    "prompt": "A dramatic storm over a rocky coastline, dark thunderclouds, rough ocean waves, a sailing boat, realistic landscape photograph",
+    "steps": 4,
+    "strength": 0.75,
+    "guidance": 0.0,
+    "image_guidance": 1.5,
+    "seed": 42,
+    "max_side": 512
+  },
+  "events": [
+    {
+      "phase": "loading",
+      "progress": 0,
+      "elapsed_seconds": 0.052
+    },
+    {
+      "phase": "denoising",
+      "progress": 5,
+      "elapsed_seconds": 3.773
+    },
+    {
+      "phase": "denoising",
+      "progress": 35,
+      "elapsed_seconds": 7.2
+    },
+    {
+      "phase": "denoising",
+      "progress": 65,
+      "elapsed_seconds": 8.996
+    },
+    {
+      "phase": "denoising",
+      "progress": 95,
+      "elapsed_seconds": 10.798
+    },
+    {
+      "phase": "done",
+      "progress": 100,
+      "elapsed_seconds": 14.275
+    }
+  ],
+  "checks": {
+    "output_matches_prepared_dimensions": true,
+    "mean_absolute_pixel_change": 51.38859953703704,
+    "changed_pixel_count": 147454
+  },
+  "output_file": "sd-turbo-storm-v5.png",
+  "output_sha256": "74a0171788f7665275ee802d817ba9ab2b32a3206e8dfc8e9df65f5a39005fea",
+  "scope": "One real static image edit on the recorded Linux CPU. No video generation, model-quality benchmark, or Mac/Windows performance claim.",
+  "expert": "sd-turbo",
+  "width": 512,
+  "height": 288,
+  "seed": 42,
+  "device": "cpu",
+  "dtype": "float32",
+  "output_kind": "still-image",
+  "visual_review": "Darker storm-cloud texture is visible, but coastline composition changed substantially and the prominent source sailboat was not preserved. Output bytes match the retained v4 same-seed reference. This establishes reproducibility for this specific input/runtime test, not general composition preservation or video generation.",
+  "observed_denoising_callbacks": 3
+}

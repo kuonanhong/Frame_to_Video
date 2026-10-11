@@ -1,0 +1,74 @@
+{
+  "checked_on": "2026-10-10",
+  "script": "Upload_FRAME_SSH.sh",
+  "guide": "GITHUB_SSH_UPLOAD_GUIDE.html",
+  "test_suite": "test_upload.py",
+  "integration_tests": {
+    "passed": 19,
+    "failed": 0,
+    "duration_seconds": 7.630,
+    "remote_type": "Disposable local bare Git repositories only",
+    "coverage": [
+      "Dry run changes neither remote refs nor source contents",
+      "New and changed files only; hash comparison detects same-size, same-mtime edits",
+      "Executable mode changes detected independently of content",
+      "Unrelated root and nested remote files preserved",
+      "Idempotent rerun creates no new commit",
+      "Stage-only leaves main unchanged; subsequent run publishes verified staged assets",
+      "Partial multi-batch interruption resumes without duplicate staged commits",
+      "Accepted staging and main pushes with lost acknowledgements are recognized",
+      "Concurrent main update rejects safely; rerun preserves other writer's work",
+      "Contaminated staging branch is rejected",
+      "Git filters, global configuration and .gitattributes do not transform raw bytes",
+      "Secrets, .runtime, .venv-native and local Git metadata excluded",
+      "story/vendor/source corresponding-source archives retained",
+      "Synthetic text token blocks upload without echoing secret content",
+      "Valid multipart model publishes and duplicate monolith is skipped",
+      "Missing, corrupted or oversized (>40 MiB) model parts reject before remote mutation",
+      "File/directory collisions reject rather than erase unrelated descendants"
+    ]
+  },
+  "full_package_preflight": {
+    "source": "FRAME_AI_Studio v5 work package as present during validation",
+    "remote_type": "Local bare Git fixture, not real GitHub",
+    "mode": "dry-run",
+    "result": "passed",
+    "candidate_files": 305,
+    "estimated_final_tree_mb": 486.9,
+    "verified_parts_manifests": 4,
+    "hash_checks": "Each part plus reconstructed total SHA-256 and size; story/models/manifest.json consistency",
+    "note": "Parent edits after this preflight may change file counts and size; uploader recalculates at execution."
+  },
+  "public_repository_readonly_check": {
+    "repository": "https://github.com/kuonanhong/Frame_to_Video",
+    "main_sha": "e867b362fe45ae82f8b98c68b3c13aeb9eabfab3",
+    "tree_entries": 183,
+    "blob_bytes": 79956532,
+    "root_index": "Git blob SHA matches recovered FRAME_CPU_Studio.html",
+    "root_service_worker": "No service-worker/sw.js path in public tree; matching root HTML contains no serviceWorker registration or caches.open marker"
+  },
+  "screenshot_inspection": {
+    "images_inspected": 6,
+    "finding": "Local file URL opens newer Story Studio; GitHub repository has nested FRAME_AI_Studio plus independent root index; Pages root opens older CPU Photo Motion page.",
+    "credential_handling": "Exposed credential was not used, repeated or embedded in deliverables; guide instructs owner to revoke it."
+  },
+  "compatibility": {
+    "shell": "Bash 3.2-compatible wrapper; no Bash 4 features",
+    "python": "Python 3 standard library only",
+    "executed_on": "Linux",
+    "macos_windows": "Compatibility designed and reviewed; not executed on physical macOS or Windows devices"
+  },
+  "guide_review": "HTML structure and content reviewed. No browser visual render completed in this environment.",
+  "live_push_performed": false,
+  "ssh_credentials_used": false,
+  "github_pages_settings_modified": false,
+  "github_workflows_modified": false,
+  "known_limits": [
+    "Pages must publish main/root, or existing custom Actions must deploy only complete main updates; uploader does not alter publishing settings.",
+    "Uploader preserves remotely existing files even if absent locally; it never performs deletions.",
+    "Main changes during deployment cause safe stop and rerun; no force push or automatic rebase.",
+    "Text secret scanning is best-effort for common patterns; binary model integrity is checked by manifest hashes.",
+    "Conservative decimal 1 GB tree guard does not measure cumulative Git history or actual Pages compressed output.",
+    "Real SSH identity, repository branch rules and Pages deployment completion remain user-side checks."
+  ]
+}

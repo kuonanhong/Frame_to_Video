@@ -1,0 +1,183 @@
+{
+  "version": 4,
+  "locales": 28,
+  "keysPerLocale": 256,
+  "totalExplicitStrings": 7168,
+  "coverage": [
+    {
+      "code": "zh-Hant",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    },
+    {
+      "code": "zh-Hans",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    },
+    {
+      "code": "en",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    },
+    {
+      "code": "ja",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    },
+    {
+      "code": "ko",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    },
+    {
+      "code": "fr",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    },
+    {
+      "code": "de",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    },
+    {
+      "code": "es",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    },
+    {
+      "code": "pt",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    },
+    {
+      "code": "it",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    },
+    {
+      "code": "ru",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    },
+    {
+      "code": "pl",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    },
+    {
+      "code": "cs",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    },
+    {
+      "code": "fi",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    },
+    {
+      "code": "sv",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    },
+    {
+      "code": "ar",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    },
+    {
+      "code": "th",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    },
+    {
+      "code": "vi",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    },
+    {
+      "code": "ms",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    },
+    {
+      "code": "id",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    },
+    {
+      "code": "fil",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    },
+    {
+      "code": "hi",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    },
+    {
+      "code": "nl",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    },
+    {
+      "code": "da",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    },
+    {
+      "code": "no",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    },
+    {
+      "code": "el",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    },
+    {
+      "code": "uk",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    },
+    {
+      "code": "tr",
+      "expected": 256,
+      "present": 256,
+      "missing": []
+    }
+  ],
+  "tests": {
+    "node": "4/4 passed",
+    "htmlLabels": "All index.html data-i18n keys present",
+    "visualLabels": "All 66 VISUAL_STRINGS keys present"
+  },
+  "scope": "UI catalog; third-party model names, supported English command examples, upstream runtime errors and some legacy dynamic status messages may remain in English.",
+  "languageSelection": "Saved manual selection, then browser language preferences; no geolocation/IP lookup."
+}

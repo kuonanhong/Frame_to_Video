@@ -1,0 +1,9 @@
+# Python 3.11 recommended. Install platform-specific torch separately (README_ZH.md).
+# Pinned compatible Diffusers APIs for these older SD pipelines, not a claim of latest releases.
+diffusers==0.30.3
+transformers==4.44.2
+accelerate==0.34.2
+huggingface-hub==0.25.2
+safetensors==0.4.5
+numpy==1.26.4
+Pillow==10.4.0

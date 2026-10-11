@@ -1,0 +1,20 @@
+{
+  "python": "3.11.17",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "machine": "x86_64",
+  "torch": "2.6.0+cpu",
+  "device": "cpu",
+  "dtype": "torch.float32",
+  "numpy_bridge_tested": true,
+  "pipelines_imported": 3,
+  "real_model_inference_executed": false,
+  "packages": {
+    "diffusers": "0.30.3",
+    "transformers": "4.44.2",
+    "accelerate": "0.34.2",
+    "huggingface-hub": "0.25.2",
+    "safetensors": "0.4.5",
+    "numpy": "1.26.4",
+    "Pillow": "10.4.0"
+  }
+}

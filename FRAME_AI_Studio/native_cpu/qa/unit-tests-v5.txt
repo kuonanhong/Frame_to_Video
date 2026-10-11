@@ -1,0 +1,21 @@
+test_adapters_arguments_and_mask_preservation (test_bridge.AdapterContracts.test_adapters_arguments_and_mask_preservation) ... ok
+test_cancellation_is_checked_at_step_boundary (test_bridge.AdapterContracts.test_cancellation_is_checked_at_step_boundary) ... ok
+test_inpaint_refuses_misaligned_model_output (test_bridge.AdapterContracts.test_inpaint_refuses_misaligned_model_output) ... ok
+test_cross_origin_and_host_rejected (test_bridge.HTTPContracts.test_cross_origin_and_host_rejected) ... ok
+test_malformed_request_and_missing_weight_error (test_bridge.HTTPContracts.test_malformed_request_and_missing_weight_error) ... ok
+test_no_native_weights_dotfiles_or_traversal (test_bridge.HTTPContracts.test_no_native_weights_dotfiles_or_traversal) ... ok
+test_status_reports_missing_actual_weights (test_bridge.HTTPContracts.test_status_reports_missing_actual_weights) ... ok
+test_successful_http_job_and_result_with_mock_inference (test_bridge.HTTPContracts.test_successful_http_job_and_result_with_mock_inference) ... ok
+test_aspect_preservation_and_limits (test_bridge.Inputs.test_aspect_preservation_and_limits) ... ok
+test_frontend_turbo_form_allows_zero_guidance (test_bridge.Inputs.test_frontend_turbo_form_allows_zero_guidance) ... ok
+test_inpaint_requires_nonempty_matching_mask (test_bridge.Inputs.test_inpaint_requires_nonempty_matching_mask) ... ok
+test_invalid_numeric_and_model_input (test_bridge.Inputs.test_invalid_numeric_and_model_input) ... ok
+test_missing_weights_never_load_or_download (test_bridge.Inputs.test_missing_weights_never_load_or_download) ... ok
+test_multipart_does_not_use_filename_as_path (test_bridge.Inputs.test_multipart_does_not_use_filename_as_path) ... ok
+test_one_job_and_cancel (test_bridge.JobContracts.test_one_job_and_cancel) ... ok
+test_platform_torch_selection (test_bridge.SetupContracts.test_platform_torch_selection) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 2.702s
+
+OK

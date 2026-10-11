@@ -1,0 +1,13 @@
+# Modern CPU profile, Python3.10–3.12. No supported Intel macOS torch2.6 wheel.
+torch==2.6.0
+diffusers==0.37.1
+transformers==4.57.6
+accelerate==1.10.1
+huggingface-hub==0.36.0
+safetensors==0.6.2
+numpy==1.26.4
+Pillow==11.1.0
+sentencepiece==0.2.0
+protobuf==5.29.3
+imageio==2.37.0
+imageio-ffmpeg==0.6.0

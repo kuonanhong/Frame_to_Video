@@ -1,18 +1,21 @@
 {
   "name": "frame-studio",
-  "version": "2.0.0",
-  "description": "CPU-only local object detection and rule-based photo motion,22-language UI,with optional classic AI studio",
+  "version": "5.0.0",
+  "description": "Storyboard editor with optional local CPU expert model workers and SSH incremental deployment",
   "main": "index.js",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "build": "node tools/build.mjs",
+    "build": "npm run build:story",
     "test": "node tests/ui-smoke.cjs",
     "test:providers": "node tests/provider-contract.mjs",
     "build:cpu": "node edge/model/build-detector.mjs && node tools/build-cpu.mjs",
     "test:cpu": "node --test edge/tests/motion-core.test.mjs",
-    "test:cpu:browser": "node edge/tests/browser-smoke.cjs"
+    "test:cpu:browser": "node edge/tests/browser-smoke.cjs",
+    "build:story": "node tools/build-story-app.mjs && node tools/build-story.mjs",
+    "test:story": "node --test story/tests/media.test.mjs",
+    "build:legacy": "node tools/build.mjs"
   },
   "keywords": [],
   "author": "",

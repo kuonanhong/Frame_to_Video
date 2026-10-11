@@ -1,0 +1,65 @@
+{
+  "component": "FRAME native CPU image bridge",
+  "version": "5.0",
+  "test_command": "python -m unittest discover -s native_cpu/tests -v",
+  "tests_passed": 16,
+  "actual_http_server_tested": true,
+  "actual_image_decode_resize_composite_tested": true,
+  "inference_adapters_tested_with_mocks": true,
+  "pretrained_weight_download_executed": true,
+  "real_neural_inference_executed": true,
+  "real_models_tested": [
+    "sd-turbo",
+    "instruct-pix2pix",
+    "sd-inpaint"
+  ],
+  "real_models_not_tested": [],
+  "model_quality_benchmarked": false,
+  "macos_or_windows_installation_executed": false,
+  "weights_included": false,
+  "actual_cpu_runtime": {
+    "platform": "Linux x86_64",
+    "python": "3.11.17",
+    "torch": "2.6.0+cpu",
+    "threads": 8,
+    "dtype": "float32",
+    "gpu_used": false
+  },
+  "real_test_reports": {
+    "sd-turbo": "qa/sd-turbo-storm-v5.report.json",
+    "instruct-pix2pix": "qa/instruct-pix2pix-winter-v5.report.json",
+    "sd-inpaint": "qa/sd-inpaint-balloon-real.report.json"
+  },
+  "measured_runs": {
+    "sd-turbo": {
+      "width": 512,
+      "height": 288,
+      "steps": 4,
+      "elapsed_including_pipeline_load_seconds": 14.46271391900018,
+      "process_peak_rss_bytes": 7246057472,
+      "output_sha256": "74a0171788f7665275ee802d817ba9ab2b32a3206e8dfc8e9df65f5a39005fea"
+    },
+    "instruct-pix2pix": {
+      "width": 256,
+      "height": 144,
+      "steps": 15,
+      "elapsed_including_pipeline_load_seconds": 27.167746588999762,
+      "process_peak_rss_bytes": 6452047872,
+      "output_sha256": "0a7fba225be20f3bb133b037db897009c82b1031b19ea0f046202e88afe701ed"
+    },
+    "sd-inpaint": {
+      "width": 384,
+      "height": 216,
+      "steps": 20,
+      "elapsed_including_pipeline_load_seconds": 41.280214975000035,
+      "process_peak_rss_bytes": 7573061632,
+      "output_sha256": "5957b3d43b30f163fc5647327c4e23ccfbc309d66ed9f8a39da05d58840bbc77"
+    }
+  },
+  "masked_outside_pixels_preserved_exactly": true,
+  "outside_mask_pixel_count": 78541,
+  "installer_validation": "qa/launcher-linux-v5.json",
+  "source_manifest": "qa/source-hashes-v5.json",
+  "repairs_and_limitations": "qa/repair-log-v5.json",
+  "notes": "16 unit/HTTP/adapter/installer-selection tests pass, with mocks only at neural boundaries. Independently, all three real pretrained CPU pipelines were executed and outputs stored. Pix2Pix visibly added snow; SD-Turbo changed composition and lost the boat; Inpaint preserved every black-mask pixel but did not produce the requested orange balloon. These are static-image smoke tests, not a quality benchmark or video generation. Installer/server flow executed on Linux; Intel Mac Torch2.2.2 and Windows remain untested on hardware. Large weights and virtual environments are external."
+}

@@ -1,0 +1,3 @@
+jf open 粉圓 1.1 WOFF: https://cdn.jsdelivr.net/gh/marsnow/open-huninn-font@1.1/font/jf-openhuninn.woff
+Copyright 2019-2020 justfont. SIL Open Font License 1.1; see OFL.txt. Original font file unchanged.
+SHA256: bd7caee388dc9cd6e868d85ebd731d03868bafdda43391db320e985488444774

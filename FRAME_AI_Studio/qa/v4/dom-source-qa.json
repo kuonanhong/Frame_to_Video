@@ -1,0 +1,71 @@
+{
+  "mode": "Happy DOM simulation with mocked image/canvas; NOT a real browser/codec/inference test",
+  "outcomes": [
+    {
+      "url": "file:///test/FRAME_AI_Studio/index.html",
+      "ready": true,
+      "buttonHandlers": true,
+      "demoScenes": 3,
+      "savedAndReopened": true,
+      "malformedRuntimeFieldsIgnored": true,
+      "localFileInputAndDrop": true,
+      "rtlSwitch": true,
+      "workersAtBoot": 0,
+      "serviceWorker": [],
+      "unexpectedRequests": 0,
+      "consoleErrors": 0
+    },
+    {
+      "url": "file:///test/FRAME_AI_Studio/story/index.html",
+      "ready": true,
+      "buttonHandlers": true,
+      "demoScenes": 3,
+      "savedAndReopened": true,
+      "malformedRuntimeFieldsIgnored": true,
+      "localFileInputAndDrop": true,
+      "rtlSwitch": true,
+      "workersAtBoot": 0,
+      "serviceWorker": [],
+      "unexpectedRequests": 0,
+      "consoleErrors": 0
+    },
+    {
+      "url": "https://kuonanhong.github.io/Frame_to_Video/",
+      "ready": true,
+      "buttonHandlers": true,
+      "demoScenes": 3,
+      "savedAndReopened": true,
+      "malformedRuntimeFieldsIgnored": true,
+      "localFileInputAndDrop": true,
+      "rtlSwitch": true,
+      "workersAtBoot": 0,
+      "serviceWorker": [
+        [
+          "https://kuonanhong.github.io/Frame_to_Video/service-worker.js",
+          "/Frame_to_Video/"
+        ]
+      ],
+      "unexpectedRequests": 0,
+      "consoleErrors": 0
+    },
+    {
+      "url": "https://kuonanhong.github.io/Frame_to_Video/story/",
+      "ready": true,
+      "buttonHandlers": true,
+      "demoScenes": 3,
+      "savedAndReopened": true,
+      "malformedRuntimeFieldsIgnored": true,
+      "localFileInputAndDrop": true,
+      "rtlSwitch": true,
+      "workersAtBoot": 0,
+      "serviceWorker": [
+        [
+          "https://kuonanhong.github.io/Frame_to_Video/service-worker.js",
+          "/Frame_to_Video/"
+        ]
+      ],
+      "unexpectedRequests": 0,
+      "consoleErrors": 0
+    }
+  ]
+}

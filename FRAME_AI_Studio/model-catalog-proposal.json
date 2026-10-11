@@ -1,0 +1,494 @@
+{
+  "schema_version": 1,
+  "checked_date": "2026-10-10",
+  "language": "zh-Hant",
+  "purpose": "Documentation-backed adapter catalog proposal; not an inference benchmark or installed-model report.",
+  "validation": {
+    "official_docs_reviewed": true,
+    "weights_downloaded": false,
+    "model_inference_run": false,
+    "intel_mac_tested": false,
+    "mobile_inference_claim": false
+  },
+  "global_constraints": [
+    "GitHub Pages serves static files; local CPU service performs model inference.",
+    "Mobile clients can control a reachable local service; 127.0.0.1 on a phone means the phone, not the Mac.",
+    "CPU offload is an accelerator memory optimization and is not CPU-only inference.",
+    "Native official macOS x86 PyTorch wheels stop at 2.2.x; 2.2.2 is available.",
+    "All RAM ranges are engineering estimates unless explicitly labeled an official file size.",
+    "Offline mode requires predownloaded compatible checkpoints and package dependencies."
+  ],
+  "models": [
+    {
+      "id": "qwen25",
+      "name": "Qwen2.5 0.5B Instruct",
+      "task": "文字助手／提示詞整理",
+      "tier": "優先嘗試",
+      "model_id": "Qwen/Qwen2.5-0.5B-Instruct-GGUF",
+      "alternate_model_id": "Qwen/Qwen2.5-0.5B-Instruct",
+      "pipeline": "llama-cpp-python Llama；或 llama.cpp llama-server",
+      "repository": "https://github.com/QwenLM/Qwen2.5",
+      "paper": "https://arxiv.org/abs/2412.15115",
+      "inputs": "文字訊息；不會讀取圖片或影片",
+      "output": "文字",
+      "license": "Apache-2.0",
+      "footprint": "Q4_K_M 官方檔案約 491 MB；BF16 safetensors 約 988 MB。短上下文 GGUF 工作記憶體可先預留 1–3 GB（工程估計，非實測）。",
+      "native_mac": "GGUF CPU 是較直接的 Intel Mac 路徑；避免 PyTorch 版本綁定。",
+      "notes": [
+        "0.49B 小模型適合輔助草稿與短提示詞，不能保證翻譯、事實或複雜推理品質。",
+        "先以 2,048–4,096 token context 與 256 新 token 起步；長 context 額外占用 KV cache。",
+        "下載後使用本機 -m 路徑；-hf 是下載流程，不是每次離線生成需要的參數。"
+      ],
+      "defaults": {
+        "context": 2048,
+        "max_new_tokens": 256,
+        "device": "cpu"
+      },
+      "code": "from llama_cpp import Llama\nmodel = Llama(model_path=local_gguf, n_gpu_layers=0, n_ctx=2048)\nresult = model.create_chat_completion(messages=messages, max_tokens=256)\n# 也可用 llama-server -m local.gguf --device none -ngl 0 提供本機 HTTP。",
+      "sources": [
+        "qwen",
+        "qwen_gguf",
+        "llama",
+        "llama_python"
+      ]
+    },
+    {
+      "id": "sd_turbo",
+      "name": "SD-Turbo",
+      "task": "快速文字生圖／圖像變體",
+      "tier": "優先嘗試",
+      "model_id": "stabilityai/sd-turbo",
+      "pipeline": "AutoPipelineForText2Image / AutoPipelineForImage2Image",
+      "repository": "https://github.com/Stability-AI/generative-models",
+      "paper": "https://arxiv.org/abs/2311.17042",
+      "inputs": "文字；圖生圖另需來源圖片",
+      "output": "圖片",
+      "license": "Stability AI Community License；條件見 checkpoint LICENSE",
+      "footprint": "FP32 pipeline 權重約 5 GB 等級；單張 512² 可先預留 8–12 GB RAM（工程估計）。整個模型庫含多種格式，不應全部下載。",
+      "native_mac": "可列入 torch 2.2.2 的 legacy CPU 候選；本次未跑權重。",
+      "notes": [
+        "官方設定 512×512、1–4 steps、guidance_scale=0；negative_prompt 不生效。",
+        "圖生圖需 num_inference_steps × strength ≥ 1。少步數較適合 CPU 初次測試。",
+        "採 CPU float32，不照抄 GPU 範例的 float16；執行秒數仍需在實機量測。"
+      ],
+      "defaults": {
+        "width": 512,
+        "height": 512,
+        "num_inference_steps": 1,
+        "guidance_scale": 0.0
+      },
+      "code": "from diffusers import AutoPipelineForText2Image\npipe = AutoPipelineForText2Image.from_pretrained(local_model, torch_dtype=torch.float32, local_files_only=True).to(\"cpu\")\nresult = pipe(prompt=text, num_inference_steps=1, guidance_scale=0.0).images[0]",
+      "sources": [
+        "turbo",
+        "turbo_license"
+      ]
+    },
+    {
+      "id": "pix2pix",
+      "name": "InstructPix2Pix",
+      "task": "依文字指令改圖",
+      "tier": "可行但較慢",
+      "model_id": "timbrooks/instruct-pix2pix",
+      "pipeline": "StableDiffusionInstructPix2PixPipeline",
+      "repository": "https://github.com/timothybrooks/instruct-pix2pix",
+      "paper": "https://arxiv.org/abs/2211.09800",
+      "inputs": "來源圖片 + 編輯指令",
+      "output": "圖片",
+      "license": "作者模型卡標示 MIT；同時保留模型依賴與素材授權資訊",
+      "footprint": "FP32 SD1.x 級 pipeline 約 4–5 GB 權重；先預留 8–12 GB RAM（工程估計）。",
+      "native_mac": "legacy Diffusers CPU 候選；未於 Intel Mac 實測。",
+      "notes": [
+        "寫出要改變的內容，例如「把牆面改成暖灰色」；不需要遮罩。",
+        "image_guidance_scale 控制對原圖的依從；過低容易改變不想改的區域。",
+        "不是精準局部修補工具；需要保護區域時使用 Inpainting。"
+      ],
+      "defaults": {
+        "num_inference_steps": 10,
+        "image_guidance_scale": 1.5,
+        "guidance_scale": 7.5
+      },
+      "code": "from diffusers import StableDiffusionInstructPix2PixPipeline\npipe = StableDiffusionInstructPix2PixPipeline.from_pretrained(local_model, torch_dtype=torch.float32, local_files_only=True).to(\"cpu\")\nresult = pipe(prompt=instruction, image=source, num_inference_steps=10, image_guidance_scale=1.5).images[0]",
+      "sources": [
+        "pix",
+        "pix_repo"
+      ]
+    },
+    {
+      "id": "sd15_inpaint",
+      "name": "Stable Diffusion 1.5 Inpainting",
+      "task": "遮罩修補／物件替換",
+      "tier": "可行但較慢",
+      "model_id": "stable-diffusion-v1-5/stable-diffusion-inpainting",
+      "pipeline": "StableDiffusionInpaintPipeline",
+      "repository": "https://github.com/runwayml/stable-diffusion",
+      "paper": "https://arxiv.org/abs/2112.10752",
+      "inputs": "圖片 + 同尺寸遮罩 + 描述",
+      "output": "圖片",
+      "license": "CreativeML OpenRAIL-M；現存下載 ID 是非 Runway 關聯鏡像",
+      "footprint": "FP32 約 4–5 GB 級權重；512² 先預留 8–12 GB RAM（工程估計）。",
+      "native_mac": "legacy CPU 候選。原 Runway 下載位置已停用，需明確使用現存鏡像或既有本機 snapshot。",
+      "notes": [
+        "白色遮罩代表重繪，黑色代表保留；遮罩與圖片必須對齊。",
+        "輸出可能稍微改變未遮罩區域；產品若要逐像素保留背景，需要遮罩合成。",
+        "這是 SD1.5 系列修補 checkpoint，不能把一般 txt2img 權重當成相同模型。"
+      ],
+      "defaults": {
+        "width": 512,
+        "height": 512,
+        "num_inference_steps": 20
+      },
+      "code": "from diffusers import StableDiffusionInpaintPipeline\npipe = StableDiffusionInpaintPipeline.from_pretrained(local_model, torch_dtype=torch.float32, local_files_only=True).to(\"cpu\")\nresult = pipe(prompt=text, image=source, mask_image=mask, num_inference_steps=20).images[0]",
+      "sources": [
+        "inpaint",
+        "inpaint_api"
+      ]
+    },
+    {
+      "id": "controlnet",
+      "name": "ControlNet 1.1 Canny",
+      "task": "沿輪廓生成／構圖控制",
+      "tier": "可行但較慢",
+      "model_id": "lllyasviel/control_v11p_sd15_canny",
+      "base_model_id": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+      "pipeline": "ControlNetModel + StableDiffusionControlNetPipeline",
+      "repository": "https://github.com/lllyasviel/ControlNet-v1-1-nightly",
+      "paper": "https://arxiv.org/abs/2302.05543",
+      "inputs": "來源圖片的 Canny 邊緣圖 + 描述",
+      "output": "圖片",
+      "license": "模型卡：OpenRAIL / CreativeML OpenRAIL-M；另依 base model 授權",
+      "footprint": "在 SD1.5 之外再載入 ControlNet；FP32 完整權重約 6 GB 級，工作 RAM 先預留 10–16 GB（工程估計）。",
+      "native_mac": "legacy CPU 候選；每步額外運算，通常比同尺寸 SD1.5 慢。",
+      "notes": [
+        "Canny 前處理由 OpenCV 在 CPU 進行，不需要額外神經網路權重。",
+        "Canny checkpoint 不等於姿態、深度或 segmentation 模型；不能只換輸入圖片就宣稱支援全部控制類型。",
+        "base model 的 current ID 是鏡像；下載來源與 revision 應寫入本機清單。"
+      ],
+      "defaults": {
+        "num_inference_steps": 20,
+        "controlnet_conditioning_scale": 1.0
+      },
+      "code": "from diffusers import ControlNetModel, StableDiffusionControlNetPipeline\ncontrol = ControlNetModel.from_pretrained(local_control, torch_dtype=torch.float32, local_files_only=True)\npipe = StableDiffusionControlNetPipeline.from_pretrained(local_base, controlnet=control, torch_dtype=torch.float32, local_files_only=True).to(\"cpu\")\nresult = pipe(prompt=text, image=canny_rgb, controlnet_conditioning_scale=1.0).images[0]",
+      "sources": [
+        "control",
+        "control_api"
+      ]
+    },
+    {
+      "id": "panorama",
+      "name": "MultiDiffusion Panorama",
+      "task": "寬幅／左右相接全景",
+      "tier": "可行但較慢",
+      "model_id": "stabilityai/stable-diffusion-2-base",
+      "pipeline": "StableDiffusionPanoramaPipeline + DDIMScheduler",
+      "repository": "https://github.com/omerbt/MultiDiffusion",
+      "paper": "https://arxiv.org/abs/2302.08113",
+      "inputs": "文字 + 全景尺寸",
+      "output": "寬幅圖片",
+      "license": "MultiDiffusion 程式碼與所選 base model 分別授權",
+      "footprint": "沒有獨立 MultiDiffusion 權重；使用 SD base。RAM 取決於寬度與 view_batch_size；512×1024、batch1 可先規劃 10–16 GB（工程估計）。",
+      "native_mac": "legacy CPU 候選；視窗越多，總時間越長。",
+      "notes": [
+        "文獻方法在多個重疊視窗間融合 denoising 結果；不是把普通圖片拉寬。",
+        "circular_padding=True 支援左右銜接；不保證是幾何精確的 360° 球面場景或有正確上下極點。",
+        "官方範例使用 SD2-base。若改用 SD1.5 共用權重，屬工程選擇，需要實際 smoke test。"
+      ],
+      "defaults": {
+        "width": 1024,
+        "height": 512,
+        "view_batch_size": 1,
+        "circular_padding": true,
+        "num_inference_steps": 20
+      },
+      "code": "from diffusers import StableDiffusionPanoramaPipeline, DDIMScheduler\npipe = StableDiffusionPanoramaPipeline.from_pretrained(local_base, torch_dtype=torch.float32, local_files_only=True).to(\"cpu\")\npipe.scheduler = DDIMScheduler.from_config(pipe.scheduler.config)\nresult = pipe(prompt=text, width=1024, height=512, view_batch_size=1, circular_padding=True).images[0]",
+      "sources": [
+        "panorama",
+        "panorama_repo"
+      ]
+    },
+    {
+      "id": "liveportrait",
+      "name": "LivePortrait（人像模式）",
+      "task": "以驅動影片製作人像動畫",
+      "tier": "CPU 實驗功能",
+      "model_id": "KlingTeam/LivePortrait",
+      "alternate_model_id": "KwaiVGI/LivePortrait",
+      "pipeline": "官方 LivePortraitPipeline / inference.py",
+      "repository": "https://github.com/KlingAIResearch/LivePortrait",
+      "paper": "https://arxiv.org/abs/2407.03168",
+      "inputs": "來源人像 + 驅動影片；也可用官方 motion template",
+      "output": "人像動畫影片",
+      "license": "LivePortrait MIT；隨附 InsightFace 模型另有限制，商用須替換或取得合適權利",
+      "footprint": "官方人像 liveportrait 目錄約 637 MB，另有 insightface 約 22 MB；不包含動物模型。RAM 隨驅動片長增長，先以短片測量。",
+      "native_mac": "官方 macOS 路線是 Apple Silicon；Intel 未獲支援保證。flag_force_cpu 原始碼標為 WIP。",
+      "notes": [
+        "它移轉來源影片的表情與頭部動作；僅輸入「微笑、眨眼」文字不構成 LivePortrait 驅動。",
+        "CPU 需明確強制 cpu、關閉 half precision、停用 torch.compile，並安裝 CPU ONNX Runtime。",
+        "先測 1–2 秒單人正面短片。動物模式依賴 X-Pose，不納入這個 CPU 人像 adapter。",
+        "不要接受來源不明的 .pkl motion template；Python pickle 不是安全的通用上傳格式。"
+      ],
+      "defaults": {
+        "flag_force_cpu": true,
+        "flag_use_half_precision": false,
+        "flag_do_torch_compile": false
+      },
+      "code": "# 在 LivePortrait 專用環境與 repository 目錄執行。\n# 先以 python inference.py --help 核對所安裝 revision 的 tyro 旗標。\npython inference.py -s source.png -d driving.mp4 --flag-force-cpu --no-flag-use-half-precision",
+      "sources": [
+        "live",
+        "live_config",
+        "live_license",
+        "live_weights"
+      ]
+    },
+    {
+      "id": "flux2_klein",
+      "name": "FLUX.2 klein 4B",
+      "task": "文字生圖／參考圖編輯",
+      "tier": "大型 CPU 實驗功能",
+      "model_id": "black-forest-labs/FLUX.2-klein-4B",
+      "pipeline": "Flux2KleinPipeline",
+      "repository": "https://github.com/black-forest-labs/flux2",
+      "paper": null,
+      "inputs": "文字；可另加 PIL 參考圖片",
+      "output": "圖片",
+      "license": "Apache-2.0（4B）；不可套用到 9B 或 FLUX.2 dev",
+      "footprint": "Diffusers 元件：Transformer 約 7.75 GB、text encoder 約 8.05 GB、VAE 約 168 MB；合計約 16 GB 磁碟。FP32 權重約 32 GB 是估計，載入與生成峰值更高，64 GB 仍可能耗盡。",
+      "native_mac": "Diffusers 0.37.0 起有 Klein；Qwen3 text encoder 需 Transformers 4.51+。官方 Intel macOS torch2.2.2 缺少此 pipeline 直接使用的 torch.nn.RMSNorm，無法原樣執行；需較新 PyTorch 的 Linux x86 CPU 環境。",
+      "notes": [
+        "4B 是 diffusion transformer 的規模，完整 pipeline 還有大型 text encoder。",
+        "官方低於一秒與約 13 GB VRAM 資訊是 GPU 情境，不能用作 Intel CPU 效能承諾。",
+        "4-step distilled checkpoint 使用 guidance_scale=1；不替換成 FLUX.1 或假裝現有 SD adapter 即可。",
+        "本次未找到可可靠配對此 checkpoint 的正式 arXiv 論文；引用官方模型卡與程式庫。"
+      ],
+      "defaults": {
+        "width": 512,
+        "height": 512,
+        "num_inference_steps": 4,
+        "guidance_scale": 1.0
+      },
+      "code": "from diffusers import Flux2KleinPipeline\npipe = Flux2KleinPipeline.from_pretrained(local_model, torch_dtype=torch.float32, local_files_only=True).to(\"cpu\")\nresult = pipe(prompt=text, num_inference_steps=4, guidance_scale=1.0, width=512, height=512, generator=torch.Generator(\"cpu\").manual_seed(seed)).images[0]\n# 編輯模式：另傳 image=source；CPU 適配仍需實機驗證。",
+      "sources": [
+        "flux",
+        "flux_files",
+        "flux_api",
+        "d037",
+        "flux_torch"
+      ]
+    },
+    {
+      "id": "ltx_video",
+      "name": "LTX-Video 2B 0.9.5",
+      "task": "圖片＋文字生成影片",
+      "tier": "大型 CPU 實驗功能",
+      "model_id": "Lightricks/LTX-Video-0.9.5",
+      "pipeline": "LTXImageToVideoPipeline（文字模式：LTXPipeline）",
+      "repository": "https://github.com/Lightricks/LTX-Video",
+      "paper": "https://arxiv.org/abs/2501.00103",
+      "inputs": "來源圖片 + 英文動作／場景描述",
+      "output": "影片",
+      "license": "checkpoint 專用 OpenRAIL-M 條款；程式庫 Apache-2.0 不是權重授權",
+      "footprint": "2B 名稱未包含 T5 text encoder 等元件。FP32 大致是數十 GB 級工作負載（工程估計）；不要把只算 2B×4 bytes 當成全部 RAM。",
+      "native_mac": "採獨立影片環境；未於 Intel CPU 跑權重。官方範例及速度資料主要面向 GPU。",
+      "notes": [
+        "固定 0.9.5 避免 LTX-Video main 指到不同世代；LTX-2 與這個 adapter 是不同架構。",
+        "模型卡要求尺寸 32 的倍數、影格數 8n+1；例如 320×192、9 frames 可用於小型介面／運算檢查。",
+        "小尺寸少影格是工程測試設定，不代表官方品質，也不能以重複單張圖冒充生成影片。",
+        "0.9.1 以後的 timestep-aware VAE 需要相應 decode 設定；0.9.5 是非 distilled，不能任意套 4-step distilled 參數。"
+      ],
+      "defaults": {
+        "width": 320,
+        "height": 192,
+        "num_frames": 9,
+        "num_inference_steps": 20,
+        "guidance_scale": 5.0,
+        "decode_timestep": 0.05,
+        "decode_noise_scale": 0.025
+      },
+      "code": "from diffusers import LTXImageToVideoPipeline\npipe = LTXImageToVideoPipeline.from_pretrained(local_model, torch_dtype=torch.float32, local_files_only=True).to(\"cpu\")\nframes = pipe(image=source, prompt=text, width=320, height=192, num_frames=9, num_inference_steps=20, guidance_scale=5.0, decode_timestep=0.05, decode_noise_scale=0.025).frames[0]\n# 再以 diffusers.utils.export_to_video 寫成 MP4。",
+      "sources": [
+        "ltx",
+        "ltx_api",
+        "ltx_repo",
+        "ltx_license"
+      ]
+    },
+    {
+      "id": "cogvideox",
+      "name": "CogVideoX 5B I2V",
+      "task": "圖片＋文字生成影片",
+      "tier": "64 GB 可能不足",
+      "model_id": "zai-org/CogVideoX-5b-I2V",
+      "alternate_model_id": "THUDM/CogVideoX-5b-I2V",
+      "pipeline": "CogVideoXImageToVideoPipeline",
+      "repository": "https://github.com/THUDM/CogVideo",
+      "paper": "https://arxiv.org/abs/2408.06072",
+      "inputs": "來源圖片 + 英文描述",
+      "output": "影片",
+      "license": "CogVideoX License（商用條件見 checkpoint）；2B 文字模型的 Apache-2.0 不適用此權重",
+      "footprint": "官方 repo 約 21.6 GB。FP32 權重約 40 GB 等級（估計），再加中間張量與載入峰值，64 GB 不保證可用；CPU 運算非常重。",
+      "native_mac": "官方效能／記憶體測試只明確涵蓋 A100/H100；CPU 與 Intel Mac 不可標示已驗證。",
+      "notes": [
+        "官方版本使用 720×480、49 frames、8 fps；不要為了省 RAM 宣稱模型正式支援任意小尺寸。",
+        "模型卡列 Diffusers ≥0.30.3、Transformers ≥4.44.2、Accelerate ≥0.34；實際 lock 還需符合本機 PyTorch。",
+        "若需求只有文字生影片，可另評估 zai-org/CogVideoX-2b：Apache-2.0、CogVideoXPipeline；不能拿 2B T2V checkpoint 接進 I2V class。",
+        "先確認 RAM 與儲存空間再載入；停用／未安裝狀態應保留清楚原因。"
+      ],
+      "defaults": {
+        "width": 720,
+        "height": 480,
+        "num_frames": 49,
+        "num_inference_steps": 50,
+        "guidance_scale": 6.0,
+        "fps": 8
+      },
+      "code": "from diffusers import CogVideoXImageToVideoPipeline\npipe = CogVideoXImageToVideoPipeline.from_pretrained(local_model, torch_dtype=torch.float32, local_files_only=True).to(\"cpu\")\npipe.vae.enable_slicing()\npipe.vae.enable_tiling()\nframes = pipe(image=source, prompt=text, width=720, height=480, num_frames=49, num_inference_steps=50, guidance_scale=6).frames[0]",
+      "sources": [
+        "cog",
+        "cog_files",
+        "cog_license",
+        "cog2"
+      ]
+    }
+  ],
+  "sources": {
+    "torch": {
+      "title": "PyTorch 2.2：macOS x64 支援公告",
+      "url": "https://docs.pytorch.org/blog/pytorch2-2/"
+    },
+    "torch_wheels": {
+      "title": "官方 PyTorch CPU wheel 索引",
+      "url": "https://download.pytorch.org/whl/cpu/torch/"
+    },
+    "offload": {
+      "title": "Diffusers：CPU offloading 的實際意義",
+      "url": "https://huggingface.co/docs/diffusers/main/optimization/memory"
+    },
+    "d037": {
+      "title": "Diffusers 0.37.0 release：新增 Flux2 Klein",
+      "url": "https://github.com/huggingface/diffusers/releases/tag/v0.37.0"
+    },
+    "flux_torch": {
+      "title": "FLUX.2 0.37.1 原始碼：直接使用 torch.nn.RMSNorm",
+      "url": "https://github.com/huggingface/diffusers/blob/v0.37.1/src/diffusers/models/transformers/transformer_flux2.py"
+    },
+    "llama_python": {
+      "title": "llama-cpp-python 0.3.16 發佈文件",
+      "url": "https://pypi.org/project/llama-cpp-python/0.3.16/"
+    },
+    "live_weights": {
+      "title": "LivePortrait 官方人像權重目錄",
+      "url": "https://huggingface.co/KlingTeam/LivePortrait/tree/main"
+    },
+    "d039": {
+      "title": "Diffusers 0.39.0 release",
+      "url": "https://github.com/huggingface/diffusers/releases/tag/v0.39.0"
+    },
+    "qwen": {
+      "title": "Qwen2.5-0.5B-Instruct 官方模型卡",
+      "url": "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct"
+    },
+    "qwen_gguf": {
+      "title": "Qwen 官方 GGUF 模型卡與檔案",
+      "url": "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF"
+    },
+    "llama": {
+      "title": "llama.cpp 官方 server API 與 CPU 參數",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md"
+    },
+    "turbo": {
+      "title": "SD-Turbo 官方模型卡",
+      "url": "https://huggingface.co/stabilityai/sd-turbo"
+    },
+    "turbo_license": {
+      "title": "SD-Turbo 隨模型提供的授權",
+      "url": "https://huggingface.co/stabilityai/sd-turbo/blob/main/LICENSE.md"
+    },
+    "pix": {
+      "title": "InstructPix2Pix 作者模型卡",
+      "url": "https://huggingface.co/timbrooks/instruct-pix2pix"
+    },
+    "pix_repo": {
+      "title": "InstructPix2Pix 作者程式碼",
+      "url": "https://github.com/timothybrooks/instruct-pix2pix"
+    },
+    "inpaint": {
+      "title": "SD1.5 Inpainting 現存鏡像（非 Runway 官方）",
+      "url": "https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-inpainting"
+    },
+    "inpaint_api": {
+      "title": "Diffusers 官方 Inpainting API",
+      "url": "https://huggingface.co/docs/diffusers/api/pipelines/stable_diffusion/inpaint"
+    },
+    "control": {
+      "title": "ControlNet 1.1 Canny 作者模型卡",
+      "url": "https://huggingface.co/lllyasviel/control_v11p_sd15_canny"
+    },
+    "control_api": {
+      "title": "Diffusers 官方 ControlNet API",
+      "url": "https://huggingface.co/docs/diffusers/api/pipelines/controlnet"
+    },
+    "panorama": {
+      "title": "Diffusers 官方 MultiDiffusion API",
+      "url": "https://huggingface.co/docs/diffusers/api/pipelines/panorama"
+    },
+    "panorama_repo": {
+      "title": "MultiDiffusion 作者程式碼",
+      "url": "https://github.com/omerbt/MultiDiffusion"
+    },
+    "live": {
+      "title": "LivePortrait 官方程式庫",
+      "url": "https://github.com/KlingAIResearch/LivePortrait"
+    },
+    "live_config": {
+      "title": "LivePortrait CPU／half precision 設定",
+      "url": "https://github.com/KlingAIResearch/LivePortrait/blob/main/src/config/argument_config.py"
+    },
+    "live_license": {
+      "title": "LivePortrait 授權與 InsightFace 模型條件",
+      "url": "https://github.com/KlingAIResearch/LivePortrait/blob/main/LICENSE"
+    },
+    "flux": {
+      "title": "FLUX.2 klein 4B 官方模型卡",
+      "url": "https://huggingface.co/black-forest-labs/FLUX.2-klein-4B"
+    },
+    "flux_files": {
+      "title": "FLUX.2 klein 4B 官方檔案清單",
+      "url": "https://huggingface.co/black-forest-labs/FLUX.2-klein-4B/tree/main"
+    },
+    "flux_api": {
+      "title": "Diffusers 官方 FLUX.2 API",
+      "url": "https://huggingface.co/docs/diffusers/api/pipelines/flux2"
+    },
+    "ltx": {
+      "title": "LTX-Video 0.9.5 官方模型卡",
+      "url": "https://huggingface.co/Lightricks/LTX-Video-0.9.5"
+    },
+    "ltx_api": {
+      "title": "Diffusers 官方 LTX-Video API",
+      "url": "https://huggingface.co/docs/diffusers/api/pipelines/ltx_video"
+    },
+    "ltx_repo": {
+      "title": "LTX-Video 官方程式庫",
+      "url": "https://github.com/Lightricks/LTX-Video"
+    },
+    "ltx_license": {
+      "title": "LTX-Video 2B 0.9.5 checkpoint 授權",
+      "url": "https://huggingface.co/Lightricks/LTX-Video/blob/main/ltx-video-2b-v0.9.5.license.txt"
+    },
+    "cog": {
+      "title": "CogVideoX-5B-I2V 官方模型卡",
+      "url": "https://huggingface.co/zai-org/CogVideoX-5b-I2V"
+    },
+    "cog_files": {
+      "title": "CogVideoX-5B-I2V 官方檔案",
+      "url": "https://huggingface.co/zai-org/CogVideoX-5b-I2V/tree/main"
+    },
+    "cog_license": {
+      "title": "CogVideoX-5B-I2V checkpoint 授權",
+      "url": "https://huggingface.co/zai-org/CogVideoX-5b-I2V/blob/main/LICENSE"
+    },
+    "cog2": {
+      "title": "CogVideoX-2B 官方模型卡（文字生影片）",
+      "url": "https://huggingface.co/zai-org/CogVideoX-2b"
+    }
+  }
+}

@@ -1,0 +1,292 @@
+{
+  "started": "2026-10-09T16:11:51.344Z",
+  "scope": "Headless Chromium on Linux; desktop viewport and simulated mobile viewport, not an actual iPhone/Android device.",
+  "checks": [
+    {
+      "name": "page boot and local neural voice catalog",
+      "passed": true,
+      "count": 1,
+      "language": "zh-Hant"
+    },
+    {
+      "name": "product bundled CJK font loaded, distinct glyphs, no QA font injection",
+      "passed": true,
+      "loaded": true,
+      "fontFamily": "system-ui, \"FRAME CJK\", sans-serif",
+      "glyphHashes": [
+        1243290633,
+        2891070486,
+        2810792468,
+        1238047791
+      ],
+      "distinctGlyphCount": 4,
+      "cacheNames": [
+        "frame-story-v3-20261009-f"
+      ]
+    },
+    {
+      "name": "frame-story-v3-20261009-f",
+      "passed": true,
+      "bytes": 4062464,
+      "detectorClientCached": true
+    },
+    {
+      "name": "offline shell reload renders bundled Chinese font",
+      "passed": true
+    },
+    {
+      "name": "offline /story/ mobile entry renders real Chinese captions, no overflow",
+      "passed": true,
+      "width": 390,
+      "overflow": 0,
+      "resolution": "360",
+      "fps": "12"
+    },
+    {
+      "name": "final font-focused run has no external requests, missing files or errors",
+      "passed": true
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "externalRequests": [],
+  "missingRequests": [],
+  "exports": [
+    {
+      "file": "FRAME_Story_demo.webm",
+      "reusedPreviousVerifiedSample": true,
+      "bytes": 2572678,
+      "probe": {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "vp8",
+            "codec_long_name": "On2 VP8",
+            "profile": "0",
+            "codec_type": "video",
+            "codec_tag_string": "[0][0][0][0]",
+            "codec_tag": "0x0000",
+            "width": 960,
+            "height": 540,
+            "coded_width": 960,
+            "coded_height": 540,
+            "closed_captions": 0,
+            "film_grain": 0,
+            "has_b_frames": 0,
+            "sample_aspect_ratio": "1:1",
+            "display_aspect_ratio": "16:9",
+            "pix_fmt": "yuv420p",
+            "level": -99,
+            "color_range": "pc",
+            "color_space": "bt709",
+            "color_transfer": "iec61966-2-1",
+            "color_primaries": "bt709",
+            "field_order": "progressive",
+            "refs": 1,
+            "r_frame_rate": "289/12",
+            "avg_frame_rate": "289/12",
+            "time_base": "1/1000",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "disposition": {
+              "default": 1,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0
+            },
+            "tags": {
+              "language": "eng",
+              "alpha_mode": "1"
+            }
+          },
+          {
+            "index": 1,
+            "codec_name": "opus",
+            "codec_long_name": "Opus (Opus Interactive Audio Codec)",
+            "codec_type": "audio",
+            "codec_tag_string": "[0][0][0][0]",
+            "codec_tag": "0x0000",
+            "sample_fmt": "fltp",
+            "sample_rate": "48000",
+            "channels": 2,
+            "channel_layout": "stereo",
+            "bits_per_sample": 0,
+            "initial_padding": 0,
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/1000",
+            "start_pts": 36,
+            "start_time": "0.036000",
+            "extradata_size": 19,
+            "disposition": {
+              "default": 1,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0
+            },
+            "tags": {
+              "language": "eng"
+            }
+          }
+        ],
+        "format": {
+          "filename": "/workspace/scratch/0b19e351a29d/frame_story_20261009/FRAME_AI_Studio/qa/FRAME_Story_demo.webm",
+          "nb_streams": 2,
+          "nb_programs": 0,
+          "format_name": "matroska,webm",
+          "format_long_name": "Matroska / WebM",
+          "start_time": "0.000000",
+          "duration": "10.500000",
+          "size": "2572678",
+          "bit_rate": "1960135",
+          "probe_score": 100,
+          "tags": {
+            "encoder": "Chrome"
+          }
+        }
+      },
+      "rms": 0.09841491988842736
+    }
+  ],
+  "languages": [],
+  "base": "http://127.0.0.1:36485",
+  "browserVersion": "153.0.8010.0",
+  "font": {
+    "loaded": true,
+    "fontFamily": "system-ui, \"FRAME CJK\", sans-serif",
+    "glyphHashes": [
+      1243290633,
+      2891070486,
+      2810792468,
+      1238047791
+    ],
+    "distinctGlyphCount": 4,
+    "cacheNames": [
+      "frame-story-v3-20261009-f"
+    ],
+    "cache": {
+      "name": "frame-story-v3-20261009-f",
+      "bytes": 4062464,
+      "detectorClientCached": true
+    },
+    "offline": {
+      "loaded": true,
+      "fontFamily": "system-ui, \"FRAME CJK\", sans-serif",
+      "glyphHashes": [
+        1243290633,
+        2891070486,
+        2810792468,
+        1238047791
+      ],
+      "distinctGlyphCount": 4,
+      "cacheNames": [
+        "frame-story-v3-20261009-f"
+      ]
+    },
+    "platformFonts": {
+      "#exportBtn": {
+        "fonts": [
+          {
+            "familyName": "jf-openhuninn-1.1",
+            "postScriptName": "jf-openhuninn-1.1",
+            "isCustomFont": true,
+            "glyphCount": 6
+          }
+        ]
+      },
+      "#voiceBtn": {
+        "fonts": [
+          {
+            "familyName": "jf-openhuninn-1.1",
+            "postScriptName": "jf-openhuninn-1.1",
+            "isCustomFont": true,
+            "glyphCount": 7
+          }
+        ]
+      },
+      ".tagline": {
+        "fonts": [
+          {
+            "familyName": "jf-openhuninn-1.1",
+            "postScriptName": "jf-openhuninn-1.1",
+            "isCustomFont": true,
+            "glyphCount": 11
+          }
+        ]
+      },
+      "#stateLabel": {
+        "fonts": [
+          {
+            "familyName": "jf-openhuninn-1.1",
+            "postScriptName": "jf-openhuninn-1.1",
+            "isCustomFont": true,
+            "glyphCount": 2
+          }
+        ]
+      },
+      ".panel-head h2": {
+        "fonts": [
+          {
+            "familyName": "jf-openhuninn-1.1",
+            "postScriptName": "jf-openhuninn-1.1",
+            "isCustomFont": true,
+            "glyphCount": 5
+          }
+        ]
+      }
+    }
+  },
+  "demoVoices": [
+    {
+      "narration": "清晨，海風陪我們出發。",
+      "audioDuration": 2.089795918367347,
+      "sceneDuration": 3.5
+    },
+    {
+      "narration": "慢下腳步，看看眼前的美景。",
+      "audioDuration": 2.461315192743764,
+      "sceneDuration": 3.5
+    },
+    {
+      "narration": "帶著回憶，我們繼續前行。",
+      "audioDuration": 2.2175056689342405,
+      "sceneDuration": 3.5
+    }
+  ],
+  "mobile": {
+    "width": 390,
+    "overflow": 0,
+    "resolution": "360",
+    "fps": "12"
+  },
+  "passed": true,
+  "completed": "2026-10-09T16:11:54.174Z"
+}

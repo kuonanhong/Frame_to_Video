@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "repo": "stabilityai/sd-turbo",
+  "revision": "b261bac6fd2cf515557d5d0707481eafa0485ec2",
+  "variant": "fp16",
+  "runtime_dtype": "float32",
+  "downloaded_at": "2026-10-10T03:08:19.914930+00:00",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "bytes": 11852,
+      "sha256": "d6f6b1a4dce5c852bd6d7d9482d002baf0ccdb71e662250b73be9eec8764ee8d"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5900,
+      "sha256": "2482ac53e71baf0624ede7aca74122ef60e442360535105cd57bcc9d7138c22e"
+    },
+    {
+      "path": "model_index.json",
+      "bytes": 616,
+      "sha256": "679fe7c2a03a419a046f4330bb2e32570d96e7a6da51b7df147d4a87bc7f775c"
+    },
+    {
+      "path": "scheduler/scheduler_config.json",
+      "bytes": 553,
+      "sha256": "5599066c725fc2747a201fa3165ad7c8c3de3be629ce325451752e8f94c0d1ae"
+    },
+    {
+      "path": "text_encoder/config.json",
+      "bytes": 618,
+      "sha256": "9f6935d3d41bf8ce49b1d7ed912b29e770649d1aa3f3972215284f9397cd97d2"
+    },
+    {
+      "path": "text_encoder/model.fp16.safetensors",
+      "bytes": 680820392,
+      "sha256": "bc1827c465450322616f06dea41596eac7d493f4e95904dcb51f0fc745c4e13f"
+    },
+    {
+      "path": "tokenizer/merges.txt",
+      "bytes": 524619,
+      "sha256": "9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a"
+    },
+    {
+      "path": "tokenizer/special_tokens_map.json",
+      "bytes": 574,
+      "sha256": "c2d0fb8b86ad86b1f46134d4a5f93fd1e688c932a78efc8d149087c33a53ad06"
+    },
+    {
+      "path": "tokenizer/tokenizer_config.json",
+      "bytes": 855,
+      "sha256": "516314ccab66918d7cb647480ac27abd3520d14e1e5825aac99f50c851c16071"
+    },
+    {
+      "path": "tokenizer/vocab.json",
+      "bytes": 1059962,
+      "sha256": "e089ad92ba36837a0d31433e555c8f45fe601ab5c221d4f607ded32d9f7a4349"
+    },
+    {
+      "path": "unet/config.json",
+      "bytes": 1867,
+      "sha256": "ca09d494527ebe13343006e22b4468d45bf12aa34e76cf03639b6dbba1fb5c6d"
+    },
+    {
+      "path": "unet/diffusion_pytorch_model.fp16.safetensors",
+      "bytes": 1731904736,
+      "sha256": "40ec400881e27d1376c7c95c5bd495f407b33756e80eb6365e301c33a07af6e5"
+    },
+    {
+      "path": "vae/config.json",
+      "bytes": 655,
+      "sha256": "699a58ef7ecf3bffa201a507a3eaa3eed7efabab457ac547bf82df798b52a9be"
+    },
+    {
+      "path": "vae/diffusion_pytorch_model.fp16.safetensors",
+      "bytes": 167335342,
+      "sha256": "3e4c08995484ee61270175e9e7a072b66a6e4eeb5f0c266667fe1f45b90daf9a"
+    }
+  ]
+}
