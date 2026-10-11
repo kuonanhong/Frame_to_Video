@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="FRAME Story">
+  <rect width="128" height="128" rx="28" fill="#12252c"/>
+  <path d="M31 87V37h49M31 59h34" fill="none" stroke="#a7f2d2" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m70 71 25 14-25 14z" fill="#ffcf7b"/>
+  <circle cx="91" cy="38" r="5" fill="#ffcf7b"/>
+</svg>

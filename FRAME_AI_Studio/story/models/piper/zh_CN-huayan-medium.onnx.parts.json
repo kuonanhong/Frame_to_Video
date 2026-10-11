@@ -1,0 +1,18 @@
+{
+  "url": "https://huggingface.co/rhasspy/piper-voices/resolve/c10ece1aade47bb51c153c893d14e5bf8e5b7117/zh/zh_CN/huayan/medium/zh_CN-huayan-medium.onnx",
+  "path": "piper/zh_CN-huayan-medium.onnx",
+  "bytes": 63201294,
+  "sha256": "9929917bf8cabb26fd528ea44d3a6699c11e87317a14765312420be230be0f3d",
+  "pieces": [
+    {
+      "name": "zh_CN-huayan-medium.onnx.part000",
+      "bytes": 41943040,
+      "sha256": "3e5239760f7adfa15b5545426b7f3060fa8e2c7571627676557f78eb7502c069"
+    },
+    {
+      "name": "zh_CN-huayan-medium.onnx.part001",
+      "bytes": 21258254,
+      "sha256": "09f0f769de485ee803fccd063e5d24868172be0bc3ff86d1cdca76dd582772c9"
+    }
+  ]
+}

@@ -1,0 +1,199 @@
+{
+  "schema": 1,
+  "checkedOn": "2026-10-09",
+  "models": {
+    "narration": {
+      "id": "SmolLM2-135M-Instruct-ONNX-MHA",
+      "revision": "5b6682c7c9df18f004bfb7e635cba3f3d98537d8",
+      "license": "Apache-2.0",
+      "language": [
+        "en"
+      ],
+      "dtype": "q8"
+    },
+    "piper": {
+      "id": "rhasspy/piper-voices",
+      "revision": "c10ece1aade47bb51c153c893d14e5bf8e5b7117",
+      "voices": [
+        "zh_CN-huayan-medium",
+        "en_US-amy-low",
+        "en_GB-alan-low"
+      ],
+      "license": "See each voice MODEL_CARD"
+    }
+  },
+  "assets": [
+    {
+      "url": "https://huggingface.co/onnx-community/SmolLM2-135M-Instruct-ONNX-MHA/resolve/5b6682c7c9df18f004bfb7e635cba3f3d98537d8/config.json",
+      "path": "smollm2/config.json",
+      "bytes": 936,
+      "sha256": "032600642205a8a9a5632f05bcc9460591852db72cdd484f5bd5d050aa687894"
+    },
+    {
+      "url": "https://huggingface.co/onnx-community/SmolLM2-135M-Instruct-ONNX-MHA/resolve/5b6682c7c9df18f004bfb7e635cba3f3d98537d8/generation_config.json",
+      "path": "smollm2/generation_config.json",
+      "bytes": 132,
+      "sha256": "3a6555a034b32bf2fc6d35cc16207dc95c8af520b2d45febe48a1ad6cb46ff63"
+    },
+    {
+      "url": "https://huggingface.co/onnx-community/SmolLM2-135M-Instruct-ONNX-MHA/resolve/5b6682c7c9df18f004bfb7e635cba3f3d98537d8/tokenizer.json",
+      "path": "smollm2/tokenizer.json",
+      "bytes": 2053526,
+      "sha256": "139d2f4b4919b90953bdd3c0c40c94c9b23074799a766508dc3bf5eb8ab73351"
+    },
+    {
+      "url": "https://huggingface.co/onnx-community/SmolLM2-135M-Instruct-ONNX-MHA/resolve/5b6682c7c9df18f004bfb7e635cba3f3d98537d8/tokenizer_config.json",
+      "path": "smollm2/tokenizer_config.json",
+      "bytes": 3794,
+      "sha256": "7b85619980209ca801effcd87e5df7084a21abc3d8b8d27003a6b4ffcce170ef"
+    },
+    {
+      "url": "https://huggingface.co/onnx-community/SmolLM2-135M-Instruct-ONNX-MHA/resolve/5b6682c7c9df18f004bfb7e635cba3f3d98537d8/special_tokens_map.json",
+      "path": "smollm2/special_tokens_map.json",
+      "bytes": 655,
+      "sha256": "2b7379f3ae813529281a5c602bc5a11c1d4e0a99107aaa597fe936c1e813ca52"
+    },
+    {
+      "url": "https://huggingface.co/onnx-community/SmolLM2-135M-Instruct-ONNX-MHA/resolve/5b6682c7c9df18f004bfb7e635cba3f3d98537d8/README.md",
+      "path": "smollm2/README.md",
+      "bytes": 563,
+      "sha256": "bc2b90af5d260426007dd9b543c92a2392f31f271870da72ddda14c49d557eff"
+    },
+    {
+      "url": "https://huggingface.co/onnx-community/SmolLM2-135M-Instruct-ONNX-MHA/resolve/5b6682c7c9df18f004bfb7e635cba3f3d98537d8/onnx/model_quantized.onnx",
+      "path": "smollm2/onnx/model_quantized.onnx",
+      "bytes": 137479710,
+      "sha256": "d5754584650dbbadc2b9d340e2881c51fb0f38c485b0387c04cbf5935a2d4041",
+      "pieces": [
+        {
+          "name": "model_quantized.onnx.part000",
+          "bytes": 41943040,
+          "sha256": "bc3640053cc825d07b14e8af120b2bcf910e3de00fc55273d4158997beca6c0a"
+        },
+        {
+          "name": "model_quantized.onnx.part001",
+          "bytes": 41943040,
+          "sha256": "bc4e9adb49c496a8223a1e1005c417b27c9a34dc47fa0561d0e5bb7d35cc9356"
+        },
+        {
+          "name": "model_quantized.onnx.part002",
+          "bytes": 41943040,
+          "sha256": "eef7db1213c5cba2bc3026a6158da1e1ecf362a08c4e4511843b5a9208c14c29"
+        },
+        {
+          "name": "model_quantized.onnx.part003",
+          "bytes": 11650590,
+          "sha256": "3ff3276fe54569a4ab6727df1846617f2916169b1dbaecf5f8fb49a59efb1bde"
+        }
+      ]
+    },
+    {
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+      "path": "smollm2/LICENSE",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "url": "https://huggingface.co/rhasspy/piper-voices/resolve/c10ece1aade47bb51c153c893d14e5bf8e5b7117/zh/zh_CN/huayan/medium/zh_CN-huayan-medium.onnx",
+      "path": "piper/zh_CN-huayan-medium.onnx",
+      "bytes": 63201294,
+      "sha256": "9929917bf8cabb26fd528ea44d3a6699c11e87317a14765312420be230be0f3d",
+      "pieces": [
+        {
+          "name": "zh_CN-huayan-medium.onnx.part000",
+          "bytes": 41943040,
+          "sha256": "3e5239760f7adfa15b5545426b7f3060fa8e2c7571627676557f78eb7502c069"
+        },
+        {
+          "name": "zh_CN-huayan-medium.onnx.part001",
+          "bytes": 21258254,
+          "sha256": "09f0f769de485ee803fccd063e5d24868172be0bc3ff86d1cdca76dd582772c9"
+        }
+      ]
+    },
+    {
+      "url": "https://huggingface.co/rhasspy/piper-voices/resolve/c10ece1aade47bb51c153c893d14e5bf8e5b7117/zh/zh_CN/huayan/medium/zh_CN-huayan-medium.onnx.json",
+      "path": "piper/zh_CN-huayan-medium.onnx.json",
+      "bytes": 4822,
+      "sha256": "d521dc45504a8ccc99e325822b35946dd701840bfb07e3dbb31a40929ed6a82b"
+    },
+    {
+      "url": "https://huggingface.co/rhasspy/piper-voices/resolve/c10ece1aade47bb51c153c893d14e5bf8e5b7117/zh/zh_CN/huayan/medium/MODEL_CARD",
+      "path": "piper/zh_CN-huayan-medium.MODEL_CARD",
+      "bytes": 276,
+      "sha256": "25d7d8f7a03e9382e629c5c4f074176e7ca84e08be12a873022e91fcac98c2c7"
+    },
+    {
+      "url": "https://huggingface.co/rhasspy/piper-voices/resolve/c10ece1aade47bb51c153c893d14e5bf8e5b7117/en/en_US/amy/low/en_US-amy-low.onnx",
+      "path": "piper/en_US-amy-low.onnx",
+      "bytes": 63104526,
+      "sha256": "a5a91abb7de0f104358a25aded480ddacf1ff0762886325886ec406a2e86aab3",
+      "pieces": [
+        {
+          "name": "en_US-amy-low.onnx.part000",
+          "bytes": 41943040,
+          "sha256": "333c455ab9b843ae15f2c47e537d30f61b3f5c6c11cf0f23e02d0075e2136511"
+        },
+        {
+          "name": "en_US-amy-low.onnx.part001",
+          "bytes": 21161486,
+          "sha256": "23b8028a7e5a326de8eba8f6beb21cff8e26315bf2d4ad220688a46d5b1ba743"
+        }
+      ]
+    },
+    {
+      "url": "https://huggingface.co/rhasspy/piper-voices/resolve/c10ece1aade47bb51c153c893d14e5bf8e5b7117/en/en_US/amy/low/en_US-amy-low.onnx.json",
+      "path": "piper/en_US-amy-low.onnx.json",
+      "bytes": 4164,
+      "sha256": "2250a9a605b8dc35a116717fadc5056695dd809e34a15d02f72a0f52d53d3ebb"
+    },
+    {
+      "url": "https://huggingface.co/rhasspy/piper-voices/resolve/c10ece1aade47bb51c153c893d14e5bf8e5b7117/en/en_US/amy/low/MODEL_CARD",
+      "path": "piper/en_US-amy-low.MODEL_CARD",
+      "bytes": 273,
+      "sha256": "71b07ded301a96346096a71d8f0d64cbb5f49d5d51004dce28bbb7504e3f65f0"
+    },
+    {
+      "url": "https://huggingface.co/rhasspy/piper-voices/resolve/c10ece1aade47bb51c153c893d14e5bf8e5b7117/en/en_GB/alan/low/en_GB-alan-low.onnx",
+      "path": "piper/en_GB-alan-low.onnx",
+      "bytes": 63104526,
+      "sha256": "a1f60584620a2bed203de823d08f5abb336fb15f3d6f33f8c341e3e2cabf5dde",
+      "pieces": [
+        {
+          "name": "en_GB-alan-low.onnx.part000",
+          "bytes": 41943040,
+          "sha256": "a88ab38411f920cae7a94aa86dfdbd3b7619736e34cc67e4ba4da27bc1c8eab8"
+        },
+        {
+          "name": "en_GB-alan-low.onnx.part001",
+          "bytes": 21161486,
+          "sha256": "92cf1da99a339dab3faacbd0a7ae880f56463aa190b2689212e1adc2fdce4989"
+        }
+      ]
+    },
+    {
+      "url": "https://huggingface.co/rhasspy/piper-voices/resolve/c10ece1aade47bb51c153c893d14e5bf8e5b7117/en/en_GB/alan/low/en_GB-alan-low.onnx.json",
+      "path": "piper/en_GB-alan-low.onnx.json",
+      "bytes": 4170,
+      "sha256": "c8164cc04b6ce102c651ce4a1e788e8429fa638501fca0723860718d4b44637e"
+    },
+    {
+      "url": "https://huggingface.co/rhasspy/piper-voices/resolve/c10ece1aade47bb51c153c893d14e5bf8e5b7117/en/en_GB/alan/low/MODEL_CARD",
+      "path": "piper/en_GB-alan-low.MODEL_CARD",
+      "bytes": 309,
+      "sha256": "5cd8a9b65a185dbbe96cc80305e620f1b165de8df572c49d66b53bcef9fcb1fe"
+    },
+    {
+      "url": "https://cdn.jsdelivr.net/npm/@diffusionstudio/piper-wasm@1.0.0/build/piper_phonemize.wasm",
+      "path": "phonemizer/piper_phonemize.wasm",
+      "bytes": 635212,
+      "sha256": "b777cd107a91d2bcc6a1ea46f2c26a662a7407394fe84589198aeaa83dd7a9d6"
+    },
+    {
+      "url": "https://cdn.jsdelivr.net/npm/@diffusionstudio/piper-wasm@1.0.0/build/piper_phonemize.data",
+      "path": "phonemizer/piper_phonemize.data",
+      "bytes": 18077249,
+      "sha256": "29f1025eb23a5b5c192cd14a6efbce4509402ff265405072ee6f7d1a09b78f8c"
+    }
+  ]
+}

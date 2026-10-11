@@ -1,0 +1,28 @@
+{
+  "url": "https://huggingface.co/onnx-community/SmolLM2-135M-Instruct-ONNX-MHA/resolve/5b6682c7c9df18f004bfb7e635cba3f3d98537d8/onnx/model_quantized.onnx",
+  "path": "smollm2/onnx/model_quantized.onnx",
+  "bytes": 137479710,
+  "sha256": "d5754584650dbbadc2b9d340e2881c51fb0f38c485b0387c04cbf5935a2d4041",
+  "pieces": [
+    {
+      "name": "model_quantized.onnx.part000",
+      "bytes": 41943040,
+      "sha256": "bc3640053cc825d07b14e8af120b2bcf910e3de00fc55273d4158997beca6c0a"
+    },
+    {
+      "name": "model_quantized.onnx.part001",
+      "bytes": 41943040,
+      "sha256": "bc4e9adb49c496a8223a1e1005c417b27c9a34dc47fa0561d0e5bb7d35cc9356"
+    },
+    {
+      "name": "model_quantized.onnx.part002",
+      "bytes": 41943040,
+      "sha256": "eef7db1213c5cba2bc3026a6158da1e1ecf362a08c4e4511843b5a9208c14c29"
+    },
+    {
+      "name": "model_quantized.onnx.part003",
+      "bytes": 11650590,
+      "sha256": "3ff3276fe54569a4ab6727df1846617f2916169b1dbaecf5f8fb49a59efb1bde"
+    }
+  ]
+}

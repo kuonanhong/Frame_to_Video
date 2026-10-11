@@ -1,0 +1,18 @@
+{
+  "url": "https://huggingface.co/rhasspy/piper-voices/resolve/c10ece1aade47bb51c153c893d14e5bf8e5b7117/en/en_GB/alan/low/en_GB-alan-low.onnx",
+  "path": "piper/en_GB-alan-low.onnx",
+  "bytes": 63104526,
+  "sha256": "a1f60584620a2bed203de823d08f5abb336fb15f3d6f33f8c341e3e2cabf5dde",
+  "pieces": [
+    {
+      "name": "en_GB-alan-low.onnx.part000",
+      "bytes": 41943040,
+      "sha256": "a88ab38411f920cae7a94aa86dfdbd3b7619736e34cc67e4ba4da27bc1c8eab8"
+    },
+    {
+      "name": "en_GB-alan-low.onnx.part001",
+      "bytes": 21161486,
+      "sha256": "92cf1da99a339dab3faacbd0a7ae880f56463aa190b2689212e1adc2fdce4989"
+    }
+  ]
+}

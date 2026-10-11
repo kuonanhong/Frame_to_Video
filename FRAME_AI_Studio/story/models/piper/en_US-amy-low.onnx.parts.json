@@ -1,0 +1,18 @@
+{
+  "url": "https://huggingface.co/rhasspy/piper-voices/resolve/c10ece1aade47bb51c153c893d14e5bf8e5b7117/en/en_US/amy/low/en_US-amy-low.onnx",
+  "path": "piper/en_US-amy-low.onnx",
+  "bytes": 63104526,
+  "sha256": "a5a91abb7de0f104358a25aded480ddacf1ff0762886325886ec406a2e86aab3",
+  "pieces": [
+    {
+      "name": "en_US-amy-low.onnx.part000",
+      "bytes": 41943040,
+      "sha256": "333c455ab9b843ae15f2c47e537d30f61b3f5c6c11cf0f23e02d0075e2136511"
+    },
+    {
+      "name": "en_US-amy-low.onnx.part001",
+      "bytes": 21161486,
+      "sha256": "23b8028a7e5a326de8eba8f6beb21cff8e26315bf2d4ad220688a46d5b1ba743"
+    }
+  ]
+}

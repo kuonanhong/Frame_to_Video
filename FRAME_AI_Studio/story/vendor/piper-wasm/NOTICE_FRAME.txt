@@ -1,0 +1,18 @@
+FRAME bundled phonemizer notice (2026-10-09)
+
+The npm package @diffusionstudio/piper-wasm@1.0.0 labels its packaging MIT.
+Its compiled phonemizer includes eSpeak NG, which is GPL-3.0.
+The package label does not override eSpeak NG's license.
+The full GPL text is piper-wasm-GPL.txt. Source archives and upstream build
+instructions are included here; sources-manifest.json records download URL,
+bytes and SHA-256. Preserve these notices when redistributing this component.
+
+The source for the Piper phonemizer is wide-video/piper-phonemize.
+The upstream CMake fixes eSpeak NG to commit
+0f65aa301e0d6bae5e172cc74197d32a6182200f, whose complete source archive is included.
+The original npm build README is retained. The npm binary was downloaded rather
+than locally rebuilt; FRAME does not claim a byte-identical reproducible rebuild
+or invent an unknown exact release-time source commit for that npm binary.
+
+Other runtime packages retain their package metadata and license records.
+Piper voice model/data terms are separate: see each .MODEL_CARD and STORY_MODELS.md.
