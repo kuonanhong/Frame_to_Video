@@ -1,0 +1,6 @@
+{
+  "package": "@huggingface/transformers",
+  "version": "3.8.1",
+  "url": "https://registry.npmjs.org/@huggingface/transformers/-/transformers-3.8.1.tgz",
+  "integrity": "sha512-tsTk4zVjImqdqjS8/AOZg2yNLd1z9S5v+7oUPpXaasDRwEDhB+xnglK1k5cad26lL5/ZIaeREgWWy0bs9y9pPA=="
+}

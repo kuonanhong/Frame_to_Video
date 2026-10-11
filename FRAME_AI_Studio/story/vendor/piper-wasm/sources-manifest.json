@@ -1,0 +1,20 @@
+[
+  {
+    "url": "https://codeload.github.com/wide-video/piper-phonemize/tar.gz/bfc2e7549957829b0227c66a305d11cc88167bda",
+    "path": "piper-phonemize-source.tar.gz",
+    "bytes": 9788173,
+    "sha256": "cb72dd5564b292e043129d1c34b74f064dcc9ff0f713aebb3c6e44c5607de724"
+  },
+  {
+    "url": "https://codeload.github.com/rhasspy/espeak-ng/tar.gz/0f65aa301e0d6bae5e172cc74197d32a6182200f",
+    "path": "espeak-ng-source.tar.gz",
+    "bytes": 16321475,
+    "sha256": "37ebbabb010200be8ec26c61b770e93f964f4503a329d7d74c239a1a40051e43"
+  },
+  {
+    "url": "https://codeload.github.com/diffusion-studio/piper-wasm/tar.gz/refs/heads/main",
+    "path": "piper-wasm-build-source.tar.gz",
+    "bytes": 9236819,
+    "sha256": "76e0a7bcbf5ada02d5836491902cfa63ce8ddd6c1c15d4443a36cf4bd3279da0"
+  }
+]

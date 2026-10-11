@@ -1,0 +1,215 @@
+{
+  "date": "2026-10-09",
+  "assets": [
+    {
+      "path": "onnxruntime-web/LICENSE",
+      "bytes": 1073,
+      "sha256": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c"
+    },
+    {
+      "path": "onnxruntime-web/dist/ort-wasm-simd-threaded.mjs",
+      "bytes": 20856,
+      "sha256": "30dd851d9c00622940500f71ddd2ff8820c5cb65270816080175b958705385a8"
+    },
+    {
+      "path": "onnxruntime-web/dist/ort-wasm-simd-threaded.wasm",
+      "bytes": 11210254,
+      "sha256": "71aef04959c5c1b6de461b6538e2058e306610034a85aad2742d0c7fd4533fe4"
+    },
+    {
+      "path": "onnxruntime-web/dist/ort.wasm.min.mjs",
+      "bytes": 48259,
+      "sha256": "6ef726f355b791129f7ddf3f62e7877a16b9b777abe87004b8ab306e6b9cf265"
+    },
+    {
+      "path": "onnxruntime-web/download-origin.json",
+      "bytes": 255,
+      "sha256": "9f1155f729c570c27318e9cc87af848cc567765baade699614b67653fcb6dfa2"
+    },
+    {
+      "path": "onnxruntime-web/package.json",
+      "bytes": 3638,
+      "sha256": "6161720a4479e5bcf3457092c96a59466123f2b5830f3e60193dbc50ed1f3040"
+    },
+    {
+      "path": "opencc/LICENSE",
+      "bytes": 1080,
+      "sha256": "960f7fc16d8baa126802316a7df9078a383af4fb6bc60033adb28e85c08d5e5e"
+    },
+    {
+      "path": "opencc/dist/esm/full.js",
+      "bytes": 1119279,
+      "sha256": "a2c74b06544b9f7c09fe772d4eda679d8c0afedcd9ea66c69b532229a208fd5d"
+    },
+    {
+      "path": "opencc/package.json",
+      "bytes": 1235,
+      "sha256": "5ff1fc1de94827a0f01fa96ee45439d71ca93dc5616f29aae60aa719acd88bc9"
+    },
+    {
+      "path": "piper-tts-web/README.md",
+      "bytes": 2716,
+      "sha256": "d552eb6146b4886812590f5560b862b1bfc262eec0acd378d9c749b610da132c"
+    },
+    {
+      "path": "piper-tts-web/dist/audio.d.ts",
+      "bytes": 173,
+      "sha256": "32b0cf7dbeb5e19a17ac945c43d9ecbf6f100e958e84221d2f08de33c3f9d1e3"
+    },
+    {
+      "path": "piper-tts-web/dist/fixtures.d.ts",
+      "bytes": 576,
+      "sha256": "56564c85c22bad0819a3f8cb471b7cbf355c9515b744c6e4fc014a6da9a8453b"
+    },
+    {
+      "path": "piper-tts-web/dist/http.d.ts",
+      "bytes": 137,
+      "sha256": "13f746c2907b2dd8f819d9908964f0fa69f3deeffd50fc497918b75be94e93f7"
+    },
+    {
+      "path": "piper-tts-web/dist/index.d.ts",
+      "bytes": 135,
+      "sha256": "0f16393f29d055c759961dc3ac0ea168d76645f8ea90556993bcfeef02316466"
+    },
+    {
+      "path": "piper-tts-web/dist/inference.d.ts",
+      "bytes": 1422,
+      "sha256": "7e2efdb8a6d11c47f88a576f84f9c53dd1761b0eb5481401e438978411770581"
+    },
+    {
+      "path": "piper-tts-web/dist/opfs.d.ts",
+      "bytes": 213,
+      "sha256": "be0d2e1918be63fa9b64968860ef0400a5b72ce26a9157381b18ae75bbb57130"
+    },
+    {
+      "path": "piper-tts-web/dist/piper-o91UDS6e.js",
+      "bytes": 158217,
+      "sha256": "b5ac96981729547606fd026b8e3829aad81e9e3c22308869d50473259c563283"
+    },
+    {
+      "path": "piper-tts-web/dist/piper-tts-web.js",
+      "bytes": 23646,
+      "sha256": "531aa8a16605c07e5d791dfea540cadee1bd457b4a75c5303f01e843722f700f"
+    },
+    {
+      "path": "piper-tts-web/dist/piper.d.ts",
+      "bytes": 59,
+      "sha256": "214ddc769408598e8b59c12175e86fd5e2668777eb2060eb58cf307aed1bc8b5"
+    },
+    {
+      "path": "piper-tts-web/dist/storage.d.ts",
+      "bytes": 467,
+      "sha256": "6570408800b6ffc1204109a18fd07ee82c337cd4ec5fb6995f810b3315de9a99"
+    },
+    {
+      "path": "piper-tts-web/dist/types.d.ts",
+      "bytes": 4139,
+      "sha256": "22d82aac925d4f8d5a735522d542ce7535705792666e31e980ee2a255b56bba8"
+    },
+    {
+      "path": "piper-tts-web/dist/voices.d.ts",
+      "bytes": 188,
+      "sha256": "728cb8661241c41d280bd7bc2f31aa02f737fa2e281bdcee10d9fe779bbc4fff"
+    },
+    {
+      "path": "piper-tts-web/dist/voices_static-D_OtJDHM.js",
+      "bytes": 147377,
+      "sha256": "72cbd46fecaa067a09ed9455ca04b970d722810905d90bb2421e0911a5c4d758"
+    },
+    {
+      "path": "piper-tts-web/dist/voices_static.json.d.ts",
+      "bytes": 154620,
+      "sha256": "12c0e546d2c95a51abda600e0e9365b7fb3603e487a525efee391e8132b8e49f"
+    },
+    {
+      "path": "piper-tts-web/package.json",
+      "bytes": 1430,
+      "sha256": "48356241c7ff14236958532aa60aa6f2c1bd9470574a58d45cba6b5ea0a9e54d"
+    },
+    {
+      "path": "piper-wasm/NOTICE_FRAME.txt",
+      "bytes": 1065,
+      "sha256": "43246b759c795d0ab40f4e40049f623b951005667bc841965456f512696bbba5"
+    },
+    {
+      "path": "piper-wasm/README.md",
+      "bytes": 2057,
+      "sha256": "f840820a5733d096abe5ce5e526b1a74aa84ba6f47fbe96faf13606b91e106a3"
+    },
+    {
+      "path": "piper-wasm/espeak-meta.json",
+      "bytes": 41775,
+      "sha256": "c54764a808cbf65eb50096331c58b7c799a0290e5910eac77c3e930f21c465dc"
+    },
+    {
+      "path": "piper-wasm/espeak-ng-source.tar.gz",
+      "bytes": 16321475,
+      "sha256": "37ebbabb010200be8ec26c61b770e93f964f4503a329d7d74c239a1a40051e43"
+    },
+    {
+      "path": "piper-wasm/package.json",
+      "bytes": 607,
+      "sha256": "c343b0e2e26e6d29214097ee4da7f5c078e4c24d3bb2e2cbea0215471dc0f910"
+    },
+    {
+      "path": "piper-wasm/piper-phonemize-CMakeLists.txt",
+      "bytes": 6780,
+      "sha256": "bd9c7255adacbb1f1871bcb8ecae893fb1a4a0d36ecaabd5c87fc92eaec801d6"
+    },
+    {
+      "path": "piper-wasm/piper-phonemize-meta.json",
+      "bytes": 4527,
+      "sha256": "f42ce1abedda0a09bcd81c64e83da924ec0e59fdb5262a054da311b2f1bb5a46"
+    },
+    {
+      "path": "piper-wasm/piper-phonemize-source.tar.gz",
+      "bytes": 9788173,
+      "sha256": "cb72dd5564b292e043129d1c34b74f064dcc9ff0f713aebb3c6e44c5607de724"
+    },
+    {
+      "path": "piper-wasm/piper-wasm-GPL.txt",
+      "bytes": 35147,
+      "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+    },
+    {
+      "path": "piper-wasm/piper-wasm-build-source.tar.gz",
+      "bytes": 9236819,
+      "sha256": "76e0a7bcbf5ada02d5836491902cfa63ce8ddd6c1c15d4443a36cf4bd3279da0"
+    },
+    {
+      "path": "piper-wasm/sources-manifest.json",
+      "bytes": 787,
+      "sha256": "6662cb98905ac19ae52d3263ff325da54f98b8b7d7cdbd6c0de3dbc53f502804"
+    },
+    {
+      "path": "transformers/LICENSE",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "transformers/dist/ort-wasm-simd-threaded.jsep.mjs",
+      "bytes": 44484,
+      "sha256": "08fb86ec433c78bfb032c5d84a68b8e8e5a8d81268fa39e24314179a5767a5b9"
+    },
+    {
+      "path": "transformers/dist/ort-wasm-simd-threaded.jsep.wasm",
+      "bytes": 21596019,
+      "sha256": "c46655e8a94afc45338d4cb2b840475f88e5012d524509916e505079c00bfa39"
+    },
+    {
+      "path": "transformers/dist/transformers.min.js",
+      "bytes": 888173,
+      "sha256": "aa5002b70e789798da263f5f99c62bd3e8fcd0c119258a493c40c180648365fa"
+    },
+    {
+      "path": "transformers/download-origin.json",
+      "bytes": 270,
+      "sha256": "602d36f8b6d41ad27ed41bd90090a38034e54f1aef745030dc45a670cf3b2a07"
+    },
+    {
+      "path": "transformers/package.json",
+      "bytes": 2694,
+      "sha256": "00c02ca357bf03c801f33c9a431c0169b99c1de1e14f2134cabc902cce53d4f3"
+    }
+  ]
+}
